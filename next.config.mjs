@@ -1,4 +1,9 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+const withGoogleFonts = require('next-google-fonts');
 
-export default nextConfig;
+module.exports = withGoogleFonts({
+  googleFonts: {
+    fonts: [
+      { family: 'Inter', variants: ['400', '700'] }
+    ],
+  },
+});
