@@ -15,7 +15,6 @@ app.use(express.json());
 const recipeSchema = new mongoose.Schema({
   name: String,
   ingredients: [String],
-  // Add other fields as per your document structure
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
