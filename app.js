@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const app = express();
 const port = 3000;
 
-const url = 'mongodb://localhost:27017/ucook';
+const url = 'mongodb://127.0.0.1:27017/ucook';
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
@@ -12,17 +12,18 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.use(express.json());
 
+const Recipe = mongoose.model('Recipe', {});
+
 app.get('/app', async (req, res) => {
   try {
-    const collection = mongoose.connection.db.collection('recipe');
-    const documents = await collection.find().toArray();
-    res.send(documents);
+    const documents = await Recipe.find().exec();
+    res.json(documents);
   } catch (error) {
-    console.error('Error fetching documents', error);
-    res.status(500).send('Internal Server Error');
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
 app.listen(port, () => {
-  console.log('Server is running on http://localhost:${port}');
+  console.log(`Server is running on http://localhost:${port}`); 
 });
