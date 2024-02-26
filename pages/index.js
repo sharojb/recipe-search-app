@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import React, { useState } from 'react';
 import axios from 'axios';
-import SearchBar from '.server/client/src/components/SearchBar';  // Corrected import path
-import RecipeList from '.server/client/src/components/RecipeList';  // Corrected import path
+import SearchBar from '.server/client/src/components/SearchBar';  
+import RecipeList from '.server/client/src/components/RecipeList';
 
 
 const Home = () => {
