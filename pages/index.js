@@ -1,13 +1,13 @@
 import Head from 'next/head';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import SearchBar from '../components/SearchBar';
-import RecipeList from '../components/RecipeList';
+import SearchBar from '.server/client/src/components/SearchBar';  // Corrected import path
+import RecipeList from '.server/client/src/components/RecipeList';  // Corrected import path
+
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
-  const serverUrl = 'http://localhost:3001'; 
+  const serverUrl = 'http://localhost:3000';
 
   const handleSearch = async (query) => {
     try {
@@ -17,7 +17,7 @@ const Home = () => {
       console.log('Search Query:', query);
       console.log('Fetched Recipes:', data.results);
 
-      setRecipes(data.results || []); 
+      setRecipes(data.results || []);
     } catch (error) {
       console.error('Error fetching recipes:', error);
     }
