@@ -1,8 +1,9 @@
 import Head from 'next/head';
 import React, { useState } from 'react';
 import axios from 'axios';
-import SearchBar from '.server/client/src/components/SearchBar';  
-import RecipeList from '.server/client/src/components/RecipeList';
+import SearchBar from './client/src/components/SearchBar';  
+import RecipeList from './client/src/components/RecipeList';
+
 
 
 const Home = () => {
