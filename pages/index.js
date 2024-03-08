@@ -1,15 +1,21 @@
+// pages/index.js
 import Head from 'next/head';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import SearchBar from './client/src/components/SearchBar';  
-import RecipeList from './client/src/components/RecipeList';
+import SearchBar from '../client/src/components/SearchBar';
+import RecipeList from '../client/src/components/RecipeList';
 
 const Home = ({ initialRecipes }) => {
   const [recipes, setRecipes] = useState(initialRecipes);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const serverUrl = 'http://localhost:3000';
 
   const handleSearch = async (query) => {
     try {
+      setLoading(true);
+      setError(null);
+
       const response = await axios.get(`${serverUrl}/api/search?query=${query}`);
       const data = response.data;
 
@@ -19,6 +25,9 @@ const Home = ({ initialRecipes }) => {
       setRecipes(data.results || []);
     } catch (error) {
       console.error('Error fetching recipes:', error.message);
+      setError('Error fetching recipes. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -33,6 +42,10 @@ const Home = ({ initialRecipes }) => {
       <main>
         <h1>ucook</h1>
         <SearchBar onSearch={handleSearch} />
+        
+        {loading && <p>Loading...</p>}
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        
         <RecipeList recipes={recipes} />
       </main>
 
@@ -43,26 +56,21 @@ const Home = ({ initialRecipes }) => {
   );
 };
 
-export const getServerSideProps = async () => {
+Home.getInitialProps = async () => {
   try {
     const apiKey = '4e1ab513731c4ffeaa22089bd7a2d2a3';
     const response = await axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=5`);
     const initialRecipes = response.data.results || [];
 
     return {
-      props: {
-        initialRecipes,
-      },
+      initialRecipes,
     };
   } catch (error) {
     console.error('Error fetching initial data:', error.message);
 
     return {
-      props: {
-        initialRecipes: [],
-      },
+      initialRecipes: [],
     };
-    
   }
 };
 

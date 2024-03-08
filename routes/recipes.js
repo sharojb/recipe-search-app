@@ -1,5 +1,6 @@
 const express = require('express');
-const { getRecipe, searchRecipes } = require('./recipeUtils'); 
+const Recipe = require('../models/Recipe'); // Adjust the path as needed
+const { getRecipe, searchRecipes } = require('./recipeUtils');
 
 const router = express.Router();
 
@@ -8,8 +9,8 @@ router.get('/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
-    const recipe = await getRecipe(id);
-    
+    const recipe = await Recipe.findById(id);
+
     if (!recipe) {
       // Handle case where recipe is not found
       return res.status(404).json({ error: 'Recipe Not Found' });
@@ -27,7 +28,7 @@ router.get('/search', async (req, res) => {
   const { query } = req.query;
 
   try {
-    const recipes = await searchRecipes(query);
+    const recipes = await Recipe.find({ $text: { $search: query } }); // Use $text for text search
     res.json(recipes);
   } catch (error) {
     console.error(error);
