@@ -1,10 +1,7 @@
-// pages/_app.js
-import '../styles/globals.css';  // Import your global styles here
-import { useEffect } from 'react';
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
-    // This will run on initial load
     console.log('App Component Mounted');
   }, []);
 
