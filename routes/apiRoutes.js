@@ -1,5 +1,3 @@
-// routes/recipes.js
-
 const express = require('express');
 const Recipe = require('../models/Recipe');
 

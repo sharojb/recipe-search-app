@@ -1,13 +1,17 @@
 import Head from 'next/head';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import SearchBar from '@/components/SearchBar';
 import RecipeList from '@/components/RecipeList';
+import CreateProfileForm from '@/components/CreateProfileForm'; 
+import '../../styles/create-profile-form.css';
 
 const Home = ({ initialRecipes }) => {
   const [recipes, setRecipes] = useState(initialRecipes);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showSignUpForm, setShowSignUpForm] = useState(false); // State to manage whether to show the sign-up form
+
   const serverUrl = 'http://localhost:3000';
 
   const handleSearch = async (query) => {
@@ -30,6 +34,10 @@ const Home = ({ initialRecipes }) => {
     }
   };
 
+  const handleSignUpClick = () => {
+    setShowSignUpForm(true);
+  };
+
   return (
     <div>
       <Head>
@@ -41,10 +49,16 @@ const Home = ({ initialRecipes }) => {
       <main>
         <h1>ucook</h1>
         <SearchBar onSearch={handleSearch} />
-        
+
+        {/* Display the sign-up button */}
+        <button onClick={handleSignUpClick}>Sign Up</button>
+
+        {/* Conditionally display the sign-up form */}
+        {showSignUpForm && <CreateProfileForm />}
+
         {loading && <p>Loading...</p>}
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        
+
         <RecipeList recipes={recipes} />
       </main>
 
