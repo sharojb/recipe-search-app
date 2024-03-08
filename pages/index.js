@@ -1,4 +1,3 @@
-// pages/index.js
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
