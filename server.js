@@ -20,7 +20,6 @@ app.prepare().then(() => {
   server.use(express.json());
   server.use(cors());
 
-  // MongoDB connection
   const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/ucook';
 
   mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -42,9 +41,28 @@ app.prepare().then(() => {
     }
   });
 
+  server.get('/api/search', async (req, res) => {
+    try {
+      const { query } = req.query;
+      if (!query) {
+        return res.status(400).json({ error: 'Search query is required.' });
+      }
+
+      const response = await axios.get(
+        `https://api.spoonacular.com/recipes/search?apiKey=${spoonacularApiKey}&query=${query}`
+      );
+
+      const recipes = response.data.results;
+
+      res.json({ results: recipes });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
   server.use('/api/recipes', recipesRouter);
 
-  // Handle all other requests with Next.js
   server.all('*', (req, res) => {
     return handle(req, res);
   });

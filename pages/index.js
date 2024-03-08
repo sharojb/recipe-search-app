@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import SearchBar from '../client/src/components/SearchBar';
-import RecipeList from '../client/src/components/RecipeList';
+import SearchBar from '@/components/SearchBar';
+import RecipeList from '@/components/RecipeList';
 
 const Home = ({ initialRecipes }) => {
   const [recipes, setRecipes] = useState(initialRecipes);
