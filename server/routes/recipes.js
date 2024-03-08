@@ -1,20 +1,7 @@
 const express = require('express');
-const Recipe = require('./models/Recipe');
-const { getRecipe, searchRecipes } = require('./recipeUtils');  // 
+const { getRecipe, searchRecipes } = require('./recipeUtils'); 
 
 const router = express.Router();
-
-// Get all recipes
-router.get('/', async (req, res) => {
-  try {
-    const recipes = await Recipe.find().exec();
-    console.log('Number of documents:', recipes.length);
-    res.json(recipes);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
 
 // Get a specific recipe by ID
 router.get('/:id', async (req, res) => {
@@ -22,6 +9,12 @@ router.get('/:id', async (req, res) => {
 
   try {
     const recipe = await getRecipe(id);
+    
+    if (!recipe) {
+      // Handle case where recipe is not found
+      return res.status(404).json({ error: 'Recipe Not Found' });
+    }
+
     res.json(recipe);
   } catch (error) {
     console.error(error);
