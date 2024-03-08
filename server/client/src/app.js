@@ -1,23 +1,13 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const path = require('path'); 
-const recipesRouter = require('./routes/recipes');
+const path = require('path');
 
 const app = express();
 const port = 3000;
 
-const url = 'mongodb://127.0.0.1:27017/ucook';
-
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('Failed to connect to MongoDB', err));
-
-app.use(express.json());
-
-app.use('/recipes', recipesRouter);
-
+// Serve static files from the 'client/build' directory
 app.use(express.static(path.join(__dirname, 'client', 'build')));
 
+// Handle all other routes by serving the 'index.html' file
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
 });

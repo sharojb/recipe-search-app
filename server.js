@@ -10,12 +10,11 @@ app.use(cors());
 
 const spoonacularApiKey = '4e1ab513731c4ffeaa22089bd7a2d2a3';
 
-app.get('/api/search', async (req, res) => {
-  const { query } = req.query;
-
+// Adjust this endpoint to fetch initial data from the external API (Spoonacular)
+app.get('/api/initialData', async (req, res) => {
   try {
     const response = await axios.get(
-      `https://api.spoonacular.com/recipes/search?apiKey=${spoonacularApiKey}&query=${query}`
+      `https://api.spoonacular.com/recipes/random?apiKey=${spoonacularApiKey}&number=5`
     );
     res.json(response.data);
   } catch (error) {

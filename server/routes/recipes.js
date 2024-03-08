@@ -1,22 +1,40 @@
 const express = require('express');
 const Recipe = require('./models/Recipe');
+const { getRecipe, searchRecipes } = require('./recipeUtils');  // 
 
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+// Get all recipes
+router.get('/', async (req, res) => {
   try {
-    const newRecipe = await Recipe.create(req.body);
-    res.status(201).json(newRecipe);
+    const recipes = await Recipe.find().exec();
+    console.log('Number of documents:', recipes.length);
+    res.json(recipes);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
-router.get('/', async (req, res) => {
+// Get a specific recipe by ID
+router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+
   try {
-    const recipes = await Recipe.find().exec();
-    console.log('Number of documents:', recipes.length);
+    const recipe = await getRecipe(id);
+    res.json(recipe);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Search for recipes based on a query
+router.get('/search', async (req, res) => {
+  const { query } = req.query;
+
+  try {
+    const recipes = await searchRecipes(query);
     res.json(recipes);
   } catch (error) {
     console.error(error);
