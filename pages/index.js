@@ -1,16 +1,17 @@
 import Head from 'next/head';
 import React, { useState } from 'react';
 import axios from 'axios';
+import Header from '../components/Header';
 import SearchBar from '@/components/SearchBar';
 import RecipeList from '@/components/RecipeList';
 import CreateProfileForm from '@/components/CreateProfileForm'; 
-import '../../styles/create-profile-form.css';
+import '../styles/create.module.css';
 
 const Home = ({ initialRecipes }) => {
   const [recipes, setRecipes] = useState(initialRecipes);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [showSignUpForm, setShowSignUpForm] = useState(false); // State to manage whether to show the sign-up form
+  const [showSignUpForm, setShowSignUpForm] = useState(false);
 
   const serverUrl = 'http://localhost:3000';
 
@@ -45,6 +46,9 @@ const Home = ({ initialRecipes }) => {
         <meta name="description" content="Search for delicious recipes!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      {/* Include the Header component */}
+      <Header />
 
       <main>
         <h1>ucook</h1>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../styles/create-profile-form.css';
+import '../styles/create.module.css';
 
 const CreateProfileForm = () => {
   const [name, setName] = useState('');
@@ -7,8 +7,7 @@ const CreateProfileForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    // Example: Perform actions with name and email data (e.g., send to server)
+    
     console.log('Name:', name);
     console.log('Email:', email);
 
