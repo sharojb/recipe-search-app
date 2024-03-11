@@ -11,7 +11,6 @@ const CreateProfileForm = () => {
     console.log('Name:', name);
     console.log('Email:', email);
 
-    // Reset the form after submission
     setName('');
     setEmail('');
   };

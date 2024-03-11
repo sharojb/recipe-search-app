@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getRecipe } from '../util/recipe'; // Update the path to your utility function
+import { getRecipe } from '../util/recipe';
 import styles from '../styles/recipe.module.css';
 
 export async function getServerSideProps({ params: { id } }) {
