@@ -48,7 +48,7 @@ const Home = ({ initialRecipes }) => {
       <Header />
       <main>
         <h1>
-          <img src='logo.jpg' alt="ucook Logo" />
+          <img src='logo.png' alt="ucook Logo" />
         </h1>
         <SearchBar onSearch={handleSearch} />
         <button onClick={handleSignUpClick}>Sign Up</button>
