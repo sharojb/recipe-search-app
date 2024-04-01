@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import React, { useState } from 'react';
 import axios from 'axios';
-import logoImage from '../public/logo.jpg';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import RecipeList from '../components/RecipeList';
@@ -19,10 +18,14 @@ const Home = ({ initialRecipes }) => {
       setLoading(true);
       setError(null);
 
-      const response = await axios.get(`http://localhost:3000/api/search?query=${query}`);
+      const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY;
+      const response = await axios.get(`https://api.spoonacular.com/recipes/search?query=${query}&apiKey=4e1ab513731c4ffeaa22089bd7a2d2a3&number=5`);
       const data = response.data;
 
-      setRecipes(data.results || []);
+      console.log('Search Query:', query);
+      console.log('Fetched Recipes:', response.data);
+
+      setRecipes(response.data || []);
     } catch (error) {
       console.error('Error fetching recipes:', error.message);
       setError('Error fetching recipes. Please try again.');
@@ -45,7 +48,7 @@ const Home = ({ initialRecipes }) => {
       <Header />
       <main>
         <h1>
-          <img src={logoImage} alt="ucook Logo" />
+          <img src='logo.jpg' alt="ucook Logo" />
         </h1>
         <SearchBar onSearch={handleSearch} />
         <button onClick={handleSignUpClick}>Sign Up</button>
@@ -68,8 +71,8 @@ const Home = ({ initialRecipes }) => {
 Home.getInitialProps = async () => {
   try {
     const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY;
-    const response = await axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=5`);
-    const initialRecipes = response.data.results || [];
+    const response = await axios.get(`https://api.spoonacular.com/recipes/random?apiKey=4e1ab513731c4ffeaa22089bd7a2d2a3&number=5`);
+    const initialRecipes = response.data || [];
 
     return {
       initialRecipes,
