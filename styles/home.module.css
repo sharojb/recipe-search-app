@@ -1,50 +1,52 @@
-/* home.module.css */
+/* Import Raleway font */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;900&display=swap');
 
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
+/* Styles scoped to a class or ID */
+.home {
+  /* Apply styles to the container element, like a div */
+}
+
+/* Desktop Styles */
+.home .desktop-body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif; /* Apply Raleway font */
+}
+
+.home main {
+  background-color: #ebeadf;
   padding: 20px;
 }
 
-.header {
-  color: #4ECCA3;
-  font-size: 2rem;
-  margin-bottom: 20px;
+.home header {
+  background-image: url('../public/bg1.png');
+  background-size: cover;
+  height: 44vh; 
 }
 
-.search-bar {
-  background-color: #f8f8f8;
-  padding: 10px;
-  border-radius: 12px;
-  margin-bottom: 20px;
+.home footer {
+  background-color: rgba(78, 203, 162, 0.75); 
+  padding: 20px;
+  color: white;
+  text-align: center;
 }
 
-.search-input {
-  width: 100%;
-  padding: 8px;
-  border: none;
-  border-radius: 12px;
-  margin-right: 10px;
+/* Tablet Styles */
+@media only screen and (max-width: 768px) {
+  .home header {
+    height: 30vh; 
+  }
+  .home main {
+    padding: 10px;
+  }
 }
 
-.search-button {
-  background-color: #4ECCA3;
-  color: #fff;
-  padding: 8px 15px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-}
-
-.recipe-list {
-  list-style: none;
-  padding: 0;
-}
-
-.recipe-item {
-  background-color: #f8f8f8;
-  color: #4ECCA3;
-  padding: 10px;
-  border-radius: 12px;
-  margin-bottom: 10px;
+/* Mobile Styles */
+@media only screen and (max-width: 480px) {
+  .home header {
+    height: 20vh; /* Adjust height for mobile */
+  }
+  .home main {
+    padding: 5px;
+  }
 }

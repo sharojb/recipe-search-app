@@ -1,50 +1,67 @@
-/* recipe.module.css */
+/* Import Raleway font */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap');
 
 .container {
-  max-width: 1100px;
-  margin: 0 auto;
+  background-color: #ebeadf;
   padding: 20px;
 }
 
-.recipe-title {
-  color: #4ECCA3;
-  font-size: 2rem;
-  margin-bottom: 20px;
+.header {
+  background-image: url('/bg1.png');
+  background-size: cover;
+  height: 44vh;
 }
 
-.recipe-image {
-  max-width: 100%;
+.footer {
+  background-color: rgba(78, 203, 162, 0.75);
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.recipe-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.recipe-card {
+  width: calc(50% - 10px);
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-img {
+  width: 100%;
   height: auto;
-  border-radius: 12px;
-  margin-bottom: 20px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
-.recipe-notes {
-  background-color: #f8f8f8;
-  color: #4ECCA3;
+.recipe-details {
   padding: 10px;
-  border-radius: 12px;
-  margin-bottom: 20px;
 }
 
-.recipe-description {
-  color: #000;
-  margin-bottom: 20px;
+.recipe-name {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: black;
 }
 
-.ingredients-list {
-  list-style: none;
-  padding: 0;
+/* Tablet Styles */
+@media only screen and (max-width: 768px) {
+  .header {
+    height: 30vh;
+  }
 }
 
-.ingredient-item {
-  background-color: #f8f8f8;
-  color: #4ECCA3;
-  padding: 10px;
-  border-radius: 12px;
-  margin-bottom: 10px;
-}
-
-.instructions {
-  color: #000;
+/* Mobile Styles */
+@media only screen and (max-width: 480px) {
+  .header {
+    height: 20vh;
+  }
 }

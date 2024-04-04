@@ -36,18 +36,44 @@ button:hover {
   background-color: #45b494;
 }
 
+/* Custom Styles for Footer */
 footer {
   text-align: center;
   padding: 20px;
   background-color: #4ECCA3;
-  color: #fff;
+  color: #000; /* Black font color */
   position: fixed;
   bottom: 0;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align items vertically center */
 }
 
-@media (prefers-color-scheme: light) {
-  html {
-    color-scheme: light;
+.footer-link {
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px; /* Small font size */
+  color: #000; /* Black font color */
+  text-decoration: none;
+  margin-right: 10px; /* Adjust spacing between links */
+}
+
+.footer-text {
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px; /* Small font size */
+  margin: 0; /* Remove default margin */
+}
+
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icons a {
+  margin-right: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  footer {
+    justify-content: center;
   }
 }

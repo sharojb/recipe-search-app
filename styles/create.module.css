@@ -1,36 +1,30 @@
-.profileForm {
-  max-width: 500px;
-  margin: 20px auto;
+/* create.module.css */
+
+.mainContainer {
+  /* Desktop Styles */
+  .main {
+    background-color: #ebeadf;
+    padding: 20px;
+  }
+  
+  /* Tablet Styles */
+  @media only screen and (max-width: 768px) {
+    .main {
+      padding: 10px;
+    }
+  }
+  
+  /* Mobile Styles */
+  @media only screen and (max-width: 480px) {
+    .main {
+      padding: 5px;
+    }
+  }
+}
+
+.footer {
+  background-color: rgba(78, 203, 162, 0.75);
   padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.profileLabel {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-
-.profileInput {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.profileButton {
-  padding: 10px 15px;
-  background-color: #4ECCA3;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.profileButton:hover {
-  background-color: #45b494;
+  color: white;
+  text-align: center;
 }

@@ -1,37 +1,35 @@
-
-.search-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 20px;
+/* search.module.css */
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.search-input {
-  width: 100%;
+.searchInput {
+  width: 300px;
   padding: 10px;
-  border: 1px solid #4ECCA3;
-  border-radius: 12px;
-  margin-bottom: 20px;
+  margin: 5px;
+  border-radius: 20px;
+  border: 1px solid lightgrey;
 }
 
-.search-button {
-  background-color: #4ECCA3;
-  color: #000;
-  padding: 10px 20px;
+.addMoreButton,
+.cookNowButton {
+  width: 200px;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 20px;
   border: none;
-  border-radius: 12px;
   cursor: pointer;
+  font-family: Palatino, serif;
 }
 
-.search-results {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.addMoreButton {
+  background-color: white;
+  color: lightgrey;
 }
 
-.result-item {
-  background-color: #f8f8f8;
-  color: #4ECCA3;
-  padding: 10px;
-  border-radius: 12px;
-  margin-bottom: 10px;
+.cookNowButton {
+  background-color: #4ecba2;
+  color: white;
 }

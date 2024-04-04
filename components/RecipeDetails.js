@@ -2,7 +2,6 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getRecipe } from '../util/recipe';
-import styles from '../styles/recipe.module.css';
 
 export async function getServerSideProps({ params: { id } }) {
   try {
@@ -44,7 +43,7 @@ export default function RecipeDetails({ recipeInfo }) {
       ) : (
         <RecipeError />
       )}
-      <Link className={styles.return} href="/search">
+      <Link href="/search">
         Return to Search
       </Link>
     </>
@@ -60,20 +59,19 @@ function RecipeInfo({
   extendedIngredients,
 }) {
   return (
-    <main className={styles.container}>
+    <main>
       <h1>{title}</h1>
       <Image
         src={image}
         width={556}
         height={370}
         alt={title}
-        className={styles.recipeImg}
       />
-      <div className={styles.notes}>
+      <div>
         <p>Time to Make: {readyInMinutes}min</p>
       </div>
-      <div className={styles.infoGroup}>
-        <div className={styles.description}>
+      <div>
+        <div>
           <h2>Description</h2>
           <div
             dangerouslySetInnerHTML={{
@@ -84,7 +82,7 @@ function RecipeInfo({
             }}
           ></div>
         </div>
-        <div className={styles.ingredients}>
+        <div>
           <h2>Ingredients</h2>
           <ul>
             {extendedIngredients.map((ing, i) => (
@@ -95,7 +93,6 @@ function RecipeInfo({
       </div>
       <h2>Steps</h2>
       <div
-        className={styles.instructions}
         dangerouslySetInnerHTML={{ __html: instructions }}
       ></div>
     </main>
@@ -104,6 +101,6 @@ function RecipeInfo({
 
 function RecipeError() {
   return (
-    <h1 className={styles.notFound}>Recipe Not Found!</h1>
+    <h1>Recipe Not Found!</h1>
   );
 }
