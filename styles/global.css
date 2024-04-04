@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lumios+Brush+Regular&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Raleway:wght@400&display=swap');
 
 body {
   font-family: 'Inter', sans-serif;
@@ -9,52 +9,15 @@ body {
 }
 
 a {
-  color: #4ECCA3;
-  text-decoration: none;
-}
-
-a:hover {
+  color: #000;
   text-decoration: underline;
-}
-
-main {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-button {
-  padding: 10px 15px;
-  background-color: #4ECCA3;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #45b494;
-}
-
-/* Custom Styles for Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #4ECCA3;
-  color: #000; /* Black font color */
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center; /* Align items vertically center */
 }
 
 .footer-link {
   font-family: 'Raleway', sans-serif;
   font-size: 14px; /* Small font size */
   color: #000; /* Black font color */
-  text-decoration: none;
+  text-decoration: underline;
   margin-right: 10px; /* Adjust spacing between links */
 }
 
@@ -64,16 +27,7 @@ footer {
   margin: 0; /* Remove default margin */
 }
 
-.social-icons {
-  margin-top: 10px;
-}
-
-.social-icons a {
-  margin-right: 10px;
-}
-
-@media only screen and (max-width: 768px) {
-  footer {
-    justify-content: center;
-  }
+.footer-link:hover,
+.footer-text:hover {
+  text-decoration: none;
 }

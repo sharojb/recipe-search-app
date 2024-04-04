@@ -1,11 +1,10 @@
 import Head from 'next/head';
 import React, { useState } from 'react';
 import axios from 'axios';
-import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import RecipeList from '../components/RecipeList';
 import CreateProfileForm from '../components/CreateProfileForm';
-import '../styles/global.css';
+import Footer from '../components/Footer';
 
 const Home = ({ initialRecipes }) => {
   const [recipes, setRecipes] = useState(initialRecipes);
@@ -45,7 +44,6 @@ const Home = ({ initialRecipes }) => {
         <meta name="description" content="Search for delicious recipes!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
       <main>
         <h1>
           <img src='logo.png' alt="ucook Logo" />
@@ -61,18 +59,7 @@ const Home = ({ initialRecipes }) => {
         <RecipeList recipes={recipes} />
       </main>
 
-      <footer>
-        <div>
-          <a href="#" className="footer-link">Join Us</a>
-          <p className="footer-text">Contact</p>
-        </div>
-        <p className="footer-text">Personalized Cooking Assistant © 2024</p>
-        <div className="social-icons">
-          <a href="#"><img src="twitter-icon.png" alt="Twitter" /></a>
-          <a href="#"><img src="instagram-icon.png" alt="Instagram" /></a>
-          <a href="#"><img src="facebook-icon.png" alt="Facebook" /></a>
-        </div>
-      </footer>
+      <Footer /> {/* Use Footer component here */}
     </div>
   );
 };
