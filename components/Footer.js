@@ -1,18 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
+import { faTwitter, faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
+  const [showEmail, setShowEmail] = useState(false);
+
+  const toggleEmail = () => {
+    setShowEmail(!showEmail);
+  };
+
   return (
     <footer>
       <div>
-        <a href="#" className="footer-link">Join Us</a>
-        <p className="footer-text">Contact Us: contact@ucook.com</p>
+        <a href="#" className="footer-link" onClick={toggleEmail}>
+          {showEmail ? 'Hide Email' : 'Contact Us'}
+        </a>
+        {showEmail && <p className="footer-text">contact@ucook.com</p>}
       </div>
       <div className="social-icons">
-        <a href="#"><i className="fab fa-twitter"></i></a>
-        <a href="#"><i className="fab fa-instagram"></i></a>
-        <a href="#"><i className="fab fa-facebook"></i></a>
+        <a href="#"><FontAwesomeIcon icon={faTwitter} /></a>
+        <a href="#"><FontAwesomeIcon icon={faInstagram} /></a>
+        <a href="#"><FontAwesomeIcon icon={faFacebook} /></a>
       </div>
-      <p className="footer-text">Personalized Cooking Assistant © 2024</p>
+      <p className="footer-text" style={{ flexGrow: 1, textAlign: 'center' }}>Personalized Cooking Assistant © 2024</p>
     </footer>
   );
 };

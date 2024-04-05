@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styles from '../styles/search.module.css';
 
 const SearchBar = ({ onSearch }) => {
-  const [ingredients, setIngredients] = useState(['', '', '']);
+  const [ingredients, setIngredients] = useState(['', '']); // Adjusted initial state to have only 2 empty strings
 
   const handleInputChange = (index, value) => {
     const newIngredients = [...ingredients];
@@ -13,6 +13,12 @@ const SearchBar = ({ onSearch }) => {
 
   const handleAddMore = () => {
     setIngredients([...ingredients, '']);
+  };
+
+  const handleLessLast = () => {
+    if (ingredients.length > 2) {
+      setIngredients(ingredients.slice(0, -1));
+    }
   };
 
   const handleSearch = () => {
@@ -34,6 +40,11 @@ const SearchBar = ({ onSearch }) => {
       <button onClick={handleAddMore} className={styles.addMoreButton}>
         Add More
       </button>
+      {ingredients.length > 2 && (
+        <button onClick={handleLessLast} className={styles.lessButton}>
+          Less
+        </button>
+      )}
       <button onClick={handleSearch} className={styles.cookNowButton}>
         Cook Now
       </button>

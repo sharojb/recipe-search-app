@@ -7,7 +7,14 @@ const CreateProfileForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+    const url = process.env.MONGODB_URI || 'mongodb+srv://sharolayn:091188@ucook.oolckyx.mongodb.net/';
+
+    mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+      .then(() => console.log('Connected to MongoDB'))
+      .catch(err => {
+        console.error('Failed to connect to MongoDB', err);
+        process.exit(1);
+      });
     console.log('Name:', name);
     console.log('Email:', email);
 

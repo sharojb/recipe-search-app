@@ -1,16 +1,22 @@
-/* create.module.css */
+/* Import global styles */
+@import url('./global.css');
 
+/* Main styles */
+.main {
+  background-color: #ebeadf;
+  padding: 20px;
+  display: flex; /* Display flex to align items horizontally */
+  justify-content: space-between; /* Align items with space-between to push the button to the right */
+  align-items: center; /* Center align items vertically */
+}
+
+/* Main container styles */
 .mainContainer {
-  /* Desktop Styles */
-  .main {
-    background-color: #ebeadf;
-    padding: 20px;
-  }
-  
   /* Tablet Styles */
   @media only screen and (max-width: 768px) {
     .main {
       padding: 10px;
+      flex-direction: column; /* Change flex direction to column for mobile */
     }
   }
   
@@ -22,9 +28,31 @@
   }
 }
 
+/* Footer styles */
 .footer {
   background-color: rgba(78, 203, 162, 0.75);
   padding: 20px;
   color: white;
   text-align: center;
+}
+
+/* Additional style for sign-up button */
+.sign-up-button {
+  background-color: #4ecba2;
+  color: black;
+  border-radius: 10px; /* Make the rectangle bigger */
+  padding: 15px 30px; /* Increase padding */
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px; /* Increase font size */
+  border: none;
+  cursor: pointer;
+  margin-left: 20px; /* Add margin for spacing */
+}
+
+/* Adjust styles for mobile */
+@media only screen and (max-width: 768px) {
+  .sign-up-button {
+    margin-left: 0; /* Remove margin for mobile */
+    margin-top: 20px; /* Add margin at the top */
+  }
 }

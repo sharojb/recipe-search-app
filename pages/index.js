@@ -5,6 +5,7 @@ import SearchBar from '../components/SearchBar';
 import RecipeList from '../components/RecipeList';
 import CreateProfileForm from '../components/CreateProfileForm';
 import Footer from '../components/Footer';
+import styles from '../styles/create.module.css'; // Import local CSS module
 
 const Home = ({ initialRecipes }) => {
   const [recipes, setRecipes] = useState(initialRecipes);
@@ -44,12 +45,12 @@ const Home = ({ initialRecipes }) => {
         <meta name="description" content="Search for delicious recipes!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className={styles.main}>
         <h1>
           <img src='logo.png' alt="ucook Logo" />
         </h1>
         <SearchBar onSearch={handleSearch} />
-        <button onClick={handleSignUpClick}>Sign Up</button>
+        <button onClick={handleSignUpClick} className={styles['sign-up-button']}>Join Us</button>
 
         {showSignUpForm && <CreateProfileForm />}
 
@@ -59,7 +60,7 @@ const Home = ({ initialRecipes }) => {
         <RecipeList recipes={recipes} />
       </main>
 
-      <Footer /> {/* Use Footer component here */}
+      <Footer />
     </div>
   );
 };

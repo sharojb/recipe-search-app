@@ -1,6 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Raleway:wght@400&display=swap');
+/* Font import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Raleway:wght@400&family=Palatino:wght@400&display=swap');
 
-body {
+/* Body styles */
+.body {
   font-family: 'Inter', sans-serif;
   background-color: #f8f8f8;
   color: #333;
@@ -8,26 +10,160 @@ body {
   padding: 0;
 }
 
-a {
+/* Header styles */
+.header-container {
+  background-image: url('/bg1.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Button styles */
+.button {
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+  background-color: #4ecba2;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 10px;
+  text-decoration: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* Spacing between buttons */
+.button + .button {
+  margin-left: 10px;
+}
+
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-btn {
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+  background-color: #4ecba2;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+.header-btn:hover {
+  background-color: #3ca282;
+}
+
+/* Style for the "Cook Now" button */
+.header-btn-cook-now {
+  font-family: 'Palatino', serif; 
+  font-weight: bold;
+  font-size: 16px;
+  color: #4ecba2; 
+  background-color: #fff;
+  border: 2px solid #4ecba2;
+  border-radius: 20px;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+.header-btn-cook-now:hover {
+  background-color: #4ecba2;
+  color: #fff;
+}
+
+/* Hamburger menu styles */
+.hamburger-menu {
+  display: none;
+}
+
+.hamburger-menu-icon {
+  display: block;
+  cursor: pointer;
+}
+
+.hamburger-menu-content {
+  display: none;
+  position: absolute;
+  top: 60px;
+  background-color: rgba(78, 204, 163, 0.75);
+  padding: 10px;
+}
+
+.hamburger-menu-content a {
+  display: block;
   color: #000;
-  text-decoration: underline;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+/* Media query for mobile devices */
+@media only screen and (max-width: 768px) {
+  .header-buttons {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+
+  .header {
+    justify-content: flex-end;
+    height: 30vh;
+  }
+}
+
+/* Footer specific styles */
+.footer {
+  background-color: #4ECCA3;
+  text-align: center;
+  padding: 20px;
+  color: #000;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .footer-link {
   font-family: 'Raleway', sans-serif;
-  font-size: 14px; /* Small font size */
-  color: #000; /* Black font color */
+  font-size: 14px;
+  color: #000;
   text-decoration: underline;
-  margin-right: 10px; /* Adjust spacing between links */
+  margin-right: 10px;
 }
 
 .footer-text {
   font-family: 'Raleway', sans-serif;
-  font-size: 14px; /* Small font size */
-  margin: 0; /* Remove default margin */
+  font-size: 14px;
+  margin: 0;
 }
 
 .footer-link:hover,
 .footer-text:hover {
   text-decoration: none;
+}
+
+.social-icons {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.social-icons a {
+  margin-right: 10px;
+}
+
+/* Adjust icon size for responsiveness */
+@media only screen and (max-width: 768px) {
+  .social-icons a {
+    margin: 0 5px;
+  }
 }
