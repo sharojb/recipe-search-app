@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Raleway:wght@400&family=Palatino:wght@400&display=swap');
 
 /* Body styles */
-.body {
+body {
   font-family: 'Inter', sans-serif;
   background-color: #f8f8f8;
   color: #333;
@@ -12,69 +12,65 @@
 
 /* Header styles */
 .header-container {
-  background-image: url('/bg1.png');
+  background-image: url('/bg1.png'); /* Adjust the path if necessary */
   background-size: cover;
   background-position: center;
 }
 
+/* Header specific styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px; /* Adjust padding as needed */
+}
+
 /* Button styles */
-.button {
+.button, .join-us-button {
   font-family: 'Raleway', sans-serif;
-  font-weight: bold;
   font-size: 16px;
   color: black;
   background-color: #4ecba2;
   border: none;
-  border-radius: 20px;
-  padding: 5px 10px;
+  border-radius: 30px; /* Rounded corners */
+  padding: 10px 20px; /* Padding adjusted */
   text-decoration: none;
   cursor: pointer;
-  margin-bottom: 10px;
+  transition: background-color 0.2s; /* Add transition effect */
 }
 
-/* Spacing between buttons */
-.button + .button {
-  margin-left: 10px;
+/* Hover effect */
+.button:hover, .join-us-button:hover {
+  background-color: white;
+  outline: 2px solid #4ecba2;
 }
 
+/* Join Us button style */
+.join-us-button {
+  background-color: #4ecba2; /* Background color for Join Us button */
+  color: black; /* Text color for Join Us button */
+  padding: 25px 80px; /* Padding adjusted */
+  border-radius: 0; /* No border radius */
+  margin-left: auto; /* Align to the right */
+  margin-top: 15px; /* Adjust margin as needed */
+}
+
+/* Header buttons alignment */
 .header-buttons {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
 }
 
-.header-btn {
-  font-family: 'Raleway', sans-serif;
-  font-weight: bold;
-  font-size: 16px;
-  color: black;
-  background-color: #4ecba2;
-  border: none;
-  border-radius: 20px;
-  padding: 5px 10px;
-  text-decoration: none;
+/* Logo styles */
+.logo-container {
+  flex: 1;
+  text-align: left;
 }
 
-.header-btn:hover {
-  background-color: #3ca282;
-}
-
-/* Style for the "Cook Now" button */
-.header-btn-cook-now {
-  font-family: 'Palatino', serif; 
-  font-weight: bold;
-  font-size: 16px;
-  color: #4ecba2; 
-  background-color: #fff;
-  border: 2px solid #4ecba2;
-  border-radius: 20px;
-  padding: 5px 10px;
-  text-decoration: none;
-}
-
-.header-btn-cook-now:hover {
-  background-color: #4ecba2;
-  color: #fff;
+.header-logo {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Hamburger menu styles */
@@ -102,6 +98,18 @@
   margin-bottom: 10px;
 }
 
+/* Media query for tablet and mobile devices */
+@media only screen and (max-width: 992px) {
+  .header-buttons {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .button {
+    margin-top: 20px;
+  }
+}
+
 /* Media query for mobile devices */
 @media only screen and (max-width: 768px) {
   .header-buttons {
@@ -113,8 +121,14 @@
   }
 
   .header {
-    justify-content: flex-end;
-    height: 30vh;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px; /* Adjust padding as needed */
+  }
+
+  .join-us-button {
+    margin-left: auto; /* Align to the right */
+    margin-top: 15px; /* Adjust margin as needed */
   }
 }
 

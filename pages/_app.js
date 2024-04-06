@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import '../styles/create.module.css';
 import '../styles/global.css';
 import Header from '../components/Header';
 

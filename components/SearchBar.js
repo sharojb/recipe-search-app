@@ -37,15 +37,15 @@ const SearchBar = ({ onSearch }) => {
           className={styles.searchInput}
         />
       ))}
-      <button onClick={handleAddMore} className={styles.addMoreButton}>
+      <button onClick={handleAddMore} className={`${styles.button} ${styles.addMoreButton}`}>
         Add More
       </button>
       {ingredients.length > 2 && (
-        <button onClick={handleLessLast} className={styles.lessButton}>
+        <button onClick={handleLessLast} className={`${styles.button} ${styles.lessButton}`}>
           Less
         </button>
       )}
-      <button onClick={handleSearch} className={styles.cookNowButton}>
+      <button onClick={handleSearch} className={`${styles.button} ${styles.cookNowButton}`}>
         Cook Now
       </button>
     </div>
