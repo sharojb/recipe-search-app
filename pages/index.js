@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import React, { useState } from 'react';
 import axios from 'axios';
-import SearchBar from '../components/SearchBar';
 import RecipeList from '../components/RecipeList';
 import CreateProfileForm from '../components/CreateProfileForm';
 import Footer from '../components/Footer';
@@ -48,7 +47,6 @@ const Home = ({ initialRecipes }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="main"> {/* Apply main class from global styles */}
-        <SearchBar onSearch={handleSearch} />
         <button onClick={handleSignUpClick} className="button join-us-button">
           Join Us
         </button>

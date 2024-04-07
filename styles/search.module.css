@@ -1,65 +1,75 @@
-/* search.module.css */
 
-/* Ensure styles are scoped to the search container */
-.searchContainer {
-  display: flex;
-  flex-direction: column; /* Stack items vertically */
-  align-items: flex-start; /* Align items to the left */
-}
-
-.searchInput {
-  width: 300px;
-  padding: 10px;
-  margin: 5px;
-  border-radius: 20px;
-  border: 1px solid lightgrey;
-  font-family: Palatino, serif;
-}
-
-/* Specify class names for buttons */
-.addMoreButton,
-.cookNowButton,
-.lessButton {
-  width: 100px; /* Adjusted width for smaller buttons */
-  height: 30px; /* Adjusted height for smaller buttons */
-  padding: 5px; /* Adjusted padding for smaller buttons */
-  margin: 5px;
-  border-radius: 15px; /* Smaller border radius */
-  border: none;
-  cursor: pointer;
-  font-family: Palatino, serif; /* Ensure Palatino font-family */
-  align-self: flex-start; /* Align buttons to the left */
-}
-
-.addMoreButton {
+.searchButton {
+  font-family: 'Palatino', serif;
+  font-size: 16px;
+  color: grey;
   background-color: white;
-  color: lightgrey;
-  border: 1px solid lightgrey; /* Adding light grey outline */
+  border: 1px solid lightgrey;
+  border-radius: 30px;
+  padding: 10px 20px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
-.addMoreButton:hover {
-  background-color: lightgrey;
+.searchButton:hover {
+  background-color: #4ecba2;
   color: white;
 }
 
-.cookNowButton {
+.smallButton {
+  font-family: 'Palatino', serif;
+  font-size: 14px;
+  color: lightgrey;
   background-color: white;
-  color: #4ecba2; /* Font color */
-  border: 2px solid #4ecba2; /* Adding 4ecba2 color outline */
+  border: 1px solid lightgrey;
+  border-radius: 15px;
+  padding: 5px 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.smallButton:hover {
+  background-color: #f0f0f0;
+}
+
+.cookNowButton {
+  font-family: 'Palatino', serif;
+  font-size: 16px;
+  color: white;
+  background-color: #4ecba2;
+  border: 2px solid #4ecba2;
+  border-radius: 30px;
+  padding: 10px 20px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .cookNowButton:hover {
   background-color: #4ecba2;
-  color: white; /* Font color on hover */
-}
-
-.lessButton {
-  background-color: white;
-  color: lightgrey;
-  border: 1px solid lightgrey; /* Adding light grey outline */
-}
-
-.lessButton:hover {
-  background-color: lightgrey;
   color: white;
+}
+
+/* Positioning for buttons */
+.buttonsContainer {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .buttonsContainer {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

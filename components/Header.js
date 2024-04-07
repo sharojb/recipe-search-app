@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import SearchBar from './SearchBar';
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -30,6 +30,8 @@ const Header = () => {
           </div>
         )}
       </div>
+      <SearchBar />
+      <button className="cookNowButton">Cook Now</button>
     </header>
   );
 };

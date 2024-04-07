@@ -1,68 +1,34 @@
-/* Font import */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Raleway:wght@400&family=Palatino:wght@400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Raleway:wght@400&display=swap');
 
 /* Body styles */
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #f8f8f8;
+  font-family: 'Raleway', sans-serif; /* Change to Raleway font */
+  background-color: #ebeadf;
   color: #333;
   margin: 0;
   padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.body-content {
+  padding: 20px;
 }
 
 /* Header styles */
-.header-container {
-  background-image: url('/bg1.png'); /* Adjust the path if necessary */
-  background-size: cover;
-  background-position: center;
-}
-
-/* Header specific styles */
 .header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px; /* Adjust padding as needed */
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
+  height: 45%; 
 }
 
-/* Button styles */
-.button, .join-us-button {
-  font-family: 'Raleway', sans-serif;
-  font-size: 16px;
-  color: black;
-  background-color: #4ecba2;
-  border: none;
-  border-radius: 30px; /* Rounded corners */
-  padding: 10px 20px; /* Padding adjusted */
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.2s; /* Add transition effect */
-}
-
-/* Hover effect */
-.button:hover, .join-us-button:hover {
-  background-color: white;
-  outline: 2px solid #4ecba2;
-}
-
-/* Join Us button style */
-.join-us-button {
-  background-color: #4ecba2; /* Background color for Join Us button */
-  color: black; /* Text color for Join Us button */
-  padding: 25px 80px; /* Padding adjusted */
-  border-radius: 0; /* No border radius */
-  margin-left: auto; /* Align to the right */
-  margin-top: 15px; /* Adjust margin as needed */
-}
-
-/* Header buttons alignment */
-.header-buttons {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-/* Logo styles */
 .logo-container {
   flex: 1;
   text-align: left;
@@ -73,7 +39,6 @@ body {
   height: auto;
 }
 
-/* Hamburger menu styles */
 .hamburger-menu {
   display: none;
 }
@@ -98,49 +63,32 @@ body {
   margin-bottom: 10px;
 }
 
-/* Media query for tablet and mobile devices */
-@media only screen and (max-width: 992px) {
-  .header-buttons {
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
-  .button {
-    margin-top: 20px;
-  }
+/* Body content styles */
+.main {
+  height: 45%; /* Set body content height to 45% of viewport height */
+  overflow-y: auto; /* Add scroll if content exceeds viewport height */
 }
 
-/* Media query for mobile devices */
-@media only screen and (max-width: 768px) {
-  .header-buttons {
-    display: none;
-  }
+.title {
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  color: black;
+}
 
-  .hamburger-menu {
-    display: block;
-  }
-
-  .header {
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px; /* Adjust padding as needed */
-  }
-
-  .join-us-button {
-    margin-left: auto; /* Align to the right */
-    margin-top: 15px; /* Adjust margin as needed */
-  }
+.subtitle {
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  color: black;
 }
 
 /* Footer specific styles */
 .footer {
-  background-color: #4ECCA3;
+  background-color: #4ecba2; /* Set footer background color to 4ecba2 */
   text-align: center;
   padding: 20px;
   color: #000;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+  height: 10%; /* Set footer height to 10% of viewport height */
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -1,9 +1,7 @@
-// SearchBar.js
 import React, { useState } from 'react';
-import styles from '../styles/search.module.css';
 
 const SearchBar = ({ onSearch }) => {
-  const [ingredients, setIngredients] = useState(['', '']); // Adjusted initial state to have only 2 empty strings
+  const [ingredients, setIngredients] = useState(['Ingredient 1', 'Ingredient 2']);
 
   const handleInputChange = (index, value) => {
     const newIngredients = [...ingredients];
@@ -12,10 +10,12 @@ const SearchBar = ({ onSearch }) => {
   };
 
   const handleAddMore = () => {
-    setIngredients([...ingredients, '']);
+    if (ingredients.length < 6) {
+      setIngredients([...ingredients, '']);
+    }
   };
 
-  const handleLessLast = () => {
+  const handleLess = () => {
     if (ingredients.length > 2) {
       setIngredients(ingredients.slice(0, -1));
     }
@@ -26,7 +26,7 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className={styles.searchContainer}>
+    <div className="searchContainer">
       {ingredients.map((ingredient, index) => (
         <input
           key={index}
@@ -34,20 +34,12 @@ const SearchBar = ({ onSearch }) => {
           placeholder={`Ingredient ${index + 1}`}
           value={ingredient}
           onChange={(e) => handleInputChange(index, e.target.value)}
-          className={styles.searchInput}
+          className="searchInput"
         />
       ))}
-      <button onClick={handleAddMore} className={`${styles.button} ${styles.addMoreButton}`}>
-        Add More
-      </button>
-      {ingredients.length > 2 && (
-        <button onClick={handleLessLast} className={`${styles.button} ${styles.lessButton}`}>
-          Less
-        </button>
-      )}
-      <button onClick={handleSearch} className={`${styles.button} ${styles.cookNowButton}`}>
-        Cook Now
-      </button>
+      <button onClick={handleAddMore} className="smallButton">Add More</button>
+      {ingredients.length > 2 && <button onClick={handleLess} className="smallButton">Less</button>}
+      <button onClick={handleSearch} className="cookNowButton">Cook Now</button>
     </div>
   );
 };
