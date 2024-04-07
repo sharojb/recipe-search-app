@@ -30,8 +30,6 @@ const Header = () => {
           </div>
         )}
       </div>
-      <SearchBar />
-      <button className="cookNowButton">Cook Now</button>
     </header>
   );
 };

@@ -4,6 +4,7 @@ import axios from 'axios';
 import RecipeList from '../components/RecipeList';
 import CreateProfileForm from '../components/CreateProfileForm';
 import Footer from '../components/Footer';
+import SearchBar from '../components/SearchBar';
 
 const Home = ({ initialRecipes }) => {
   const [recipes, setRecipes] = useState(initialRecipes);
@@ -16,8 +17,8 @@ const Home = ({ initialRecipes }) => {
       setLoading(true);
       setError(null);
 
-      const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY; 
-      
+      const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY;
+
       const response = await axios.get(
         `https://api.spoonacular.com/recipes/search?query=${query}&apiKey=${apiKey}&number=5`
       );
@@ -41,15 +42,16 @@ const Home = ({ initialRecipes }) => {
 
   return (
     <div>
-      <Head>
-        <title>ucook</title>
-        <meta name="description" content="Search for delicious recipes!" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+
       <main className="main"> {/* Apply main class from global styles */}
-        <button onClick={handleSignUpClick} className="button join-us-button">
-          Join Us
-        </button>
+
+
+        <section className='search-section'>
+          <SearchBar />
+          <button onClick={handleSignUpClick} className="button join-us-button">
+            Join Us
+          </button>
+        </section>
 
         {showSignUpForm && <CreateProfileForm />}
 
@@ -66,8 +68,7 @@ const Home = ({ initialRecipes }) => {
 
 Home.getInitialProps = async () => {
   try {
-    const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY; // Access directly from environment variable
-
+    const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY;
     const response = await axios.get(
       `https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=5`
     );
