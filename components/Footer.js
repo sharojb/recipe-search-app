@@ -10,15 +10,15 @@ const Footer = () => {
   };
 
   return (
-    <footer>
+    <footer className="footer">
       <div>
         <a href="#" className="footer-link" onClick={toggleEmail}>
           {showEmail ? 'Hide Email' : 'Contact Us'}
         </a>
         {showEmail && <p className="footer-text">contact@ucook.com</p>}
       </div>
-      <div className="social-icons">
-        <a href="#"><FontAwesomeIcon icon={faTwitter} /></a>
+      <div>
+        <a href="#" ><FontAwesomeIcon icon={faTwitter} /></a>
         <a href="#"><FontAwesomeIcon icon={faInstagram} /></a>
         <a href="#"><FontAwesomeIcon icon={faFacebook} /></a>
       </div>

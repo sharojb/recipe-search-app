@@ -44,10 +44,7 @@ const Home = ({ initialRecipes }) => {
     <div>
 
       <main className="main"> {/* Apply main class from global styles */}
-
-
         <section className='search-section'>
-          <SearchBar />
           <button onClick={handleSignUpClick} className="button join-us-button">
             Join Us
           </button>
@@ -59,8 +56,9 @@ const Home = ({ initialRecipes }) => {
         {error && <p style={{ color: 'red' }}>{error}</p>}
 
         <div className="body-content">
-          <p className="title">We're here to help you cook</p>
-          <p className="subtitle">uCook helps you discover delicious recipes and create amazing meals!</p>
+          <p className="title">We're here to</p>
+          <p className="title">help you cook</p>
+          <p className="subtitle">uCook helps you discover delicious recipes and create amazing meals! With only the ingredients you have at home, you can count on us to help you find what your next meal will be. You can start with only two or up to six ingredients to build your cooking, all without having to shop for more!</p>
         </div>
 
         <RecipeList recipes={recipes} />
