@@ -1,8 +1,10 @@
+// SearchBar.js
+
 import React, { useState } from 'react';
 import styles from '../styles/search.module.css';
 
 const SearchBar = ({ onSearch }) => {
-  const [ingredients, setIngredients] = useState(['Ingredient 1', 'Ingredient 2']);
+  const [ingredients, setIngredients] = useState(['', '']); // Initially empty
 
   const handleInputChange = (index, value) => {
     const newIngredients = [...ingredients];
@@ -29,13 +31,13 @@ const SearchBar = ({ onSearch }) => {
   return (
     <div className={styles.searchContainer}>
       {ingredients.map((ingredient, index) => (
-        <input
+        <input 
+          className={styles.searchInput}
           key={index}
           type="text"
-          placeholder={`Ingredient ${index + 1}`}
+          placeholder={ingredient ? '' : `Ingredient ${index + 1}`}
           value={ingredient}
           onChange={(e) => handleInputChange(index, e.target.value)}
-          className={styles.searchInput}
         />
       ))}
       <button onClick={handleAddMore} className={styles.smallButton}>Add More</button>

@@ -17,22 +17,23 @@
   transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
-.searchInput {
-  font-family: 'Palatino', serif;
-  font-size: 14px;
-  color: grey;
-  background-color: white;
-  border: 1px solid grey;
-  border-radius: 15px;
-  padding: 5px 10px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-}
 
 .searchButton:hover {
   background-color: #4ecba2;
   color: white;
+}
+
+.searchInput {
+  font-family: 'Palatino', serif;
+  font-size: 14px;
+  color: lightgrey;
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-radius: 20px;
+  padding: 10px 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .smallButton {
@@ -41,8 +42,8 @@
   color: lightgrey;
   background-color: white;
   border: 1px solid lightgrey;
-  border-radius: 15px;
-  padding: 5px 10px;
+  border-radius: 20px;
+  padding: 10px 10px;
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s;

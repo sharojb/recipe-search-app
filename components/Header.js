@@ -11,8 +11,8 @@ const Header = () => {
   return (
     <header className="header" style={{ backgroundImage: "url('/bg1.png')" }}>
       <div className="header-buttons">
-        <button className="button">About</button>
-        <button className="button">Contact</button>
+        <button className="button-menu">About</button>
+        <button className="button-menu">Contact</button>
       </div>
       <div className="logo-container">
         <img src="/logo.png" alt="Logo" className="header-logo" />
@@ -35,3 +35,4 @@ const Header = () => {
 };
 
 export default Header;
+

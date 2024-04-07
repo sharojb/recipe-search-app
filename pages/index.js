@@ -58,6 +58,11 @@ const Home = ({ initialRecipes }) => {
         {loading && <p>Loading...</p>}
         {error && <p style={{ color: 'red' }}>{error}</p>}
 
+        <div className="body-content">
+          <p className="title">We're here to help you cook</p>
+          <p className="subtitle">uCook helps you discover delicious recipes and create amazing meals!</p>
+        </div>
+
         <RecipeList recipes={recipes} />
       </main>
 

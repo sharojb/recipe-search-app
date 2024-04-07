@@ -38,6 +38,32 @@ body {
   height: auto;
 }
 
+.header-buttons {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+}
+
+.button-menu {
+  font-family: 'Palatino', serif;
+  font-size: 16px;
+  color: black;
+  background-color: #4ecba2;
+  border: 2px solid #4ecba2;
+  border-radius: 30px;
+  padding: 10px 20px;
+  text-decoration: none;
+  cursor: pointer;
+  margin:10px;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.button-menu:hover {
+  background-color: #4ecba2;
+  color: white;
+}
+
 .hamburger-menu {
   display: none;
 }
@@ -71,13 +97,13 @@ body {
 .title {
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 38px;
   color: black;
 }
 
 .subtitle {
   font-family: 'Raleway', sans-serif;
-  font-size: 16px;
+  font-size: 20px;
   color: black;
 }
 
