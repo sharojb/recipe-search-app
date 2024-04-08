@@ -42,16 +42,15 @@ body {
 
 
 .button-ind {
-  font-family: 'Raleway', sans-serif;
+   font-family: 'Raleway', sans-serif;
    font-size: 16px;
    color: black;
    background-color: #4ecba2;
-   border: 2px solid #4ecba2;
+   border: 2px solid grey;
    border-radius: 30px;
    padding: 10px 20px;
    text-decoration: none;
    cursor: pointer;
-   margin:10px;
    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
@@ -223,8 +222,15 @@ body {
 
 
 .header-buttons{
-  display:flex;
+  border-radius: 0;
+  gap: 0;
+  display:none;
   flex-direction: column;
+  
+}
+
+.header-buttons-active{
+  display : flex;
 }
 
 /* Adjust icon size for responsiveness */
@@ -242,9 +248,16 @@ body {
   }
 
   .header-buttons{
+    display:flex;
   	flex-direction : row;
     gap: 4px;
     border-radius: 15px;
+  }
+
+  .button-ind{
+    margin:10px;
+    border-radius: 30px;
+    border : 0;
   }
 
   .social-icons a {
@@ -257,4 +270,5 @@ svg {
   color:black;
   text-align: right,
 }
+
 
