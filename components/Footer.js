@@ -17,12 +17,12 @@ const Footer = () => {
         </a>
         {showEmail && <p className="footer-text">contact@ucook.com</p>}
       </div>
-      <div>
+      <div className="social-icons">
         <a href="#" ><FontAwesomeIcon icon={faTwitter} /></a>
         <a href="#"><FontAwesomeIcon icon={faInstagram} /></a>
         <a href="#"><FontAwesomeIcon icon={faFacebook} /></a>
       </div>
-      <p className="footer-text" style={{ flexGrow: 1, textAlign: 'center' }}>Personalized Cooking Assistant © 2024</p>
+      <p className="footer-text" style={{ flexGrow: 1 }}>Personalized Cooking Assistant © 2024</p>
     </footer>
   );
 };

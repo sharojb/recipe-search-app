@@ -15,8 +15,8 @@ const Header = ({ onSearch }) => {
       {
       showMenu && (
         <div className="header-buttons">
-        <button className="button-menu">About</button>
-        <button className="button-menu">Contact</button>
+        <button className="button-ind">About</button>
+        <button className="button-ind">Contact</button>
       </div>
       	)
       }

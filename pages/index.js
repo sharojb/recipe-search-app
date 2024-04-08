@@ -56,10 +56,14 @@ const Home = ({ initialRecipes }) => {
         {error && <p style={{ color: 'red' }}>{error}</p>}
 
         <div className="body-content">
+        <div className="subtitle-container">
           <p className="title">We're here to</p>
           <p className="title">help you cook</p>
           <p className="subtitle">uCook helps you discover delicious recipes and create amazing meals! With only the ingredients you have at home, you can count on us to help you find what your next meal will be. You can start with only two or up to six ingredients to build your cooking, all without having to shop for more!</p>
         </div>
+        </div>
+
+        <img src="/bodyimg.jpg" alt="right image" className="right-image" />
 
         <RecipeList recipes={recipes} />
       </main>
