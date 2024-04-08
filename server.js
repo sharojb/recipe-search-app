@@ -4,15 +4,13 @@ const axios = require('axios');
 const cors = require('cors');
 const next = require('next');
 const path = require('path');
-const recipesRouter = require('./routes/recipes');
+const bcrypt = require('bcrypt');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-const spoonacularApiKey = process.env.SPOONACULAR_API_KEY || 'your-default-api-key';
-
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 app.prepare().then(() => {
   const server = express();
@@ -20,7 +18,7 @@ app.prepare().then(() => {
   server.use(express.json());
   server.use(cors());
 
-  const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/ucook';
+  const url = process.env.MONGODB_URI;
 
   mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB'))
@@ -29,42 +27,72 @@ app.prepare().then(() => {
       process.exit(1);
     });
 
-  server.get('/api/initialData', async (req, res) => {
-    try {
-      const response = await axios.get(
-        `https://api.spoonacular.com/recipes/random?apiKey=${spoonacularApiKey}&number=5`
-      );
-      res.json(response.data);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  });
-
-  server.get('/api/search', async (req, res) => {
-    try {
-      const { query } = req.query;
-      if (!query) {
-        return res.status(400).json({ error: 'Search query is required.' });
+    const userSchema = new mongoose.Schema({
+      username: {
+        type: String,
+        required: true,
+        unique: true
+      },
+      password: {
+        type: String,
+        required: true
+      },
+      mail: {
+        type: String,
+        required: true
       }
+    });
+    
+    const User = mongoose.model('User', userSchema);
+    
+    module.exports = User;
 
-      const response = await axios.get(
-        `https://api.spoonacular.com/recipes/search?apiKey=${spoonacularApiKey}&query=${query}`
-      );
-
-      const recipes = response.data.results;
-
-      res.json({ results: recipes });
+  server.get('/api/login/:username/:password', async (req, res) => {
+    try {
+      const username = req.params.username;
+      const password = req.params.password;
+      const user = await User.findOne({ username });
+  
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      const passwordMatch = await bcrypt.compare(password, user.password);
+  
+      if (!passwordMatch) {
+        return res.status(401).json({ message: 'Invalid credentials' });
+      }
+  
+      res.json({ message: 'Login successful' });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      console.error('Error logging in:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
     }
   });
 
-  server.use('/api/recipes', recipesRouter);
-
-  server.all('*', (req, res) => {
-    return handle(req, res);
+  server.get('/api/register/:username/:mail/:password', async (req, res) => {
+    try {
+      // const { username, password } = req.body;
+      const username = req.params.username;
+      const password = req.params.password;
+      const mail = req.params.mail;
+      const existingUser = await User.findOne({ username });
+  
+      if (existingUser) {
+        return res.status(400).json({ message: 'Username already exists' });
+      }
+  
+      const hashedPassword = await bcrypt.hash(password, 10);
+  
+      const newUser = new User({ username: username, password: hashedPassword, mail: mail });
+  
+      await newUser.save();
+  
+      res.status(201).json({ message: 'User registered successfully' });
+    } catch (error) {
+      console.error('Error registering user:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }  
   });
 
   server.listen(PORT, () => {

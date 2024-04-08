@@ -4,22 +4,23 @@ import '../styles/create.module.css';
 const CreateProfileForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [responseData, setResponseData] = useState(null);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const url = process.env.MONGODB_URI || 'mongodb+srv://sharolayn:091188@ucook.oolckyx.mongodb.net/';
 
-    mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
-      .then(() => console.log('Connected to MongoDB'))
-      .catch(err => {
-        console.error('Failed to connect to MongoDB', err);
-        process.exit(1);
-      });
     console.log('Name:', name);
     console.log('Email:', email);
+    console.log('Password', password);
+
+    const response = await fetch(`http://localhost:5000/api/register/${name}/${email}/${password}`);
+    const data = await response.json();
 
     setName('');
     setEmail('');
+    setPassword('');
+    setResponseData(data); 
   };
 
   return (
@@ -42,7 +43,21 @@ const CreateProfileForm = () => {
           required
         />
 
+        <label>Password:</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+
         <button type="submit">Submit</button>
+        {responseData && (
+          <div>
+            <h3>Response from server:</h3>
+            <pre>{JSON.stringify(responseData, null, 2)}</pre>
+          </div>
+        )}
       </form>
     </div>
   );

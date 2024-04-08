@@ -37,18 +37,17 @@ const Home = ({ initialRecipes }) => {
   };
 
   const handleSignUpClick = () => {
-    setShowSignUpForm(true);
+    setShowSignUpForm((prevShowSignUpForm) => !prevShowSignUpForm);
   };
 
   return (
     <div>
 
-      <main className="main"> {/* Apply main class from global styles */}
-        <section className='search-section'>
+      <main className="main">
+
           <button onClick={handleSignUpClick} className="button join-us-button">
-            Join Us
+          {showSignUpForm ? 'Hide Form' : 'Join Us'}
           </button>
-        </section>
 
         {showSignUpForm && <CreateProfileForm />}
 
@@ -58,7 +57,7 @@ const Home = ({ initialRecipes }) => {
         <div className="body-content">
         <div className="subtitle-container">
           <p className="title">We're here to</p>
-          <p className="title">help you cook</p>
+          <p className="title">help you cook!</p>
           <p className="subtitle">uCook helps you discover delicious recipes and create amazing meals! With only the ingredients you have at home, you can count on us to help you find what your next meal will be. You can start with only two or up to six ingredients to build your cooking, all without having to shop for more!</p>
         </div>
         </div>

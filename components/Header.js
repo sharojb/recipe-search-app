@@ -11,7 +11,7 @@ const Header = ({ onSearch }) => {
   return (
     <header className="header" style={{ backgroundImage: "url('/bg1.png')" }}>
       <div>
-      <label onClick={toggleMenu}>&#9776;</label>
+      <label className="hamburger-menu" onClick={toggleMenu}>&#9776;</label>
       {
       showMenu && (
         <div className="header-buttons">

@@ -28,6 +28,8 @@ body {
 
 /* Header styles */
 .header {
+  display: flex;
+  flex-direction: column;
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -194,7 +196,8 @@ body {
   display: flex;
   justify-content: space-evenly;
   align-items: flex-end;
-  padding: 30px 0;
+  padding: 5px;
+  margin-top: 10px;
 }
 
 .search-section * {
@@ -202,11 +205,16 @@ body {
 }
 
 .join-us-button {
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
   background-color: #4ecba2;
   border-width: 0;
   height: 80px;
-  width: 300px;
+  width: 250px;
   cursor: pointer;
+  display: block;
+  margin: auto;
+  margin-top: 40px;
 }
 
 .join-us-button:hover {
