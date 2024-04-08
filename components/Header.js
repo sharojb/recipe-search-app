@@ -10,17 +10,13 @@ const Header = ({ onSearch }) => {
 
   return (
     <header className="header" style={{ backgroundImage: "url('/bg1.png')" }}>
-      <div>
-      <label className="hamburger-menu" onClick={toggleMenu}>&#9776;</label>
-      {
-      showMenu && (
-        <div className="header-buttons">
-        <button className="button-ind">About</button>
-        <button className="button-ind">Contact</button>
-      </div>
-      	)
-      }
+    <div>
+    <label className="hamburger-menu" onClick={toggleMenu}>&#9776;</label>
+      <div className="header-buttons">
+           <button className="button-ind">About</button>
+          <button className="button-ind">Contact</button>
     </div>
+  </div>
       <div className="logo-container">
         <img src="/logo.png" alt="Logo" className="header-logo" />
       </div>

@@ -4,7 +4,7 @@ const { getRecipe, searchRecipes } = require('./recipeUtils');
 
 const router = express.Router();
 
-// Get a specific recipe by ID
+
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
 
@@ -12,7 +12,6 @@ router.get('/:id', async (req, res) => {
     const recipe = await Recipe.findById(id);
 
     if (!recipe) {
-      // Handle case where recipe is not found
       return res.status(404).json({ error: 'Recipe Not Found' });
     }
 
@@ -23,12 +22,11 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Search for recipes based on a query
 router.get('/search', async (req, res) => {
   const { query } = req.query;
 
   try {
-    const recipes = await Recipe.find({ $text: { $search: query } }); // Use $text for text search
+    const recipes = await Recipe.find({ $text: { $search: query } });
     res.json(recipes);
   } catch (error) {
     console.error(error);

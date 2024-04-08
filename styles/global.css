@@ -2,7 +2,7 @@
 
 /* Body styles */
 body {
-  font-family: 'Raleway', sans-serif; /* Change to Raleway font */
+  font-family: 'Raleway', sans-serif;
   background-color: #ebeadf;
   color: #333;
   margin: 0;
@@ -78,7 +78,7 @@ body {
 .hamburger-menu-icon {
   display: block;
   cursor: pointer;
-  font-size: 24px; /* Adjust the size as needed */
+  font-size: 24px;
 }
 
 .hamburger-menu-content {
@@ -107,8 +107,8 @@ body {
 
 /* Body content styles */
 .main {
-  height: 45%; /* Set body content height to 45% of viewport height */
-  overflow-y: auto; /* Add scroll if content exceeds viewport height */
+  height: 45%; 
+  overflow-y: auto;
 }
 
 .showMenuNav {
@@ -152,11 +152,11 @@ body {
 
 /* Footer specific styles */
 .footer {
-  background-color: #4ecba2; /* Set footer background color to 4ecba2 */
+  background-color: #4ecba2; 
   text-align: center;
   padding: 20px;
   color: #000;
-  height: 10%; /* Set footer height to 10% of viewport height */
+  height: 10%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -221,6 +221,12 @@ body {
   color: white;
 }
 
+
+.header-buttons{
+  display:flex;
+  flex-direction: column;
+}
+
 /* Adjust icon size for responsiveness */
 @media only screen and (max-width: 768px) {
   .social-icons a {
@@ -231,8 +237,14 @@ body {
 
 @media only screen and (min-width: 768px) {
   .hamburger-menu {
-  
+    display: none;
     text-align: right;
+  }
+
+  .header-buttons{
+  	flex-direction : row;
+    gap: 4px;
+    border-radius: 15px;
   }
 
   .social-icons a {

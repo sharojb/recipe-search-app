@@ -2,19 +2,19 @@
 .sign-up-button {
   background-color: #4ecba2;
   color: black;
-  border-radius: 10px; /* Make the rectangle bigger */
-  padding: 15px 30px; /* Increase padding */
+  border-radius: 10px;
+  padding: 15px 30px; 
   font-family: 'Raleway', sans-serif;
-  font-size: 18px; /* Increase font size */
+  font-size: 18px; 
   border: none;
   cursor: pointer;
-  margin-left: 20px; /* Add margin for spacing */
+  margin-left: 20px; 
 }
 
 /* Adjust styles for mobile */
 @media only screen and (max-width: 768px) {
   .sign-up-button {
-    margin-left: 0; /* Remove margin for mobile */
-    margin-top: 20px; /* Add margin at the top */
+    margin-left: 0; 
+    margin-top: 20px;
   }
 }
