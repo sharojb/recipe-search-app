@@ -5,8 +5,12 @@ import { faTwitter, faInstagram, faFacebook } from '@fortawesome/free-brands-svg
 const Footer = () => {
   const [showEmail, setShowEmail] = useState(false);
 
-  const toggleEmail = () => {
+  const toggleEmail = (event) => {
+    event.preventDefault();
     setShowEmail(!showEmail);
+    if (!showEmail) {
+      document.querySelector('.footer').scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (

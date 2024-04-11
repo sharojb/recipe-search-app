@@ -1,15 +1,85 @@
-/* Additional style for sign-up button */
 .sign-up-button {
   background-color: #4ecba2;
   color: black;
   border-radius: 10px;
   padding: 15px 30px; 
   font-family: 'Raleway', sans-serif;
-  font-size: 18px; 
+  font-size: 20px; 
   border: none;
   cursor: pointer;
   margin-left: 20px; 
 }
+
+.createContainer{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding: 5px;
+  margin: 10px;
+}
+
+.create{
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  margin: 10px;
+  color: #ffffff;
+  background-color: #4ecba2;
+  border: 2px solid #4ecba2;
+  border-radius: 20px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.createLabel {
+  margin-bottom: 5px;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+}
+
+.inputContainer input {
+  margin-left: 10px;
+}
+
+.input-create{
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  color: lightgrey;
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-radius: 20px;
+  padding: 10px 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.createSubmit {
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  color: #4ecba2;
+  background-color: white;
+  border: 2px solid #4ecba2;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+  
+  .createSubmit:hover {
+    background-color: #4ecba2;
+    color: white;
+  }
+
+  .return{
+    font-family: 'Raleway', sans-serif;
+    margin: 10px;
+    font-size: 16px;
+    }
+
 
 /* Adjust styles for mobile */
 @media only screen and (max-width: 768px) {
@@ -17,4 +87,9 @@
     margin-left: 0; 
     margin-top: 20px;
   }
+
+  .return{
+  font-family: 'Raleway', sans-serif;
+  }
 }
+

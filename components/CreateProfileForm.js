@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/create.module.css';
+import styles from '../styles/create.module.css'; 
 
 const CreateProfileForm = () => {
   const [name, setName] = useState('');
@@ -15,6 +15,9 @@ const CreateProfileForm = () => {
     console.log('Password', password);
 
     const response = await fetch(`http://localhost:5000/api/register/${name}/${email}/${password}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
     const data = await response.json();
 
     setName('');
@@ -26,36 +29,42 @@ const CreateProfileForm = () => {
   return (
     <div>
       <h2>Create Your Profile</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Name:</label>
-        <input
+      <form className={styles.createContainer} onSubmit={handleSubmit}>
+      <div className={styles.inputContainer}>
+        <label className={styles.create}>Name</label>
+        <input className={styles.inputCreate} 
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
+        </div>
 
-        <label>Email:</label>
-        <input
+        <div className={styles.inputContainer}>
+        <label className={styles.create}>Email</label> 
+        <input className={styles.inputCreate} 
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+        </div>
 
-        <label>Password:</label>
-        <input
+        <div className={styles.inputContainer}>
+        <label className={styles.create}>Password</label> 
+        <input className={styles.inputCreate}
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        </div>
 
-        <button type="submit">Submit</button>
+        <button type="submit" className={styles.createSubmit}>Submit</button>
         {responseData && (
           <div>
             <h3>Response from server:</h3>
-            <pre>{JSON.stringify(responseData, null, 2)}</pre>
+            <pre className={styles.return}>{responseData.message}</pre>
           </div>
         )}
       </form>
