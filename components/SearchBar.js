@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import styles from '../styles/search.module.css';
+import RecipeList from './RecipeList';
 
 const SearchBar = ({ onSearch }) => {
   const [ingredients, setIngredients] = useState(['']); 
   const [error, setError] = useState(null);
+  const [data, setData] = useState(null)
+
 
   const handleInputChange = (index, value) => {
     const newIngredients = [...ingredients];
@@ -23,6 +26,8 @@ const SearchBar = ({ onSearch }) => {
     }
   };
 
+  const apiKey = process.env.NEXT_PUBLIC_SPOONACULAR_API_KEY;
+
   const validateIngredients = async () => {
     for (const ingredient of ingredients) {
       if (!ingredient.trim()) {
@@ -30,11 +35,14 @@ const SearchBar = ({ onSearch }) => {
         return false;
       }
       try {
-        const response = await fetch(`https://api.spoonacular.com/food/ingredients/search?query=${encodeURIComponent(ingredient)}&apiKey=YOUR_API_KEY`);
+        const response = await fetch(`https://api.spoonacular.com/food/ingredients/search?query=${encodeURIComponent(ingredient)}&apiKey=${apiKey}`);
         const data = await response.json();
         if (data.results && data.results.length === 0) {
           setError(`"${ingredient}" is not a valid cooking ingredient. Please try again.`);
           return false;
+        }
+        else{
+          setData(data)
         }
       } catch (error) {
         console.error('Error validating ingredient:', error);
@@ -50,7 +58,7 @@ const SearchBar = ({ onSearch }) => {
     if (!(await validateIngredients())) {
       return;
     }
-    onSearch(ingredients.filter(ingredient => ingredient.trim() !== ''));
+    ingredients.filter(ingredient => ingredient.trim() !== '');
   };
 
   return (
@@ -68,6 +76,7 @@ const SearchBar = ({ onSearch }) => {
       <button onClick={handleAddMore} className={styles.smallButton}>Add More</button>
       {ingredients.length > 1 && <button onClick={handleLess} className={styles.smallButton}>Less</button>}
       <button onClick={handleSearch} className={styles.cookNowButton}>Cook Now</button>
+      {data && <RecipeList recipes={data}/>}
       {error && <p className={styles.errorMessage}>{error}</p>}
     </div>
   );

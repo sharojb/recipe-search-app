@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import React, { useState } from 'react';
 import axios from 'axios';
-import RecipeList from '../components/RecipeList';
 import CreateProfileForm from '../components/CreateProfileForm';
 import Footer from '../components/Footer';
-import SearchBar from '../components/SearchBar';
+import Header from '../components/Header';
+import RecipeList from 'components/RecipeList';
 
 const Home = ({ initialRecipes }) => {
   const [recipes, setRecipes] = useState(initialRecipes);
@@ -17,8 +17,7 @@ const Home = ({ initialRecipes }) => {
       setLoading(true);
       setError(null);
 
-      const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY;
-
+      const apiKey = process.env.NEXT_PUBLIC_SPOONACULAR_API_KEY;
       const response = await axios.get(
         `https://api.spoonacular.com/recipes/search?query=${query}&apiKey=${apiKey}&number=5`
       );
@@ -42,7 +41,6 @@ const Home = ({ initialRecipes }) => {
 
   return (
     <div>
-
       <main className="main">
 
           <button onClick={handleSignUpClick} className="button join-us-button">
@@ -62,10 +60,7 @@ const Home = ({ initialRecipes }) => {
           <img src="/bodyimg.jpg" alt="right image" className="right-image" />
         </div>
         </div>
-
-        <RecipeList recipes={recipes} />
       </main>
-
       <Footer />
     </div>
   );
@@ -73,7 +68,7 @@ const Home = ({ initialRecipes }) => {
 
 Home.getInitialProps = async () => {
   try {
-    const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY;
+    const apiKey = process.env.NEXT_PUBLIC_SPOONACULAR_API_KEY;
     const response = await axios.get(
       `https://api.spoonacular.com/recipes/random?apiKey=${apiKey}&number=5`
     );

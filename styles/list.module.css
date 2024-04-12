@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap');
 
 .container {
-  background-color: #ebeadf;
   padding: 20px;
 }
 
@@ -28,23 +27,40 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.recipe-img {
+.recipeImg {
   width: 100%;
   height: auto;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
-.recipe-details {
+.recipeDetails {
   padding: 10px;
 }
 
-.recipe-name {
+.recipeName {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
   font-size: 16px;
   color: black;
 }
+
+.loadMoreButton{
+    font-family: 'Palatino', serif;;
+    font-size: 14px;
+    background-color: #4ecba2;
+    border-width: 0;
+    height: 50px;
+    width: 100px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    margin-top: 40px;
+  }
+  
+  .loadMoreButton:hover {
+    color: white;
+  }
 
 /* Tablet Styles */
 @media only screen and (max-width: 768px) {
