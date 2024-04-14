@@ -5,12 +5,14 @@ import CreateProfileForm from '../components/CreateProfileForm';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import RecipeList from 'components/RecipeList';
+import RecipeDetails from '../components/RecipeDetails';
 
 const Home = ({ initialRecipes }) => {
   const [recipes, setRecipes] = useState(initialRecipes);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
+  const [selectedRecipe, setSelectedRecipe] = useState(null); 
 
   const handleSearch = async (query) => {
     try {
@@ -39,6 +41,14 @@ const Home = ({ initialRecipes }) => {
     setShowSignUpForm((prevShowSignUpForm) => !prevShowSignUpForm);
   };
 
+  const handleRecipeClick = (recipe) => {
+    setSelectedRecipe(recipe);
+  };
+
+  const handleCloseRecipeDetails = () => {
+    setSelectedRecipe(null);
+  };
+
   return (
     <div>
       <main className="main">
@@ -59,6 +69,16 @@ const Home = ({ initialRecipes }) => {
           <p className="subtitle">uCook helps you discover delicious recipes and create amazing meals! With only the ingredients you have at home, you can count on us to help you find what your next meal will be. You can start with only two or up to six ingredients to build your cooking, all without having to shop for more!</p>
           <img src="/bodyimg.jpg" alt="right image" className="right-image" />
         </div>
+
+        {selectedRecipe ? (
+            <RecipeDetails
+              recipe={selectedRecipe}
+              onClose={handleCloseRecipeDetails}
+            />
+          ) : (
+            <RecipeList recipes={recipes} onRecipeClick={handleRecipeClick} />
+          )}
+          
         </div>
       </main>
       <Footer />

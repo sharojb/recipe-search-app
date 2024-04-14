@@ -20,6 +20,24 @@ const RecipeList = ({ recipes }) => {
     setDisplayedRecipes(displayedRecipes + 6);
   };
 
+  const apiKey = process.env.NEXT_PUBLIC_SPOONACULAR_API_KEY;
+
+  const handleCook = async (recipeId) => {
+    console.log('Cook this button clicked for recipe ID:', recipeId);
+    try {
+      // Fetch the details of the selected recipe using its ID
+          const response = await fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`);
+      const recipeDetails = await response.json();
+
+      // Display the details of the recipe to the user
+      console.log('Recipe details:', recipeDetails);
+      
+      // Perform additional actions related to cooking the recipe
+    } catch (error) {
+      console.error('Error fetching recipe details:', error);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <h2>Recipes</h2>
@@ -34,6 +52,9 @@ const RecipeList = ({ recipes }) => {
             <div className={styles.recipeDetails}>
               <h3 className={styles.recipeName}>{recipe.title}</h3>
               <p>Recipe ID: {recipe.id}</p>
+              <button onClick={() => handleCook(recipe.id)} className={styles.cookThisButton}>
+                Cook this
+              </button>
             </div>
           </div>
         ))}

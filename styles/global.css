@@ -190,11 +190,15 @@
   margin-top: 10px;
   display: flex;
   justify-content: center;
-  gap: 6px;
+  gap: 2px;
 }
 
 .social-icons a {
-  margin-right: 10px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+
 }
 
 .search-section {

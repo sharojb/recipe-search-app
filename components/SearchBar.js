@@ -6,7 +6,7 @@ const SearchBar = ({ onSearch }) => {
   const [ingredients, setIngredients] = useState(['']); 
   const [error, setError] = useState(null);
   const [data, setData] = useState(null)
-
+  const [searchActive, setSearchActive] = useState(false);
 
   const handleInputChange = (index, value) => {
     const newIngredients = [...ingredients];
@@ -59,6 +59,7 @@ const SearchBar = ({ onSearch }) => {
       return;
     }
     ingredients.filter(ingredient => ingredient.trim() !== '');
+    setSearchActive(true);
   };
 
   return (
@@ -76,7 +77,7 @@ const SearchBar = ({ onSearch }) => {
       <button onClick={handleAddMore} className={styles.smallButton}>Add More</button>
       {ingredients.length > 1 && <button onClick={handleLess} className={styles.smallButton}>Less</button>}
       <button onClick={handleSearch} className={styles.cookNowButton}>Cook Now</button>
-      {data && <RecipeList recipes={data}/>}
+      {searchActive && data && <RecipeList recipes={data}/>}
       {error && <p className={styles.errorMessage}>{error}</p>}
     </div>
   );
