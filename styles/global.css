@@ -13,17 +13,21 @@
 }
 
 .body-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding-left: 140px;
   position: relative;
   width: calc(100% - 220px); 
   float: left;
 }
 
+.right-image-container {
+  position: relative;
+  margin-top: 20px; /* Adjust the margin as needed */
+}
+
 .right-image {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
   width: 200px; 
   padding: 10px 30px;
   margin: 10px;
@@ -42,7 +46,6 @@
   background-position: center;
   height: 45%;
 }
-
 
 .button-ind {
    font-family: 'Raleway', sans-serif;
@@ -248,6 +251,17 @@
     margin: 0 5px;
     text-align: center;
   }
+
+  .right-image {
+    width: 40%;
+    margin-top: 20px; /* Adjust the margin as needed */
+    padding: 0;
+    margin: auto;
+  }
+
+  .body-content{
+    flex-wrap: wrap;
+    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -284,3 +298,13 @@
 }
 
 
+@media only screen and (max-width: 768px) {
+
+  .right-image {
+margin: auto;
+}
+
+.body-content{
+flex-wrap: wrap;
+}
+}
