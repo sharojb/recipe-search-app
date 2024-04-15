@@ -77,7 +77,10 @@ const SearchBar = ({ onSearch }) => {
       <button onClick={handleAddMore} className={styles.smallButton}>Add More</button>
       {ingredients.length > 1 && <button onClick={handleLess} className={styles.smallButton}>Less</button>}
       <button onClick={handleSearch} className={styles.cookNowButton}>Cook Now</button>
-      {searchActive && data && <RecipeList recipes={data}/>}
+      {searchActive && data && (
+        <div className={styles.recipeListContainer}>
+        <RecipeList recipes={data}/>
+        </div>)}
       {error && <p className={styles.errorMessage}>{error}</p>}
     </div>
   );
