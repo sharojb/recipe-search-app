@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import SearchBar from './SearchBar';
 
-const Header = ({ onSearch }) => { 
+const Header = ({ onSearch }) => {
   const [showMenu, setShowMenu] = useState(false);
+  const [showLoginForm, setShowLoginForm] = useState(false); 
 
   const toggleMenu = () => {
-    document.querySelector("#hamburger-buttons").classList.toggle('header-buttons-active');
+    setShowMenu(!showMenu);
   };
 
   const scrollToAbout = () => {
@@ -16,24 +17,39 @@ const Header = ({ onSearch }) => {
     document.querySelector('.footer-text').scrollIntoView({ behavior: 'smooth' });
   };
 
+  const toggleLoginForm = () => {
+    setShowLoginForm(!showLoginForm);
+  };
+
   return (
     <header className="header" style={{ backgroundImage: "url('/bg1.png')" }}>
-    <div>
-    <label className="hamburger-menu" onClick={toggleMenu}>&#9776;</label>
-      <div className="header-buttons" id="hamburger-buttons">
-           <button className="button-ind" onClick={scrollToAbout}>About</button>
+      <div>
+        <label className="hamburger-menu" onClick={toggleMenu}>&#9776;</label>
+        <div className={`header-buttons ${showMenu ? 'header-buttons-active' : ''}`} id="hamburger-buttons">
+          <button className="button-ind" onClick={scrollToAbout}>About</button>
           <button className="button-ind" onClick={scrollToContact}>Contact</button>
-    </div>
-  </div>
+          <button className="button-ind" onClick={toggleLoginForm}>Log In</button> 
+        </div>
+      </div>
       <div className="logo-container">
         <img src="/logo.png" alt="Logo" className="header-logo" />
       </div>
-      <section className='search-section'>
-      <SearchBar onSearch={onSearch} />
+      <section className="search-section">
+        <SearchBar onSearch={onSearch} />
       </section>
+      {showLoginForm && ( 
+        <div className="login-form">
+          <form>
+            <label>Email:</label>
+            <input type="email" />
+            <label>Password:</label>
+            <input type="password" />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      )}
     </header>
   );
 };
 
 export default Header;
-

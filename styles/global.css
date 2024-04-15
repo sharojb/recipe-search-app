@@ -79,6 +79,8 @@
 .hamburger-menu {
   display: block;
   position: relative;
+  color: #4ecba2;
+  font-size: 36px;
 }
 
 .hamburger-menu-icon {
@@ -200,8 +202,6 @@
   margin-top: 10px;
   display: flex;
   justify-content: center;
-  gap: 2px;
-
 }
 
 .search-section {
@@ -214,6 +214,14 @@
 
 .search-section * {
   margin: 10px;
+}
+
+.login-form{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  padding: 5px;
+  margin-top: 10px;
 }
 
 .join-us-button {
