@@ -23,9 +23,9 @@ const Footer = () => {
       </div>
       <p className="footer-text" style={{ flexGrow: 1 }}>Personalized Cooking Assistant © 2024</p>
       <div className="social-icons">
-        <a href="#" ><FontAwesomeIcon color="#000" width={72} icon={faTwitter} /></a>
-        <a href="#"><FontAwesomeIcon color="#000" width={72} icon={faInstagram} /></a>
-        <a href="#"><FontAwesomeIcon color="#000" width={72} icon={faFacebook} /></a>
+        <a href="#" ><FontAwesomeIcon color="#000" width={40} size="2x" icon={faTwitter} /></a>
+        <a href="#"><FontAwesomeIcon color="#000" width={40} size="2x" icon={faInstagram} /></a>
+        <a href="#"><FontAwesomeIcon color="#000" width={40} size="2x" icon={faFacebook} /></a>
       </div>
     </footer>
   );
