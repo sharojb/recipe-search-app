@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Raleway:wght@400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Raleway:wght@400&display=swap");
 
 /* Body styles */
 .body {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   background-color: #ebeadf;
   color: #333;
   margin: 0;
@@ -18,7 +18,7 @@
   align-items: center;
   padding-left: 140px;
   position: relative;
-  width: calc(100% - 220px); 
+  width: calc(100% - 220px);
   float: left;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .right-image {
-  width: 200px; 
+  width: 200px;
   padding: 10px 30px;
   margin: 10px;
 }
@@ -48,23 +48,24 @@
 }
 
 .button-ind {
-   font-family: 'Raleway', sans-serif;
-   font-size: 16px;
-   color: black;
-   background-color: #4ecba2;
-   opacity: 0.8;
-   border: 1px solid lightgrey;
-   border-radius: 0px;
-   padding: 10px 20px;
-   text-decoration: none;
-   cursor: pointer;
-   transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  color: black;
+  background-color: #4ecba2;
+  border: 1px solid lightgrey;
+  border-radius: 0px;
+  padding: 10px 20px;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
 }
 
 .button-ind:hover {
-  color:white;
+  color: white;
 }
-
 
 .logo-container {
   flex: 1;
@@ -94,7 +95,7 @@
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -115,7 +116,7 @@
 
 /* Body content styles */
 .main {
-  height: 45%; 
+  height: 45%;
   overflow-y: auto;
   background-color: #ebeadf;
 }
@@ -140,7 +141,7 @@
 }
 
 .title {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: bold;
   font-size: 40px;
   color: black;
@@ -148,7 +149,7 @@
 }
 
 .subtitle {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 20px;
   color: black;
   text-align: left;
@@ -161,7 +162,7 @@
 
 /* Footer specific styles */
 .footer {
-  background-color: #4ecba2; 
+  background-color: #4ecba2;
   text-align: center;
   padding: 20px;
   color: #000;
@@ -172,7 +173,7 @@
 }
 
 .footer-link {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 14px;
   color: #000;
   text-decoration: underline;
@@ -180,7 +181,7 @@
 }
 
 .footer-text {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 14px;
   margin: 0;
   text-align: center;
@@ -216,16 +217,64 @@
   margin: 10px;
 }
 
-.login-form{
+.login-form {
   display: flex;
-  justify-content: space-evenly;
-  align-items: flex-end;
-  padding: 5px;
-  margin-top: 10px;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px; /* Add padding for spacing */
+}
+
+.login {
+  font-family: "Raleway", sans-serif;
+  font-size: 13px;
+  margin: 10px;
+  color: #ffffff;
+  background-color: #4ecba2;
+  border: 2px solid #4ecba2;
+  border-radius: 20px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.loginContainer {
+  display: flex;
+  flex-flow: column;
+}
+
+.inputLogin {
+  font-family: "Raleway", sans-serif;
+  font-size: 13px;
+  color: lightgrey;
+  background-color: white;
+  border: 1px solid lightgrey;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  width: 150px;
+  cursor: pointer;
+}
+
+.loginSubmit {
+  font-family: "Raleway", sans-serif;
+  font-size: 13px;
+  color: white; /* Change text color to white */
+  background-color: #4ecba2;
+  border: 2px solid #4ecba2;
+  border-radius: 35px;
+  padding: 10px 20px; /* Add padding for button */
+  margin: 10px; /* Add margin above the button */
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s; /* Add transition effect */
+}
+
+.loginSubmit:hover {
+  background-color: white;
+  color: #4ecba2;
 }
 
 .join-us-button {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 14px;
   background-color: #4ecba2;
   border-width: 0;
@@ -241,17 +290,15 @@
   color: white;
 }
 
-
-.header-buttons{
+.header-buttons {
   border-radius: 0;
   gap: 0;
-  display:none;
+  display: none;
   flex-direction: column;
-  
 }
 
-.header-buttons-active{
-  display : flex;
+.header-buttons-active {
+  display: flex;
 }
 
 @media only screen and (max-width: 768px) {
@@ -262,27 +309,33 @@
     padding: 10px;
   }
 
+  .button-ind {
+    opacity: 0.8;
+    padding: 20px 30px;
+    width: 130%;
+  }
+
   .right-image {
     width: 40%;
     margin-top: 20px; /* Adjust the margin as needed */
     padding: 0;
-    margin: auto; 
+    margin: auto;
     justify-content: center;
   }
 
-  .body-content{
+  .body-content {
     flex-wrap: wrap;
-    }
+  }
 
-    .footer{
-      display: flex;
-      flex-flow: column
-    }
+  .footer {
+    display: flex;
+    flex-flow: column;
+  }
 
-    .footer-link,
-    .footer-text{
-      padding: 10px;
-    }
+  .footer-link,
+  .footer-text {
+    padding: 10px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -291,17 +344,17 @@
     text-align: right;
   }
 
-  .header-buttons{
-    display:flex;
-  	flex-direction : row;
+  .header-buttons {
+    display: flex;
+    flex-direction: row;
     gap: 4px;
     border-radius: 15px;
   }
 
-  .button-ind{
-    margin:10px;
+  .button-ind {
+    margin: 10px;
     border-radius: 30px;
-    border : 0;
+    border: 0;
   }
 
   .social-icons a {
@@ -311,21 +364,19 @@
 }
 
 .svg {
-  color:black;
+  color: black;
   margin-top: 10px;
   display: flex;
   justify-content: center;
   gap: 6;
 }
 
-
 @media only screen and (max-width: 768px) {
-
   .right-image {
-margin: auto;
-}
+    margin: auto;
+  }
 
-.body-content{
-flex-wrap: wrap;
-}
+  .body-content {
+    flex-wrap: wrap;
+  }
 }
