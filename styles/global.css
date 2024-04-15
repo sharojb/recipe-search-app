@@ -38,7 +38,6 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
@@ -46,6 +45,7 @@
   background-position: center;
   height: 45%;
 }
+
 
 .button-ind {
   font-family: "Raleway", sans-serif;
