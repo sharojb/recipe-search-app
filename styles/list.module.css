@@ -37,10 +37,14 @@
 }
 
 .recipeImg {
-  width: 100%;
-  height: auto;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  .recipeImg {
+    width: 100%;
+    max-width: 200px; /* Set maximum width for responsiveness */
+    height: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
 }
 
 .recipeDetails {

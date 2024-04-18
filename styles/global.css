@@ -24,7 +24,7 @@
 
 .right-image-container {
   position: relative;
-  margin-top: 20px; /* Adjust the margin as needed */
+  margin: 5px;
 }
 
 .right-image {
@@ -153,6 +153,7 @@
   color: black;
   text-align: left;
   max-width: 600px;
+  margin: 5px;
 }
 
 .subtitle-container {
@@ -176,13 +177,13 @@
   font-size: 14px;
   color: #000;
   text-decoration: underline;
-  margin-right: 10px;
+  margin: 15px 10px;
 }
 
 .footer-text {
   font-family: "Raleway", sans-serif;
   font-size: 14px;
-  margin: 0;
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -192,14 +193,12 @@
 }
 
 .social-icons {
-  margin-top: 10px;
   display: flex;
   justify-content: center;
   gap: 2px;
 }
 
 .social-icons a {
-  margin-top: 10px;
   display: flex;
   justify-content: center;
 }
@@ -325,7 +324,7 @@ form {
 @media only screen and (max-width: 768px) {
   .social-icons a {
     flex-wrap: wrap;
-    margin: 0 5px;
+    margin: 0px 0px 10px;
     text-align: center;
     padding: 10px;
   }
@@ -337,10 +336,9 @@ form {
   }
 
   .right-image {
-    width: 40%;
-    margin-top: 20px; /* Adjust the margin as needed */
+    width: 75%;
+    margin: 5px 10px 10px; /* Adjust the margin as needed */
     padding: 0;
-    margin: auto;
     justify-content: center;
   }
 
