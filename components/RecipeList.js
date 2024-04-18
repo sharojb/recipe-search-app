@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/list.module.css';
 
-const RecipeList = ({ recipes }) => {
+const RecipeList = ({ recipes, isLoggedIn }) => {
   let recipeList = [];
 
   if (Array.isArray(recipes.recipes)) {
@@ -32,6 +32,15 @@ const RecipeList = ({ recipes }) => {
     } catch (error) {
       console.error('Error fetching recipe details:', error);
     }
+  };
+
+  const handleFavorite = (recipeId) => {
+    if (!isLoggedIn) {
+      alert('Log In or Register first to favorite.');
+      return;
+    }
+    // Implement logic to handle favoriting/unfavoriting the recipe
+    console.log(`Recipe ${recipeId} favorited/unfavorited`);
   };
 
   const handleCloseDetails = () => {
@@ -66,23 +75,30 @@ const RecipeList = ({ recipes }) => {
         // Display list of recipes
         <>
           <h2>Recipes</h2>
-          <div className={styles.recipeList}>
-            {slicedRecipes.map((recipe) => (
-              <div key={recipe.id} className={styles.recipeCard}>
-                <img
-                  src={`https://spoonacular.com/recipeImages/${recipe.image}`}
-                  alt="Recipe Image"
-                  className={styles.recipeImg}
-                />
-                <div className={styles.recipeDetails}>
-                  <h3 className={styles.recipeName}>{recipe.title}</h3>
-                  <p>Recipe ID: {recipe.id}</p>
-                  <button onClick={() => handleCook(recipe.id)} className={styles.cookThisButton}>
-                    Cook this
-                  </button>
+          <div className={styles.recipeListContainer}>
+            <div className={styles.recipeList}>
+              {slicedRecipes.map((recipe) => (
+                <div key={recipe.id} className={styles.recipeCard}>
+                  <img
+                    src={`https://spoonacular.com/recipeImages/${recipe.image}`}
+                    alt="Recipe Image"
+                    className={styles.recipeImg}
+                  />
+                  <div className={styles.recipeDetails}>
+                    <h3 className={styles.recipeName}>{recipe.title}</h3>
+                    <p>Recipe ID: {recipe.id}</p>
+                    <button onClick={() => handleCook(recipe.id)} className={styles.cookThisButton}>
+                      Cook this
+                    </button>
+                    {isLoggedIn && (
+                      <button onClick={() => handleFavorite(recipe.id)} className={styles.favoriteButton}>
+                        Favorite
+                      </button>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           {displayedRecipes < recipeList.length && (
             <button onClick={handleLoadMore} className={styles.loadMoreButton}>

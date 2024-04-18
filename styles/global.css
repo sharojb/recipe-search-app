@@ -46,7 +46,6 @@
   height: 45%;
 }
 
-
 .button-ind {
   font-family: "Raleway", sans-serif;
   font-size: 16px;
@@ -217,17 +216,31 @@
   margin: 10px;
 }
 
+/* Log In */
+
+.login-modal {
+  position: fixed;
+  top: 20%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 300px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
 .login-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px; /* Add padding for spacing */
+  margin: 20px 20px; /* Add padding for spacing */
 }
 
 .login {
   font-family: "Raleway", sans-serif;
   font-size: 13px;
-  margin: 10px;
+  margin-top: 20px;
   color: #ffffff;
   background-color: #4ecba2;
   border: 2px solid #4ecba2;
@@ -238,7 +251,10 @@
 
 .loginContainer {
   display: flex;
-  flex-flow: column;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Ensure button stays at bottom */
+  height: 100%; /* Make container full height */
 }
 
 .inputLogin {
@@ -248,29 +264,34 @@
   background-color: white;
   border: 1px solid lightgrey;
   padding: 10px 20px;
-  margin-bottom: 10px;
-  width: 150px;
+  width: 70%;
   cursor: pointer;
+  margin: 20px;
 }
 
 .loginSubmit {
   font-family: "Raleway", sans-serif;
   font-size: 13px;
-  color: white; /* Change text color to white */
+  color: white;
   background-color: #4ecba2;
   border: 2px solid #4ecba2;
   border-radius: 35px;
-  padding: 10px 20px; /* Add padding for button */
-  margin: 10px; /* Add margin above the button */
+  padding: 10px 20px;
   cursor: pointer;
   transition:
     background-color 0.2s,
-    color 0.2s; /* Add transition effect */
+    color 0.2s;
 }
 
 .loginSubmit:hover {
   background-color: white;
   color: #4ecba2;
+}
+
+form {
+  display: block;
+  margin: 10px;
+  unicode-bidi: isolate;
 }
 
 .join-us-button {
@@ -327,15 +348,44 @@
     flex-wrap: wrap;
   }
 
-  .footer {
-    display: flex;
-    flex-flow: column;
+  .login {
+    margin: 20px 20px;
   }
 
-  .footer-link,
-  .footer-text {
-    padding: 10px;
+  .inputLogin {
+    width: 50%;
+    margin: 20px 20px;
   }
+
+  .loginSubmit {
+    width: 45%;
+    margin: 10px 10px;
+  }
+
+  .login-modal {
+    width: 80%;
+    top: 40%;
+    max-width: 300px;
+    padding: 10px;
+  } /* Adjust padding for smaller screens */
+}
+
+.login-container {
+  height: auto; /* Revert height to auto for smaller screens */
+}
+
+.login-form {
+  margin-bottom: 10px; /* Reduce margin for smaller screens */
+}
+
+.footer {
+  display: flex;
+  flex-flow: column;
+}
+
+.footer-link,
+.footer-text {
+  padding: 10px;
 }
 
 @media only screen and (min-width: 768px) {

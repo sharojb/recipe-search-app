@@ -53,16 +53,18 @@ const Header = ({ onSearch }) => {
         <SearchBar onSearch={onSearch} />
       </section>
       {showLoginForm && (
-        <div className="loginContainer">
-          <form>
-            <label className="login">Email:</label>
-            <input className="inputLogin" type="email" />
-            <label className="login">Password:</label>
-            <input className="inputLogin" type="password" />
-            <button className="loginSubmit" type="submit">
-              Submit
-            </button>
-          </form>
+        <div className="login-modal">
+          <div className="login-container">
+            <form>
+              <label className="login">Email:</label>
+              <input className="inputLogin" type="email" />
+              <label className="login">Password:</label>
+              <input className="inputLogin" type="password" />
+              <button className="loginSubmit" type="submit">
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
       )}
     </header>
