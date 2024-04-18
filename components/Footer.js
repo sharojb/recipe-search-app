@@ -28,6 +28,7 @@ const Footer = () => {
       <p className="footer-text" style={{ flexGrow: 1 }}>
         Personalized Cooking Assistant © 2024
       </p>
+      <p className="footer-text">Created by </p>
       <div className="social-icons">
         <a href="#">
           <FontAwesomeIcon color="#000" width={40} size="2x" icon={faTwitter} />
@@ -48,7 +49,6 @@ const Footer = () => {
             icon={faFacebook}
           />
         </a>
-        <p className="footer-text">Created by Sharolayn Jarque</p>
       </div>
     </footer>
   );

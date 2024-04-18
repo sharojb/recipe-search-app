@@ -2,7 +2,7 @@
   padding: 20px;
 }
 
-.cookThisButton{
+.cookThisButton {
   font-family: "Raleway", sans-serif;
   font-size: 12px;
   margin-top: 20px;
@@ -28,23 +28,21 @@
   margin-top: 20px;
 }
 
-.recipe-card {
-  width: calc(33.33% - 10px); /* Adjust the width to fit three cards side by side */
+.recipeCard {
+  width: 30%; /* Set the width of each recipe card */
   margin-bottom: 20px;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex-grow: 1; /* Allow each card to grow within the flex container */
 }
 
 .recipeImg {
-  .recipeImg {
-    width: 100%;
-    max-width: 200px; /* Set maximum width for responsiveness */
-    height: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-  }
-  
+  width: 100%;
+  max-width: 200px; /* Set maximum width for responsiveness */
+  height: auto;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .recipeDetails {
@@ -52,14 +50,14 @@
 }
 
 .recipeName {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 400;
   font-size: 16px;
   color: black;
 }
 
 .loadMoreButton {
-  font-family: 'Palatino', serif;
+  font-family: "Palatino", serif;
   font-size: 14px;
   background-color: #4ecba2;
   border-width: 0;
@@ -76,15 +74,19 @@
 }
 
 /* Tablet Styles */
-@media only screen and (max-width: 768px) {
-  .recipe-card {
-    width: calc(50% - 10px); /* Adjust the width for smaller screens */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  .recipeCard {
+    width: calc(
+      50% - 20px
+    ); /* Adjust the width for smaller screens to show two cards in a row */
   }
 }
 
 /* Mobile Styles */
 @media only screen and (max-width: 480px) {
-  .recipe-card {
-    width: calc(100% - 10px); /* Adjust the width for even smaller screens */
+  .recipeCard {
+    width: calc(
+      100% - 20px
+    ); /* Adjust the width for even smaller screens to show one card in a row */
   }
 }

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styles from '../styles/list.module.css';
+import React, { useState } from "react";
+import styles from "../styles/list.module.css";
 
 const RecipeList = ({ recipes, isLoggedIn }) => {
   let recipeList = [];
@@ -25,18 +25,20 @@ const RecipeList = ({ recipes, isLoggedIn }) => {
 
   const handleCook = async (recipeId) => {
     try {
-      const response = await fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`);
+      const response = await fetch(
+        `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`,
+      );
       const recipeDetails = await response.json();
 
       setSelectedRecipe(recipeDetails); // Set the selected recipe details
     } catch (error) {
-      console.error('Error fetching recipe details:', error);
+      console.error("Error fetching recipe details:", error);
     }
   };
 
   const handleFavorite = (recipeId) => {
     if (!isLoggedIn) {
-      alert('Log In or Register first to favorite.');
+      alert("Log In or Register first to favorite.");
       return;
     }
     // Implement logic to handle favoriting/unfavoriting the recipe
@@ -57,7 +59,11 @@ const RecipeList = ({ recipes, isLoggedIn }) => {
               Close
             </button>
             <h2>{selectedRecipe.title}</h2>
-            <img src={selectedRecipe.image} alt={selectedRecipe.title} className={styles.recipeImage} />
+            <img
+              src={selectedRecipe.image}
+              alt={selectedRecipe.title}
+              className={styles.recipeImage}
+            />
             <p>Ready in {selectedRecipe.readyInMinutes} minutes</p>
             <div dangerouslySetInnerHTML={{ __html: selectedRecipe.summary }} />
             <h3>Ingredients</h3>
@@ -67,7 +73,9 @@ const RecipeList = ({ recipes, isLoggedIn }) => {
               ))}
             </ul>
             <h3>Instructions</h3>
-            <div dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }} />
+            <div
+              dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }}
+            />
           </div>
           <div className={styles.overlay} onClick={handleCloseDetails}></div>
         </div>
@@ -82,16 +90,25 @@ const RecipeList = ({ recipes, isLoggedIn }) => {
                   <img
                     src={`https://spoonacular.com/recipeImages/${recipe.image}`}
                     alt="Recipe Image"
+                    width="200px"
+                    height="100px"
                     className={styles.recipeImg}
                   />
                   <div className={styles.recipeDetails}>
                     <h3 className={styles.recipeName}>{recipe.title}</h3>
+                    <p>Ready in {recipe.readyInMinutes} minutes</p>
                     <p>Recipe ID: {recipe.id}</p>
-                    <button onClick={() => handleCook(recipe.id)} className={styles.cookThisButton}>
+                    <button
+                      onClick={() => handleCook(recipe.id)}
+                      className={styles.cookThisButton}
+                    >
                       Cook this
                     </button>
                     {isLoggedIn && (
-                      <button onClick={() => handleFavorite(recipe.id)} className={styles.favoriteButton}>
+                      <button
+                        onClick={() => handleFavorite(recipe.id)}
+                        className={styles.favoriteButton}
+                      >
                         Favorite
                       </button>
                     )}
