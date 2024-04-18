@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SearchBar from "./SearchBar";
+import Link from "next/link"; // Import Link from Next.js
 
 const Header = ({ onSearch }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -25,8 +26,12 @@ const Header = ({ onSearch }) => {
     setShowLoginForm(!showLoginForm);
   };
 
+  const handleLogoClick = () => {
+    onSearch([""]); // Reset the search bar
+  };
+
   return (
-    <header className="header" style={{ backgroundImage: "url('/bg2.jpeg')" }}>
+    <header className="header" style={{ backgroundImage: "url('/bg1.png')" }}>
       <div>
         <label className="hamburger-menu" onClick={toggleMenu}>
           &#9776;
@@ -47,7 +52,10 @@ const Header = ({ onSearch }) => {
         </div>
       </div>
       <div className="logo-container">
-        <img src="/logo.png" alt="Logo" className="header-logo" />
+        {/* Wrap the logo with Link from Next.js */}
+        <Link href="/" onClick={handleLogoClick}>
+          <img src="/logo.png" alt="Logo" className="header-logo" />
+        </Link>
       </div>
       <section className="search-section">
         <SearchBar onSearch={onSearch} />

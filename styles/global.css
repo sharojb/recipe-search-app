@@ -20,6 +20,7 @@
   position: relative;
   width: calc(100% - 220px);
   float: left;
+  margin: 20px 10px;
 }
 
 .right-image-container {
@@ -81,6 +82,7 @@
   position: relative;
   color: #4ecba2;
   font-size: 36px;
+  text-align: center;
 }
 
 .hamburger-menu-icon {
@@ -158,18 +160,19 @@
 
 .subtitle-container {
   max-width: 600px;
+  min-width: 220px;
 }
 
 /* Footer specific styles */
 .footer {
+  display: flex;
+  justify-content: space-between; /* Align items to both ends */
+  align-items: center; /* Center vertically */
   background-color: #4ecba2;
   text-align: center;
   padding: 20px;
   color: #000;
   height: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .footer-link {
@@ -178,12 +181,12 @@
   color: #000;
   text-decoration: underline;
   margin: 15px 10px;
+  text-align: left; /* Align "Contact Us" to the left */
 }
 
 .footer-text {
   font-family: "Raleway", sans-serif;
   font-size: 14px;
-  margin-top: 20px;
   text-align: center;
 }
 
@@ -194,8 +197,8 @@
 
 .social-icons {
   display: flex;
-  justify-content: center;
-  gap: 2px;
+  justify-content: flex-end; /* Align social icons to the right */
+  align-items: center; /* Center vertically */
 }
 
 .social-icons a {
@@ -226,6 +229,7 @@
   background-color: white;
   padding: 20px;
   border-radius: 10px;
+  border: 1.5px solid lightgrey;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
@@ -295,7 +299,7 @@ form {
 
 .join-us-button {
   font-family: "Raleway", sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   background-color: #4ecba2;
   border-width: 0;
   height: 80px;
@@ -303,7 +307,7 @@ form {
   cursor: pointer;
   display: block;
   margin: auto;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .join-us-button:hover {
@@ -336,7 +340,6 @@ form {
   }
 
   .right-image {
-    width: 75%;
     margin: 5px 10px 10px; /* Adjust the margin as needed */
     padding: 0;
     justify-content: center;
@@ -420,11 +423,61 @@ form {
 }
 
 @media only screen and (max-width: 768px) {
-  .right-image {
-    margin: auto;
-  }
-
   .body-content {
     flex-wrap: wrap;
+  }
+
+  /* SearchBar specific styles */
+  .searchContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .searchInput {
+    margin-bottom: 10px;
+  }
+
+  .smallButton {
+    margin: 5px;
+  }
+
+  .join-us-button {
+    width: 200px;
+  }
+
+  /* RecipeList specific styles */
+  .recipeListContainer {
+    margin-top: 20px; /* Adjust margin as needed */
+  }
+
+  .recipeList {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(200px, 1fr)
+    ); /* Adjust grid columns as needed */
+    gap: 20px; /* Adjust gap between recipes as needed */
+  }
+
+  .recipeCard {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .recipeImg {
+    width: 100%;
+    border-radius: 5px;
+  }
+
+  .recipeDetails {
+    margin-top: 10px; /* Adjust margin as needed */
+  }
+
+  .cookThisButton,
+  .favoriteButton {
+    margin-top: 10px; /* Adjust margin as needed */
   }
 }
