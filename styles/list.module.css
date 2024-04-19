@@ -29,25 +29,26 @@
 }
 
 .recipeCard {
-  width: 30%; 
+  width: 33%;
   margin-bottom: 20px;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  flex-grow: 1; 
+  flex-grow: 1;
   max-width: 250px;
 }
 
 .recipeImg {
-  width: 100%;
-  max-width: 200px; /* Set maximum width for responsiveness */
+  width: 80%;
+  max-width: 200px;
   height: auto;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-radius: 5px;
+  padding-left: 5.5%;
 }
 
 .recipeDetails {
-  padding: 10px;
+  padding: 5px;
+  text-align: center;
 }
 
 .recipeName {
