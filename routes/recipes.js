@@ -1,5 +1,5 @@
 const express = require('express');
-const Recipe = require('../models/Recipe'); // Adjust the path as needed
+const Recipe = require('../models/Recipe'); 
 const { getRecipe, searchRecipes } = require('./recipeUtils');
 
 const router = express.Router();
