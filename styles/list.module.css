@@ -29,12 +29,13 @@
 }
 
 .recipeCard {
-  width: 30%; /* Set the width of each recipe card */
+  width: 30%; 
   margin-bottom: 20px;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  flex-grow: 1; /* Allow each card to grow within the flex container */
+  flex-grow: 1; 
+  max-width: 250px;
 }
 
 .recipeImg {

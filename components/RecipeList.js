@@ -88,7 +88,7 @@ const RecipeList = ({ recipes, isLoggedIn }) => {
               {slicedRecipes.map((recipe) => (
                 <div key={recipe.id} className={styles.recipeCard}>
                   <img
-                    src={`https://spoonacular.com/recipeImages/${recipe.image}`}
+                    src={recipe.image}
                     alt="Recipe Image"
                     width="200px"
                     height="100px"
