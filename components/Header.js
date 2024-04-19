@@ -27,7 +27,7 @@ const Header = ({ onSearch }) => {
   };
 
   const handleLogoClick = () => {
-    onSearch([""]); // Reset the search bar
+    onSearch([""]);
   };
 
   return (
@@ -52,8 +52,7 @@ const Header = ({ onSearch }) => {
         </div>
       </div>
       <div className="logo-container">
-        {/* Wrap the logo with Link from Next.js */}
-        <Link href="/" onClick={handleLogoClick}>
+      <Link href="https://ucook.vercel.app/">
           <img src="/logo.png" alt="Logo" className="header-logo" />
         </Link>
       </div>

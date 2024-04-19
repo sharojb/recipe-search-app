@@ -21,6 +21,7 @@ const Home = ({ initialRecipes }) => {
       setError(null);
 
       const apiKey = process.env.NEXT_PUBLIC_SPOONACULAR_API_KEY;
+      
       const response = await axios.get(
         `https://api.spoonacular.com/recipes/search?query=${query}&apiKey=${apiKey}&number=5`,
       );
