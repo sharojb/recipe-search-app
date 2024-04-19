@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "../styles/list.module.css";
+import RecipeDetails from "./RecipeDetails";
 
 const RecipeList = ({ recipes, isLoggedIn }) => {
   let recipeList = [];
@@ -46,41 +47,14 @@ const RecipeList = ({ recipes, isLoggedIn }) => {
   };
 
   const handleCloseDetails = () => {
-    setSelectedRecipe(null); // Close the details section
+    setSelectedRecipe(null);
   };
 
   return (
     <div className={styles.container}>
       {selectedRecipe ? (
-        // Display details of the selected recipe
-        <div className={styles.recipeDetailsContainer}>
-          <div className={styles.recipeDetailsContent}>
-            <button onClick={handleCloseDetails} className={styles.closeButton}>
-              Close
-            </button>
-            <h2>{selectedRecipe.title}</h2>
-            <img
-              src={selectedRecipe.image}
-              alt={selectedRecipe.title}
-              className={styles.recipeImage}
-            />
-            <p>Ready in {selectedRecipe.readyInMinutes} minutes</p>
-            <div dangerouslySetInnerHTML={{ __html: selectedRecipe.summary }} />
-            <h3>Ingredients</h3>
-            <ul>
-              {selectedRecipe.extendedIngredients.map((ingredient, index) => (
-                <li key={index}>{ingredient.original}</li>
-              ))}
-            </ul>
-            <h3>Instructions</h3>
-            <div
-              dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }}
-            />
-          </div>
-          <div className={styles.overlay} onClick={handleCloseDetails}></div>
-        </div>
+        <RecipeDetails recipe={selectedRecipe} onClose={handleCloseDetails} />
       ) : (
-        // Display list of recipes
         <>
           <h2>Recipes</h2>
           <div className={styles.recipeListContainer}>
