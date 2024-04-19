@@ -1,5 +1,3 @@
-// RecipeDetails.jsx
-
 import React, { useState } from 'react';
 import styles from '../styles/details.module.css';
 
@@ -11,24 +9,23 @@ const RecipeDetails = ({ recipe, onClose }) => {
     instructions,
     summary,
     extendedIngredients,
-    id, // Assuming the recipe ID is available
+    id,
   } = recipe;
 
   const [isFavorited, setIsFavorited] = useState(false);
 
   const toggleFavorite = async () => {
     try {
-      // Assuming you have an endpoint on your backend server for updating favorite status
       const response = await fetch(`/api/recipes/${id}/favorite`, {
-        method: 'POST', // Assuming you use POST request to update favorite status
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ isFavorited: !isFavorited }), // Sending the new favorite status to the backend
+        body: JSON.stringify({ isFavorited: !isFavorited }),
       });
 
       if (response.ok) {
-        setIsFavorited(!isFavorited); // Update the favorite status locally
+        setIsFavorited(!isFavorited);
       } else {
         console.error('Failed to update favorite status:', response.statusText);
       }
@@ -39,6 +36,7 @@ const RecipeDetails = ({ recipe, onClose }) => {
 
   return (
     <div className={styles.recipeDetails}>
+      <button>Hola</button>
       <button onClick={onClose} className={styles.closeButton}>
         Close
       </button>

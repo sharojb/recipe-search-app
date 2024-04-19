@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "npx next start",
+    "start": "FAST_REFRESH=false npx next start",
     "build": "npx next build",
     "lint": "next lint",
     "dev": "npx next dev"
@@ -24,6 +24,7 @@
     "node": "^18.20.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "sharp": "^0.33.3",
     "typeface-inter": "^3.18.1"
   },
   "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",

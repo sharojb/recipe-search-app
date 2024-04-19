@@ -17,5 +17,8 @@ module.exports = {
 
   env: {
     API_KEY: '4e1ab513731c4ffeaa22089bd7a2d2a3',
+    FAST_REFRESH: 'false',
+    CHOKIDAR_USEPOLLING: 'true',
+    WATCHPACK_POLLING:'true',
   },
 };

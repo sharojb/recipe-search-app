@@ -30,6 +30,13 @@ const Header = ({ onSearch }) => {
     onSearch([""]);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent the default form submission behavior
+    // Handle form submission logic here
+    // For now, you can console.log the form data
+    console.log("Form submitted!");
+  };
+
   return (
     <header className="header" style={{ backgroundImage: "url('/bg1.png')" }}>
       <div>
@@ -54,7 +61,7 @@ const Header = ({ onSearch }) => {
       <div className="logo-container">
       <Link href="https://ucook.vercel.app/">
           <img src="/logo.png" alt="Logo" className="header-logo" />
-        </Link>
+      </Link>
       </div>
       <section className="search-section">
         <SearchBar onSearch={onSearch} />
@@ -62,7 +69,7 @@ const Header = ({ onSearch }) => {
       {showLoginForm && (
         <div className="login-modal">
           <div className="login-container">
-            <form>
+            <form onSubmit={handleSubmit}>
               <label className="login">Email:</label>
               <input className="inputLogin" type="email" />
               <label className="login">Password:</label>

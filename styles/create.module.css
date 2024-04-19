@@ -13,7 +13,7 @@
 .createContainer {
   width: 290px;
   background-color: white;
-  padding: 30px;
+  padding: 25px;
   border-radius: 10px;
   border: 1.5px solid lightgrey;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
@@ -33,7 +33,7 @@
 
 .createProfileTitle {
   font-family: Palatino, serif;
-  margin: 15px;
+  margin: 20px;
   font-size: 35px;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .inputContainer input {
-  margin: 10px;
+  margin: 10px 10px 10px 2px;
 }
 
 .inputCreate {
@@ -94,8 +94,8 @@
   }
 
   .createContainer {
-    width: 280px;
-    padding: 20px;
+    width: 270px;
+    padding: 20px 20px 20px 5px;
   }
 
   .return {
