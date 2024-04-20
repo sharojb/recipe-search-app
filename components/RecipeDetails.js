@@ -16,18 +16,32 @@ const RecipeDetails = ({ recipe, onClose }) => {
 
   const toggleFavorite = async () => {
     try {
-      const response = await fetch(`/api/recipes/${id}/favorite`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ isFavorited: !isFavorited }),
-      });
+      if (isFavorited) {
+        const response = await fetch(
+          `http://localhost:5000/api/removefavorites/sharo/${id}`,
+        );
 
-      if (response.ok) {
-        setIsFavorited(!isFavorited);
+        if (response.ok) {
+          setIsFavorited(!isFavorited);
+        } else {
+          console.error(
+            "Failed to update favorite status:",
+            response.statusText,
+          );
+        }
       } else {
-        console.error("Failed to update favorite status:", response.statusText);
+        const response = await fetch(
+          `http://localhost:5000/api/addfavorites/sharo/${id}`,
+        );
+
+        if (response.ok) {
+          setIsFavorited(!isFavorited);
+        } else {
+          console.error(
+            "Failed to update favorite status:",
+            response.statusText,
+          );
+        }
       }
     } catch (error) {
       console.error("Error updating favorite status:", error);

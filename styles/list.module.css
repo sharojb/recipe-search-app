@@ -80,7 +80,7 @@
   .recipeCard {
     width: calc(
       50% - 20px
-    ); /* Adjust the width for smaller screens to show two cards in a row */
+    );
   }
 }
 
@@ -89,6 +89,6 @@
   .recipeCard {
     width: calc(
       100% - 20px
-    ); /* Adjust the width for even smaller screens to show one card in a row */
+    ); 
   }
 }

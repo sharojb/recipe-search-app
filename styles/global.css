@@ -166,13 +166,11 @@
 /* Footer specific styles */
 .footer {
   display: flex;
-  justify-content: space-between; /* Align items to both ends */
-  align-items: center; /* Center vertically */
+  justify-content: space-between;
+  align-items: center;
   background-color: #4ecba2;
-  text-align: center;
   padding: 20px;
   color: #000;
-  height: 10%;
 }
 
 .footer-link {
@@ -181,13 +179,21 @@
   color: #000;
   text-decoration: underline;
   margin: 15px 10px;
-  text-align: left; /* Align "Contact Us" to the left */
+  text-align: left;
 }
 
 .footer-text {
   font-family: "Raleway", sans-serif;
   font-size: 14px;
   text-align: center;
+  flex: 1;
+}
+
+.footer-contact {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  text-align: left;
+  margin-right: auto;
 }
 
 .footer-link:hover,
@@ -197,8 +203,8 @@
 
 .social-icons {
   display: flex;
-  justify-content: flex-end; /* Align social icons to the right */
-  align-items: center; /* Center vertically */
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .social-icons a {
@@ -237,7 +243,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px 20px; /* Add padding for spacing */
+  margin: 20px 20px;
 }
 
 .login {
@@ -256,8 +262,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between; /* Ensure button stays at bottom */
-  height: 100%; /* Make container full height */
+  justify-content: space-between;
+  height: 100%;
 }
 
 .inputLogin {
@@ -340,7 +346,7 @@ form {
   }
 
   .right-image {
-    margin: 5px 10px 10px; /* Adjust the margin as needed */
+    margin: 5px 10px 10px;
     padding: 0;
     justify-content: center;
   }
@@ -368,20 +374,20 @@ form {
     top: 40%;
     max-width: 300px;
     padding: 10px;
-  } /* Adjust padding for smaller screens */
+  }
 }
 
 .login-container {
-  height: auto; /* Revert height to auto for smaller screens */
+  height: auto;
 }
 
 .login-form {
-  margin-bottom: 10px; /* Reduce margin for smaller screens */
+  margin-bottom: 10px;
 }
 
 .footer {
   display: flex;
-  flex-flow: column;
+  flex-flow: row;
 }
 
 .footer-link,
@@ -427,7 +433,7 @@ form {
     flex-wrap: wrap;
   }
 
-  /* SearchBar specific styles */
+  /* SearchBar styles */
   .searchContainer {
     display: flex;
     flex-direction: column;
@@ -447,18 +453,15 @@ form {
     width: 200px;
   }
 
-  /* RecipeList specific styles */
+  /* RecipeList styles */
   .recipeListContainer {
-    margin-top: 20px; /* Adjust margin as needed */
+    margin-top: 20px;
   }
 
   .recipeList {
     display: grid;
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(200px, 1fr)
-    ); /* Adjust grid columns as needed */
-    gap: 20px; /* Adjust gap between recipes as needed */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
   }
 
   .recipeCard {
@@ -473,11 +476,16 @@ form {
   }
 
   .recipeDetails {
-    margin-top: 10px; /* Adjust margin as needed */
+    margin-top: 10px;
   }
 
   .cookThisButton,
   .favoriteButton {
-    margin-top: 10px; /* Adjust margin as needed */
+    margin-top: 10px;
+  }
+
+  .footer {
+    display: flex;
+    flex-flow: column;
   }
 }

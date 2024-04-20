@@ -42,10 +42,23 @@ app.prepare().then(() => {
         required: true
       }
     });
+
+    const favoriteSchema = new mongoose.Schema({
+      username: {
+        type: String,
+        required: true,
+      },
+      recipe_id: {
+        type: String,
+        required: true
+      }
+    });
     
     const User = mongoose.model('User', userSchema);
+    const Favorites = mongoose.model('Favorites', favoriteSchema)
     
     module.exports = User;
+    module.exports = Favorites;
 
   server.get('/api/login/:username/:password', async (req, res) => {
     try {
@@ -67,6 +80,59 @@ app.prepare().then(() => {
     } catch (error) {
       console.error('Error logging in:', error);
       res.status(500).json({ message: 'Internal Server Error' });
+    }
+  });
+
+  server.get('/api/getfavorites/:username', async (req, res) => {
+    try {
+      const username = req.params.username;
+      const recipe = await Favorites.find({ username });
+
+      if (!recipe) {
+        res.json({ message: 'No Favorites for this user' });
+      }
+      else{
+        res.json({ recipe });
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  });
+
+  server.get('/api/addfavorites/:username/:recipe_id', async (req, res) => {
+    try {
+      const username = req.params.username;
+      const recipe_id = req.params.recipe_id;
+      const recipe = await Favorites.findOne({ username, recipe_id });
+
+      if (!recipe) {
+        const newFavorite = new Favorites({ username: username, recipe_id: recipe_id });
+    
+        await newFavorite.save();
+
+        res.json({ message: 'Favorite added' });
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      res.status(500).json({ message: 'Internal Server Error', error });
+    }
+  });
+
+  server.get('/api/removefavorites/:username/:recipe_id', async (req, res) => {
+    try {
+      const username = req.params.username;
+      const recipe_id = req.params.recipe_id;
+      const recipe = await Favorites.findOne({ username, recipe_id });
+
+      if (recipe) {
+        await Favorites.deleteOne({ username, recipe_id })
+
+        res.json({ message: 'Favorite deleted' });
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      res.status(500).json({ message: 'Internal Server Error', error });
     }
   });
 
@@ -96,6 +162,6 @@ app.prepare().then(() => {
   });
 
   server.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(Server is running on http://localhost:${PORT});
   });
 });

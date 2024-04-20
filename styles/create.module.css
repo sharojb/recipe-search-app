@@ -86,7 +86,6 @@
   font-size: 16px;
 }
 
-/* Adjust styles for mobile */
 @media only screen and (max-width: 768px) {
   .sign-up-button {
     margin-left: 0;
