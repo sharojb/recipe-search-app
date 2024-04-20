@@ -1,3 +1,4 @@
+User
 const express = require('express');
 const mongoose = require('mongoose');
 const axios = require('axios');
@@ -162,6 +163,6 @@ app.prepare().then(() => {
   });
 
   server.listen(PORT, () => {
-    console.log(Server is running on http://localhost:${PORT});
+    console.log(`Server is running on http://localhost:${PORT}`);
   });
 });

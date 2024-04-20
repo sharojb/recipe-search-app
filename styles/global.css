@@ -187,6 +187,7 @@
   font-size: 14px;
   text-align: center;
   flex: 1;
+  padding: 5px;
 }
 
 .footer-contact {
@@ -390,8 +391,7 @@ form {
   flex-flow: row;
 }
 
-.footer-link,
-.footer-text {
+.footer-link {
   padding: 10px;
 }
 
