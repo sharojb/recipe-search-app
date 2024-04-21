@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import SearchBar from "./SearchBar";
-import Link from "next/link"; 
+import Link from "next/link";
+import { useAuth } from "../AuthContext"; 
 
 const Header = ({ onSearch }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  const { userName } = useAuth(); // Retrieve userName from useAuth hook
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Add state for managing logged-in status
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);

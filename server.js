@@ -1,11 +1,10 @@
-User
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
-const axios = require('axios');
+const bcrypt = require('bcrypt');
 const cors = require('cors');
 const next = require('next');
-const path = require('path');
-const bcrypt = require('bcrypt');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -28,55 +27,54 @@ app.prepare().then(() => {
       process.exit(1);
     });
 
-    const userSchema = new mongoose.Schema({
-      username: {
-        type: String,
-        required: true,
-        unique: true
-      },
-      password: {
-        type: String,
-        required: true
-      },
-      mail: {
-        type: String,
-        required: true
-      }
-    });
+  const userSchema = new mongoose.Schema({
+    username: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    password: {
+      type: String,
+      required: true
+    },
+    mail: {
+      type: String,
+      required: true
+    }
+  });
 
-    const favoriteSchema = new mongoose.Schema({
-      username: {
-        type: String,
-        required: true,
-      },
-      recipe_id: {
-        type: String,
-        required: true
-      }
-    });
-    
-    const User = mongoose.model('User', userSchema);
-    const Favorites = mongoose.model('Favorites', favoriteSchema)
-    
-    module.exports = User;
-    module.exports = Favorites;
+  const favoriteSchema = new mongoose.Schema({
+    username: {
+      type: String,
+      required: true,
+    },
+    recipe_id: {
+      type: String,
+      required: true
+    }
+  });
+  
+  const User = mongoose.model('User', userSchema);
+  const Favorites = mongoose.model('Favorites', favoriteSchema);
+
+  module.exports = { User, Favorites };
 
   server.get('/api/login/:username/:password', async (req, res) => {
     try {
       const username = req.params.username;
       const password = req.params.password;
       const user = await User.findOne({ username });
-  
+
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
-  
+
       const passwordMatch = await bcrypt.compare(password, user.password);
-  
+
       if (!passwordMatch) {
         return res.status(401).json({ message: 'Invalid credentials' });
       }
-  
+
       res.json({ message: 'Login successful' });
     } catch (error) {
       console.error('Error logging in:', error);
@@ -89,39 +87,16 @@ app.prepare().then(() => {
       const username = req.params.username;
       const recipe_id = req.params.recipe_id;
       const recipe = await Favorites.findOne({ username, recipe_id });
-  
+
       if (!recipe) {
-        const newFavorite = new Favorites({ username: username, recipe_id: recipe_id });
-    
+        const newFavorite = new Favorites({ username, recipe_id });
         await newFavorite.save();
-  
         res.json({ message: 'Favorite added' });
       } else {
-  
         res.status(400).json({ message: 'Recipe already a favorite' });
       }
     } catch (error) {
       console.error('Error adding favorite:', error);
-      res.status(500).json({ message: 'Internal Server Error', error });
-    }
-  });
-  
-
-  server.get('/api/addfavorites/:username/:recipe_id', async (req, res) => {
-    try {
-      const username = req.params.username;
-      const recipe_id = req.params.recipe_id;
-      const recipe = await Favorites.findOne({ username, recipe_id });
-
-      if (!recipe) {
-        const newFavorite = new Favorites({ username: username, recipe_id: recipe_id });
-    
-        await newFavorite.save();
-
-        res.json({ message: 'Favorite added' });
-      }
-    } catch (error) {
-      console.error('Error logging in:', error);
       res.status(500).json({ message: 'Internal Server Error', error });
     }
   });
@@ -133,8 +108,7 @@ app.prepare().then(() => {
       const recipe = await Favorites.findOne({ username, recipe_id });
 
       if (recipe) {
-        await Favorites.deleteOne({ username, recipe_id })
-
+        await Favorites.deleteOne({ username, recipe_id });
         res.json({ message: 'Favorite deleted' });
       }
     } catch (error) {
@@ -143,29 +117,25 @@ app.prepare().then(() => {
     }
   });
 
-  server.get('/api/register/:username/:mail/:password', async (req, res) => {
+  server.post('/api/register', async (req, res) => {
     try {
-      // const { username, password } = req.body;
-      const username = req.params.username;
-      const password = req.params.password;
-      const mail = req.params.mail;
+      console.log("Request Body:", req.body);
+      
+      const { username, mail, password } = req.body;
       const existingUser = await User.findOne({ username });
-  
+
       if (existingUser) {
         return res.status(400).json({ message: 'Username already exists' });
       }
-  
+
       const hashedPassword = await bcrypt.hash(password, 10);
-  
-      const newUser = new User({ username: username, password: hashedPassword, mail: mail });
-  
+      const newUser = new User({ username, mail, password: hashedPassword });
       await newUser.save();
-  
       res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
       console.error('Error registering user:', error);
       res.status(500).json({ message: 'Internal Server Error' });
-    }  
+    }
   });
 
   server.listen(PORT, () => {

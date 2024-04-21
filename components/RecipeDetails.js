@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "../styles/details.module.css";
+import FavoritesList from "./FavoritesList";
 
 const RecipeDetails = ({ recipe, onClose }) => {
   const {
@@ -56,6 +57,7 @@ const RecipeDetails = ({ recipe, onClose }) => {
       <button onClick={toggleFavorite} className={styles.favoriteButton}>
         {isFavorited ? "Remove from Favorites" : "Add to Favorites"}
       </button>
+      
       <h2 className={styles.recipeTitle}>{title}</h2>
       <img src={image} alt={title} className={styles.recipeImage} />
       <p>Ready in {readyInMinutes} minutes</p>
