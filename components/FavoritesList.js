@@ -33,7 +33,7 @@ const FavoritesList = ({ username }) => {
   return (
     <div>
       <button
-        className={styles.myFavoritesButton} // Apply button styles
+        className={styles.myFavoritesButton}
         onClick={() => setShowFavorites(!showFavorites)}
       >
         {showFavorites ? "Hide Favorites" : "Show Favorites"}

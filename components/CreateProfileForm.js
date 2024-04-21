@@ -1,14 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import styles from "../styles/create.module.css";
-import { AuthContext } from "../AuthContext"; 
+import { useAuth } from "../AuthContext";
 
 const CreateProfileForm = () => {
-  const { registerUser } = useContext(AuthContext); // Access context functions
+  const { registerUser } = useAuth(); 
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [responseData, setResponseData] = useState(null);
+  const [registrationSuccess, setRegistrationSuccess] = useState(false); 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -18,11 +19,12 @@ const CreateProfileForm = () => {
     console.log("Password", password);
 
     try {
-      const data = await registerUser(name, email, password); // Call context function to register user
+      const data = await registerUser(name, email, password);
       setResponseData(data);
       setName("");
       setEmail("");
       setPassword("");
+      setRegistrationSuccess(true); 
     } catch (error) {
       console.error("Error registering user:", error);
       setResponseData({ message: "Failed to register user" });
@@ -69,6 +71,11 @@ const CreateProfileForm = () => {
         <button type="submit" className={styles.createSubmit}>
           Submit
         </button>
+        {registrationSuccess && (
+          <div>
+            <h3>Thank you for registering with uCook!</h3>
+          </div>
+        )}
         {responseData && (
           <div>
             <h3>Response from server:</h3>

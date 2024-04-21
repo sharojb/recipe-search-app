@@ -14,7 +14,7 @@ const RecipeList = ({ recipes, isLoggedIn }) => {
   }
 
   const [displayedRecipes, setDisplayedRecipes] = useState(6);
-  const [selectedRecipe, setSelectedRecipe] = useState(null); // State to hold the details of the selected recipe
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
 
   const slicedRecipes = recipeList.slice(0, displayedRecipes);
 
@@ -31,7 +31,7 @@ const RecipeList = ({ recipes, isLoggedIn }) => {
       );
       const recipeDetails = await response.json();
 
-      setSelectedRecipe(recipeDetails); // Set the selected recipe details
+      setSelectedRecipe(recipeDetails); 
     } catch (error) {
       console.error("Error fetching recipe details:", error);
     }
@@ -42,7 +42,6 @@ const RecipeList = ({ recipes, isLoggedIn }) => {
       alert("Log In or Register first to favorite.");
       return;
     }
-    // Implement logic to handle favoriting/unfavoriting the recipe
     console.log(`Recipe ${recipeId} favorited/unfavorited`);
   };
 

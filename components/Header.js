@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import SearchBar from "./SearchBar";
-import Link from "next/link"; // Import Link from Next.js
+import Link from "next/link"; 
 
 const Header = ({ onSearch }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -31,10 +32,14 @@ const Header = ({ onSearch }) => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
-    // Handle form submission logic here
-    // For now, you can console.log the form data
+    event.preventDefault(); 
     console.log("Form submitted!");
+    setIsLoggedIn(true);
+    setShowLoginForm(false);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
   };
 
   return (
@@ -53,19 +58,32 @@ const Header = ({ onSearch }) => {
           <button className="button-ind" onClick={scrollToContact}>
             Contact
           </button>
-          <button className="button-ind" onClick={toggleLoginForm}>
-            Log In
-          </button>
+          {/* Conditionally render login/logout button based on isLoggedIn state */}
+          {isLoggedIn ? (
+            <button className="button-ind" onClick={handleLogout}>
+              Log Out
+            </button>
+          ) : (
+            <button className="button-ind" onClick={toggleLoginForm}>
+              Log In
+            </button>
+          )}
         </div>
       </div>
       <div className="logo-container">
-      <Link href="https://ucook.vercel.app/">
+        <Link href="https://ucook.vercel.app/">
           <img src="/logo.png" alt="Logo" className="header-logo" />
-      </Link>
+        </Link>
       </div>
       <section className="search-section">
         <SearchBar onSearch={onSearch} />
       </section>
+      {isLoggedIn && (
+        <p>
+          You are logged in as <strong>{userName}</strong>
+        </p>
+      )}
+
       {showLoginForm && (
         <div className="login-modal">
           <div className="login-container">

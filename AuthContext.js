@@ -4,12 +4,14 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [userName, setUserName] = useState(null);
 
   const login = async (username, password) => {
     try {
       const response = await fetch(`/api/login/${username}/${password}`);
       if (response.ok) {
         setUser(username);
+        setUserName(username);
         return true;
       } else {
         const data = await response.json();
@@ -23,13 +25,17 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setUser(null);
+    setUserName(null);
   };
 
   const register = async (username, email, password) => {
     try {
-      const response = await fetch(`/api/register/${username}/${email}/${password}`, {
-        method: "GET" // Assuming your registration endpoint uses GET method
-      });
+      const response = await fetch(
+        `/api/register/${username}/${email}/${password}`,
+        {
+          method: "GET", 
+        },
+      );
       if (response.ok) {
         return true;
       } else {
@@ -48,13 +54,17 @@ export const AuthProvider = ({ children }) => {
 
   const contextValue = {
     user,
+    userName,
     login,
     logout,
     register,
-    isAuthenticated
+    isAuthenticated,
+    registerUser: register, 
   };
 
-  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
+  );
 };
 
 export const useAuth = () => {

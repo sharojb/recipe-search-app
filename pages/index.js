@@ -1,12 +1,9 @@
-import Head from "next/head";
 import React, { useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import CreateProfileForm from "../components/CreateProfileForm";
 import Footer from "../components/Footer";
-import Header from "../components/Header";
-import RecipeList from "components/RecipeList";
-import RecipeDetails from "../components/RecipeDetails";
+import { AuthProvider } from "../AuthContext";
 
 const Home = ({ initialRecipes }) => {
   const [recipes, setRecipes] = useState(initialRecipes);
@@ -21,7 +18,7 @@ const Home = ({ initialRecipes }) => {
       setError(null);
 
       const apiKey = process.env.NEXT_PUBLIC_SPOONACULAR_API_KEY;
-      
+
       const response = await axios.get(
         `https://api.spoonacular.com/recipes/search?query=${query}&apiKey=${apiKey}&number=5`,
       );
@@ -53,42 +50,45 @@ const Home = ({ initialRecipes }) => {
 
   return (
     <div>
-      <main className="main">
-        <button onClick={handleSignUpClick} className="button join-us-button">
-          {showSignUpForm ? "Hide Form" : "Join Us"}
-        </button>
+      <AuthProvider>
+        {" "}
+        <main className="main">
+          <button onClick={handleSignUpClick} className="button join-us-button">
+            {showSignUpForm ? "Hide Form" : "Join Us"}
+          </button>
 
-        {showSignUpForm && <CreateProfileForm />}
+          {showSignUpForm && <CreateProfileForm />}
 
-        {loading && <p>Loading...</p>}
-        {error && <p style={{ color: "red" }}>{error}</p>}
+          {loading && <p>Loading...</p>}
+          {error && <p style={{ color: "red" }}>{error}</p>}
 
-        <div className="body-content">
-          <div className="subtitle-container">
-            <p className="title">We're here to help you cook!</p>
-            <p className="subtitle">
-              uCook helps you discover delicious recipes and create amazing
-              meals! With only the ingredients you have at home, you can count
-              on us to help you find what your next meal will be. You can start
-              with only two or up to six ingredients to build your cooking, all
-              without having to shop for more!
-            </p>
-          </div>
-          <div className="right-image-container">
+          <div className="body-content">
+            <div className="subtitle-container">
+              <p className="title">We're here to help you cook!</p>
+              <p className="subtitle">
+                uCook helps you discover delicious recipes and create amazing
+                meals! With only the ingredients you have at home, you can count
+                on us to help you find what your next meal will be. You can
+                start with only two or up to six ingredients to build your
+                cooking, all without having to shop for more!
+              </p>
+            </div>
             <div className="right-image-container">
               <div className="right-image-container">
-                <Image
-                  src="/bodyimg.jpg"
-                  alt="right image"
-                  width={200}
-                  height={300}
-                  className="right-image"
-                />
+                <div className="right-image-container">
+                  <Image
+                    src="/bodyimg.jpg"
+                    alt="right image"
+                    width={200}
+                    height={300}
+                    className="right-image"
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </AuthProvider>
       <Footer />
     </div>
   );
