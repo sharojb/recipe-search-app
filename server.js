@@ -84,22 +84,28 @@ app.prepare().then(() => {
     }
   });
 
-  server.get('/api/getfavorites/:username', async (req, res) => {
+  server.get('/api/addfavorites/:username/:recipe_id', async (req, res) => {
     try {
       const username = req.params.username;
-      const recipe = await Favorites.find({ username });
-
+      const recipe_id = req.params.recipe_id;
+      const recipe = await Favorites.findOne({ username, recipe_id });
+  
       if (!recipe) {
-        res.json({ message: 'No Favorites for this user' });
-      }
-      else{
-        res.json({ recipe });
+        const newFavorite = new Favorites({ username: username, recipe_id: recipe_id });
+    
+        await newFavorite.save();
+  
+        res.json({ message: 'Favorite added' });
+      } else {
+  
+        res.status(400).json({ message: 'Recipe already a favorite' });
       }
     } catch (error) {
-      console.error('Error logging in:', error);
-      res.status(500).json({ message: 'Internal Server Error' });
+      console.error('Error adding favorite:', error);
+      res.status(500).json({ message: 'Internal Server Error', error });
     }
   });
+  
 
   server.get('/api/addfavorites/:username/:recipe_id', async (req, res) => {
     try {

@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "../styles/create.module.css";
+import { AuthContext } from "../AuthContext"; 
 
 const CreateProfileForm = () => {
+  const { registerUser } = useContext(AuthContext); // Access context functions
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,18 +17,16 @@ const CreateProfileForm = () => {
     console.log("Email:", email);
     console.log("Password", password);
 
-    const response = await fetch(
-      `http://localhost:5000/api/register/${name}/${email}/${password}`,
-    );
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+    try {
+      const data = await registerUser(name, email, password); // Call context function to register user
+      setResponseData(data);
+      setName("");
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      console.error("Error registering user:", error);
+      setResponseData({ message: "Failed to register user" });
     }
-    const data = await response.json();
-
-    setName("");
-    setEmail("");
-    setPassword("");
-    setResponseData(data);
   };
 
   return (
