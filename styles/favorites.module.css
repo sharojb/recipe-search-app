@@ -1,0 +1,22 @@
+/* Basic button styles */
+.myFavoritesButton {
+    background-color: #4ecba2; /* Change to your preferred background color */
+    color: white; /* Text color */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  /* Hover effect */
+  .myFavoritesButton:hover {
+    background-color: #47a089; /* Darker shade on hover */
+  }
+  
+  /* Active state */
+  .myFavoritesButton:active {
+    transform: translateY(1px); /* Push the button down slightly when clicked */
+  }
+  

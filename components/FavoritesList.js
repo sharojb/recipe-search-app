@@ -1,23 +1,27 @@
-// FavoritesList.js
 import React, { useState, useEffect } from "react";
-import styles from "../styles/create.module.css";
+import styles from "../styles/favorites.module.css";
 
 const FavoritesList = ({ username }) => {
   const [favorites, setFavorites] = useState([]);
   const [showFavorites, setShowFavorites] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchFavorites = async () => {
+      setLoading(true);
       try {
         const response = await fetch(`/api/getfavorites/${username}`);
         if (response.ok) {
           const data = await response.json();
           setFavorites(data.recipe);
         } else {
-          console.error("Failed to fetch favorites:", response.statusText);
+          setError("Failed to fetch favorites");
         }
       } catch (error) {
-        console.error("Error fetching favorites:", error);
+        setError("Error fetching favorites");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -28,10 +32,15 @@ const FavoritesList = ({ username }) => {
 
   return (
     <div>
-      <button onClick={() => setShowFavorites(!showFavorites)}>
+      <button
+        className={styles.myFavoritesButton} // Apply button styles
+        onClick={() => setShowFavorites(!showFavorites)}
+      >
         {showFavorites ? "Hide Favorites" : "Show Favorites"}
       </button>
-      {showFavorites && (
+      {loading && <p>Loading favorites...</p>}
+      {error && <p>{error}</p>}
+      {showFavorites && favorites.length > 0 && (
         <div>
           <h3>{`${username}'s Favorites`}</h3>
           <ul>
@@ -41,9 +50,11 @@ const FavoritesList = ({ username }) => {
           </ul>
         </div>
       )}
+      {showFavorites && favorites.length === 0 && (
+        <p>No favorites found for {username}</p>
+      )}
     </div>
   );
 };
 
 export default FavoritesList;
-
