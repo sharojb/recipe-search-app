@@ -117,10 +117,27 @@ app.prepare().then(() => {
     }
   });
 
+  server.get('/api/getfavorites/:username', async (req, res) => {
+    try {
+      const username = req.params.username;
+      const recipe = await Favorites.find({ username });
+
+      if (!recipe) {
+        res.json({ message: 'No Favorites for this user' });
+      }
+      else{
+        res.json({ recipe });
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  });
+
   server.post('/api/register', async (req, res) => {
     try {
       console.log("Request Body:", req.body);
-      
+
       const { username, mail, password } = req.body;
       const existingUser = await User.findOne({ username });
 
