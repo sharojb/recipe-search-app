@@ -14,6 +14,11 @@
   text-decoration: none;
 }
 
+.cookThisButton:hover {
+  cursor: pointer;
+  color: #f0680b;
+}
+
 .recipeListContainer {
   margin-top: 5px;
   display: flex;
@@ -43,7 +48,7 @@
   max-width: 200px;
   height: auto;
   border-radius: 5px;
-  padding-left: 5.5%;
+  padding: 10px 5.5%;
 }
 
 .recipeDetails {

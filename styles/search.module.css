@@ -5,7 +5,7 @@
 }
 
 .searchButton {
-  font-family: 'Palatino', serif;
+  font-family: "Raleway", sans-serif;
   font-size: 16px;
   color: grey;
   background-color: white;
@@ -24,7 +24,7 @@
 }
 
 .searchInput {
-  font-family: 'Palatino', serif;
+    font-family: "Raleway", sans-serif;
   font-size: 14px;
   color: grey;
   background-color: white;
@@ -37,7 +37,7 @@
 }
 
 .smallButton {
-  font-family: 'Palatino', serif;
+  font-family: "Raleway", sans-serif;
   font-size: 14px;
   color: lightgrey;
   background-color: white;
@@ -54,7 +54,7 @@
 }
 
 .cookNowButton {
-  font-family: 'Palatino', serif;
+  font-family: "Raleway", sans-serif;
   font-size: 16px;
   color: #4ecba2;
   background-color: white;

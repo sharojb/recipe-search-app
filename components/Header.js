@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import SearchBar from "./SearchBar";
 import Link from "next/link";
 import { useAuth } from "../AuthContext"; 
-import FavoritesList from "./FavoritesList"; 
 
 const Header = ({ onSearch }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
-  const { userName } = useAuth(); 
-  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  const { userName } = useAuth(); // Retrieve userName from useAuth hook
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Add state for managing logged-in status
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [username, setName] = useState("");
@@ -35,7 +34,6 @@ const Header = ({ onSearch }) => {
     setShowLoginForm(!showLoginForm);
   };
 
-
   const handleLogoClick = () => {
     onSearch([""]);
   };
@@ -54,6 +52,7 @@ const Header = ({ onSearch }) => {
       setName(data_response.user.username);
       setEmail(data_response.user.mail);
       setIsLoggedIn(true);
+      setShowLoginForm(false)
     } catch (error) {
       console.error("Error registering user:", error);
       setResponseData({ message: "Failed to register user" });
@@ -99,13 +98,10 @@ const Header = ({ onSearch }) => {
       <section className="search-section">
         <SearchBar onSearch={onSearch} />
       </section>
-        {isLoggedIn && (
-          <>
-            <p>
-              You are logged in as <strong>{username}</strong>
-            </p>
-            <FavoritesList username={username} />
-        </>
+      {isLoggedIn && (
+        <p>
+        <strong> You are logged in as {username}. Let's get ucookin'</strong>
+        </p>
       )}
 
       {showLoginForm && (

@@ -3,7 +3,10 @@ import axios from "axios";
 import Image from "next/image";
 import CreateProfileForm from "../components/CreateProfileForm";
 import Footer from "../components/Footer";
-import { AuthProvider } from "../AuthContext";
+import { AuthProvider, useAuth } from "../AuthContext";
+import FavoritesList from "../components/FavoritesList";
+import styles from "../styles/favorites.module.css";
+
 
 const Home = ({ initialRecipes }) => {
   const [recipes, setRecipes] = useState(initialRecipes);
@@ -11,6 +14,12 @@ const Home = ({ initialRecipes }) => {
   const [error, setError] = useState(null);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const [isFavorited, setIsFavorited] = useState(false);
+  const { getUserId, user } = useAuth();
+  const isLoggedIn = user !== null;
+  const [username, setName] = useState("");
+
+  
 
   const handleSearch = async (query) => {
     try {
@@ -36,6 +45,27 @@ const Home = ({ initialRecipes }) => {
     }
   };
 
+const toggleFavorite = async (recipeId) => {
+  try {
+    const userId = getUserId();
+
+    const response = await fetch(
+      `http://localhost:5000/api/${isFavorited ? 'removefavorites' : 'addfavorites'}/${userId}/${recipeId}`,
+    );
+
+    if (response.ok) {
+      setIsFavorited(!isFavorited);
+    } else {
+      console.error(
+        "Failed to update favorite status:",
+        response.statusText,
+      );
+    }
+  } catch (error) {
+    console.error("Error updating favorite status:", error);
+  }
+};
+
   const handleSignUpClick = () => {
     setShowSignUpForm((prevShowSignUpForm) => !prevShowSignUpForm);
   };
@@ -48,33 +78,72 @@ const Home = ({ initialRecipes }) => {
     setSelectedRecipe(null);
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log("Email:", email);
+    console.log("Password", password);
+
+    try {
+      const data_response = await login( email, password);
+      setResponseData(data_response);
+      console.log(data_response)
+      console.log(data_response.user.username)
+      console.log(data_response.user.mail)
+      setName(data_response.user.username);
+      setEmail(data_response.user.mail);
+      setIsLoggedIn(true);
+      setShowLoginForm(false)
+    } catch (error) {
+      console.error("Error registering user:", error);
+      setResponseData({ message: "Failed to register user" });
+    }
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
+  const handleFavoritesClick = async () => {
+    try {
+      const response = await axios.get("/api/user/favorites");
+      console.log("User Favorites:", response.data);
+    } catch (error) {
+      console.error("Error fetching user favorites:", error);
+    }
+  };
+
   return (
     <div>
       <AuthProvider>
-        {" "}
         <main className="main">
           <button onClick={handleSignUpClick} className="button join-us-button">
             {showSignUpForm ? "Hide Form" : "Join Us"}
           </button>
-
+  
           {showSignUpForm && <CreateProfileForm />}
-
+  
           {loading && <p>Loading...</p>}
           {error && <p style={{ color: "red" }}>{error}</p>}
-
-          <div className="body-content">
-            <div className="subtitle-container">
-              <p className="title">We're here to help you cook!</p>
-              <p className="subtitle">
-                uCook helps you discover delicious recipes and create amazing
-                meals! With only the ingredients you have at home, you can count
-                on us to help you find what your next meal will be. You can
-                start with only two or up to six ingredients to build your
-                cooking, all without having to shop for more!
-              </p>
-            </div>
-            <div className="right-image-container">
-              <div className="right-image-container">
+  
+          {isLoggedIn && (
+            <React.Fragment>
+              <button onClick={handleFavoritesClick} className="button">
+                My Favorites
+              </button>
+              <FavoritesList username={username} />
+            </React.Fragment>
+          )}
+              <div className="body-content">
+                <div className="subtitle-container">
+                  <p className="title">We're here to help you cook!</p>
+                  <p className="subtitle">
+                    uCook helps you discover delicious recipes and create amazing
+                    meals! With only the ingredients you have at home, you can count
+                    on us to help you find what your next meal will be. You can
+                    start with only two or up to six ingredients to build your
+                    cooking, all without having to shop for more!
+                  </p>
+                </div>
                 <div className="right-image-container">
                   <Image
                     src="/bodyimg.jpg"
@@ -85,13 +154,12 @@ const Home = ({ initialRecipes }) => {
                   />
                 </div>
               </div>
-            </div>
-          </div>
         </main>
       </AuthProvider>
       <Footer />
     </div>
   );
+  
 };
 
 Home.getInitialProps = async () => {

@@ -14,6 +14,7 @@ const RecipeDetails = ({ recipe, onClose }) => {
   } = recipe;
 
   const [isFavorited, setIsFavorited] = useState(false);
+  const [message, setMessage] = useState("");
 
   const toggleFavorite = async () => {
     try {
@@ -23,7 +24,8 @@ const RecipeDetails = ({ recipe, onClose }) => {
         );
 
         if (response.ok) {
-          setIsFavorited(!isFavorited);
+          setIsFavorited(false);
+          setMessage("This recipe has been removed from favorites");
         } else {
           console.error(
             "Failed to update favorite status:",
@@ -36,7 +38,8 @@ const RecipeDetails = ({ recipe, onClose }) => {
         );
 
         if (response.ok) {
-          setIsFavorited(!isFavorited);
+          setIsFavorited(true);
+          setMessage("This recipe is now a favorite");
         } else {
           console.error(
             "Failed to update favorite status:",
@@ -57,6 +60,7 @@ const RecipeDetails = ({ recipe, onClose }) => {
       <button onClick={toggleFavorite} className={styles.favoriteButton}>
         {isFavorited ? "Remove from Favorites" : "Add to Favorites"}
       </button>
+      <p>{message}</p>
       <h2 className={styles.recipeTitle}>{title}</h2>
       <img src={image} alt={title} className={styles.recipeImage} />
       <p>Ready in {readyInMinutes} minutes</p>

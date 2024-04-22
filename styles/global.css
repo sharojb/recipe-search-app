@@ -64,7 +64,7 @@
 }
 
 .button-ind:hover {
-  color: white;
+  color: black
 }
 
 .logo-container {
@@ -235,6 +235,7 @@
   width: 300px;
   background-color: white;
   padding: 20px;
+  margin-right: 8px;
   border-radius: 10px;
   border: 1.5px solid lightgrey;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
@@ -305,7 +306,7 @@ form {
 }
 
 .join-us-button {
-  font-family: "Raleway", sans-serif;
+  font-family: Palatino, serif;
   font-size: 18px;
   background-color: #4ecba2;
   border-width: 0;
@@ -344,6 +345,8 @@ form {
     opacity: 0.8;
     padding: 20px 30px;
     width: 130%;
+    color: white;
+    font-weight: bold;
   }
 
   .right-image {
