@@ -1,9 +1,8 @@
-
 .recipeDetails {
   background-color: #fff;
   border: 2px solid #ccc;
   border-radius: 8px;
-  padding: 20px;
+  padding: 10px;
   max-width: 600px;
   margin: 0 auto;
 }
@@ -30,7 +29,7 @@
   background-color: #999;
 }
 
-.favoriteButton {
+.favoritesButton {
   background-color: #4ecba2;
   color: #fff;
   border: none;
@@ -41,8 +40,41 @@
   float: right;
 }
 
-.favoriteButton:hover {
+.favoritesButton:hover {
   background-color: #36a380;
+}
+
+.timeButton {
+  background-color: #4ecba2;
+  color: #fff;
+  border: none;
+  font-size: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  top: 10px;
+  padding: 5px;
+}
+
+.timeButton:hover {
+  background-color: #36a380;
+}
+
+.ingredientsContainer {
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 10px 10px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.instructionsContainer {
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 10px 10px 20px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .instrucButton {
@@ -76,7 +108,7 @@
 }
 
 .recipeTitle {
-  font-family: 'Palatino', serif;
+  font-family: "Palatino", serif;
   font-weight: bold;
   font-size: 24px; /* Adjust the font size as needed */
 }

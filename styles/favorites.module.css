@@ -1,23 +1,19 @@
-
 .myFavoritesButton {
-    background-color: #4ecba2;
-    border: none;
-    border-radius: 5px; 
-    font-size: 30px; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease; 
-    float: right;
-  }
-  
-  /* Hover effect */
-  .myFavoritesButton:hover {
-    background-color: #47a089; 
-  }
-  
-  /* Active state */
-  .myFavoritesButton:active {
-    transform: translateY(1px); 
-  }
+  background-color: #4ecba2;
+  border: none;
+  border-radius: 5px;
+  font-size: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  float: right;
+}
 
-  
-  
+/* Hover effect */
+.myFavoritesButton:hover {
+  background-color: #47a089;
+}
+
+/* Active state */
+.myFavoritesButton:active {
+  transform: translateY(1px);
+}

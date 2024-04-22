@@ -70,7 +70,7 @@ const RecipeList = ({ recipes, isLoggedIn }) => {
                   <div className={styles.recipeDetails}>
                     <h3 className={styles.recipeName}>{recipe.title}</h3>
                     <p>Ready in {recipe.readyInMinutes} minutes</p>
-                    <p>Recipe ID: {recipe.id}</p>
+                    {/* <p>Recipe ID: {recipe.id}</p> */}
                     <button
                       onClick={() => handleCook(recipe.id)}
                       className={styles.cookThisButton}
