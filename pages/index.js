@@ -6,6 +6,8 @@ import Footer from "../components/Footer";
 import { AuthProvider, useAuth } from "../AuthContext";
 import FavoritesList from "../components/FavoritesList";
 import styles from "../styles/favorites.module.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 
 const Home = ({ initialRecipes }) => {

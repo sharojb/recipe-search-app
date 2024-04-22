@@ -34,15 +34,44 @@
   background-color: #4ecba2;
   color: #fff;
   border: none;
-  padding: 8px 16px;
-  font-size: 16px;
+  font-size: 30px;
   border-radius: 4px;
   cursor: pointer;
   top: 10px;
-  left: 10px;
+  float: right;
 }
 
 .favoriteButton:hover {
+  background-color: #36a380;
+}
+
+.instrucButton {
+  background-color: #4ecba2;
+  color: #fff;
+  border: none;
+  font-size: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  top: 10px;
+  padding: 5px;
+}
+
+.instrucButton:hover {
+  background-color: #36a380;
+}
+
+.ingreButton {
+  background-color: #4ecba2;
+  color: #fff;
+  border: none;
+  font-size: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  top: 10px;
+  padding: 5px;
+}
+
+.ingreButton:hover {
   background-color: #36a380;
 }
 

@@ -213,7 +213,7 @@
   justify-content: center;
 }
 
-.search-section {
+-section {
   display: flex;
   justify-content: space-evenly;
   align-items: flex-end;
@@ -222,7 +222,7 @@
 }
 
 .search-section * {
-  margin: 10px;
+  margin: 8px;
 }
 
 /* Log In */
@@ -319,7 +319,7 @@ form {
 }
 
 .join-us-button:hover {
-  color: white;
+  color: #fcd8c5;
 }
 
 .header-buttons {

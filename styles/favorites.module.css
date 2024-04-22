@@ -1,13 +1,12 @@
 
 .myFavoritesButton {
     background-color: #4ecba2;
-    color: white; 
-    padding: 10px 20px; 
     border: none;
     border-radius: 5px; 
-    font-size: 16px; 
+    font-size: 30px; 
     cursor: pointer; 
     transition: background-color 0.3s ease; 
+    float: right;
   }
   
   /* Hover effect */
