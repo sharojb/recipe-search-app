@@ -59,11 +59,11 @@ app.prepare().then(() => {
 
   module.exports = { User, Favorites };
 
-  server.get('/api/login/:username/:password', async (req, res) => {
+  server.get('/api/login/:mail/:password', async (req, res) => {
     try {
-      const username = req.params.username;
+      const mail = req.params.mail;
       const password = req.params.password;
-      const user = await User.findOne({ username });
+      const user = await User.findOne({ mail });
 
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
@@ -75,7 +75,7 @@ app.prepare().then(() => {
         return res.status(401).json({ message: 'Invalid credentials' });
       }
 
-      res.json({ message: 'Login successful' });
+      res.json({ message: 'Login successful', user });
     } catch (error) {
       console.error('Error logging in:', error);
       res.status(500).json({ message: 'Internal Server Error' });
@@ -117,27 +117,10 @@ app.prepare().then(() => {
     }
   });
 
-  server.get('/api/getfavorites/:username', async (req, res) => {
-    try {
-      const username = req.params.username;
-      const recipe = await Favorites.find({ username });
-
-      if (!recipe) {
-        res.json({ message: 'No Favorites for this user' });
-      }
-      else{
-        res.json({ recipe });
-      }
-    } catch (error) {
-      console.error('Error logging in:', error);
-      res.status(500).json({ message: 'Internal Server Error' });
-    }
-  });
-
   server.post('/api/register', async (req, res) => {
     try {
       console.log("Request Body:", req.body);
-
+      
       const { username, mail, password } = req.body;
       const existingUser = await User.findOne({ username });
 

@@ -1,3 +1,4 @@
+import { RESPONSE_LIMIT_DEFAULT } from "next/dist/server/api-utils";
 import React, { createContext, useState, useContext } from "react";
 
 export const AuthContext = createContext();
@@ -6,13 +7,12 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [userName, setUserName] = useState(null);
 
-  const login = async (username, password) => {
+  const login = async (mail, password) => {
     try {
-      const response = await fetch(`/api/login/${username}/${password}`);
+      const response = await fetch(`http://localhost:5000/api/login/${mail}/${password}`);
       if (response.ok) {
-        setUser(username);
-        setUserName(username);
-        return true;
+        const data = response.json()
+        return data;
       } else {
         const data = await response.json();
         throw new Error(data.message);

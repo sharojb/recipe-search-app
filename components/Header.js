@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import SearchBar from "./SearchBar";
 import Link from "next/link";
-import { useAuth } from "../AuthContext";
-import FavoritesList from "./FavoritesList";
-import styles from "../styles/create.module.css";
-
+import { useAuth } from "../AuthContext"; 
+import FavoritesList from "./FavoritesList"; 
 
 const Header = ({ onSearch }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
-  const { user } = useAuth(); 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { userName } = useAuth(); 
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
-
-  console.log("User Object:", user);
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setName] = useState("");
+  const [data, setResponseData] = useState("");
+  const { login } = useAuth(); 
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -36,6 +35,7 @@ const Header = ({ onSearch }) => {
     setShowLoginForm(!showLoginForm);
   };
 
+
   const handleLogoClick = () => {
     onSearch([""]);
   };
@@ -44,33 +44,21 @@ const Header = ({ onSearch }) => {
     event.preventDefault();
     console.log("Email:", email);
     console.log("Password", password);
-  
+
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-  
-      if (response.ok) {
-        // If the login is successful, retrieve user data from the response
-        const userData = await response.json();
-        console.log('User data:', userData);
-        // Update the user context with the retrieved data
-        // For example, setUser(userData);
-        setIsLoggedIn(true);
-        setShowLoginForm(false);
-      } else {
-        // If login fails, handle error
-        console.error('Login failed');
-      }
+      const data_response = await login( email, password);
+      setResponseData(data_response);
+      console.log(data_response)
+      console.log(data_response.user.username)
+      console.log(data_response.user.mail)
+      setName(data_response.user.username);
+      setEmail(data_response.user.mail);
+      setIsLoggedIn(true);
     } catch (error) {
-      console.error('Error logging in:', error);
+      console.error("Error registering user:", error);
+      setResponseData({ message: "Failed to register user" });
     }
   };
-  
 
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -83,9 +71,7 @@ const Header = ({ onSearch }) => {
           &#9776;
         </label>
         <div
-          className={`header-buttons ${
-            showMenu ? "header-buttons-active" : ""
-          }`}
+          className={`header-buttons ${showMenu ? "header-buttons-active" : ""}`}
           id="hamburger-buttons"
         >
           <button className="button-ind" onClick={scrollToAbout}>
@@ -94,40 +80,42 @@ const Header = ({ onSearch }) => {
           <button className="button-ind" onClick={scrollToContact}>
             Contact
           </button>
-          <button className="button-ind" onClick={toggleLoginForm}>
-            Log In
-          </button>
-          {isLoggedIn && (
+          {isLoggedIn ? (
             <button className="button-ind" onClick={handleLogout}>
               Log Out
+            </button>
+          ) : (
+            <button className="button-ind" onClick={toggleLoginForm}>
+              Log In
             </button>
           )}
         </div>
       </div>
       <div className="logo-container">
         <Link href="https://ucook.vercel.app/">
-          <img src="/logo.png" alt="Logo" className="header-logo" onCLick={handleLogoClick}/>
+          <img src="/logo.png" alt="Logo" className="header-logo" />
         </Link>
       </div>
       <section className="search-section">
         <SearchBar onSearch={onSearch} />
       </section>
-      {isLoggedIn && (
-        <p className={styles.return}>
-         You are logged in as <strong >{user && user.userName}</strong>
-        </p>
+        {isLoggedIn && (
+          <>
+            <p>
+              You are logged in as <strong>{username}</strong>
+            </p>
+            <FavoritesList username={username} />
+        </>
       )}
 
       {showLoginForm && (
         <div className="login-modal">
           <div className="login-container">
             <form onSubmit={handleSubmit}>
-              <label className="login">Email:</label>
-              <input className="inputLogin" type="email" value={email} 
-                onChange={(e) => setEmail(e.target.value)}/>
+              <label className="login" >Email:</label>
+              <input className="inputLogin" type="email" onChange={(e) => setEmail(e.target.value)}/>
               <label className="login">Password:</label>
-              <input className="inputLogin" type="password" value={password} 
-                onChange={(e) => setPassword(e.target.value)}/>
+              <input className="inputLogin" type="password" onChange={(e) => setPassword(e.target.value)}/>
               <button className="loginSubmit" type="submit">
                 Submit
               </button>
@@ -135,7 +123,6 @@ const Header = ({ onSearch }) => {
           </div>
         </div>
       )}
-       {isLoggedIn && <FavoritesList username={user && user.userName} />}
     </header>
   );
 };
