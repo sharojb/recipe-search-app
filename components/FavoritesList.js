@@ -55,7 +55,7 @@ const FavoritesList = ({ username }) => {
                 />
                 <div className={styles.recipeDetails}>
                   <h3 className={styles.recipeName}>{favorite.title}</h3>
-                  <p>Ready in {favorite.readyInMinutes} minutes</p>
+                  {/* <p>Ready in {favorite.readyInMinutes} minutes</p> */}
                   <button
                     onClick={() => handleCook(favorite.recipe_id)}
                     className={styles.cookThisButton}
