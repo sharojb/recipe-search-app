@@ -19,7 +19,7 @@ const FavoritesList = ({ username }) => {
           );
         if (response.ok) {
           const data = await response.json();
-          setFavorites(data.recipe);
+          setFavorites(data.userFavorites);
         } else {
           setError("Failed to fetch favorites");
         }
@@ -76,7 +76,7 @@ const FavoritesList = ({ username }) => {
       {selectedRecipe && (
         <RecipeDetails recipe={selectedRecipe} onClose={handleCloseDetails} />
       )}
-      {showFavorites && favorites.length === 0 && (
+      {showFavorites && favorites && favorites.length === 0 && (
         <p>No favorites found for {username}</p>
       )}
     </div>
