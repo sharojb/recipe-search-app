@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import styles from "../styles/list.module.css";
+import styles from "../styles/favorites.module.css";
 import RecipeDetails from "./RecipeDetails";
 
 const FavoritesList = ({ username }) => {
   const [favorites, setFavorites] = useState([]);
-  const [showFavorites, setShowFavorites] = useState(false);
+  // const [showFavorites, setShowFavorites] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -13,40 +13,35 @@ const FavoritesList = ({ username }) => {
     const fetchFavorites = async () => {
       setLoading(true);
       try {
-        if (username) {
-          const response = await fetch(
-            `http://localhost:5000/api/user/favorites/${username}`
-          );
+        const response = await fetch(
+          `http://localhost:5000/api/user/favorites/${username}`
+        );
         if (response.ok) {
           const data = await response.json();
           setFavorites(data.userFavorites);
         } else {
           setError("Failed to fetch favorites");
         }
-      }
       } catch (error) {
         setError("Error fetching favorites");
       } finally {
         setLoading(false);
       }
     };
+    fetchFavorites();
+  }, [username]);
 
-    if (showFavorites) {
-      fetchFavorites();
-    }
-  }, [showFavorites, username]);
+
+  //   if (showFavorites) {
+  //     fetchFavorites();
+  //   }
+  // }, [showFavorites, username]);
 
   return (
-    <div>
-      <button
-        className={styles.myFavoritesButton}
-        onClick={() => setShowFavorites(!showFavorites)}
-      >
-        {showFavorites ? "Hide Favorites" : "Show Favorites"}
-      </button>
+    <div className={styles.favoritesContainer}>
       {loading && <p>Loading favorites...</p>}
       {error && <p>{error}</p>}
-      {showFavorites && favorites?.length > 0 && (
+      {favorites?.length > 0 && (
         <div className={styles.recipeListContainer}>
           <div className={styles.recipeList}>
             {favorites.map((favorite) => (
@@ -76,9 +71,9 @@ const FavoritesList = ({ username }) => {
       {selectedRecipe && (
         <RecipeDetails recipe={selectedRecipe} onClose={handleCloseDetails} />
       )}
-      {showFavorites && favorites && favorites.length === 0 && (
+      {/* {favorites && favorites.length === 0 && (
         <p>No favorites found for {username}</p>
-      )}
+      )} */}
     </div>
   );
 };

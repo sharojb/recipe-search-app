@@ -1,19 +1,163 @@
+.favoritesContainer {
+  position: relative;
+  margin-top: 20px; /* Adjust the top margin as needed */
+  padding: 20px; /* Adjust the padding as needed */
+  background-color: #f9f9f9; /* Background color */
+  border: 1px solid #ccc; /* Border */
+  border-radius: 8px; /* Border radius */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+
 .myFavoritesButton {
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  color: white;
   background-color: #4ecba2;
-  border: none;
-  border-radius: 5px;
-  font-size: 30px;
+  border: 1px solid lightgrey;
+  border-radius: 100px;
+  padding: 5px;
+  text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  float: right;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
 }
 
 /* Hover effect */
 .myFavoritesButton:hover {
-  background-color: #47a089;
+  color: black;
 }
 
 /* Active state */
 .myFavoritesButton:active {
   transform: translateY(1px);
 }
+
+.recipeDetails {
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  max-width: 590px;
+  max-width: 590px;
+  margin: 0 auto;
+}
+
+.recipeImage {
+  width: 96%;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.closeButton {
+  background-color: #ccc;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  top: 10px;
+  right: 10px;
+}
+
+.closeButton:hover {
+  background-color: #999;
+}
+
+.heartButton {
+  background-color: #4ecba2;
+  color: #fff;
+  border: none;
+  font-size: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  top: 10px;
+  float: right;
+}
+
+.heartButton:hover {
+  background-color: #36a380;
+}
+
+.timeButton {
+  background-color: #4ecba2;
+  color: #fff;
+  border: none;
+  font-size: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  top: 10px;
+  padding: 5px;
+}
+
+.timeButton:hover {
+  background-color: #36a380;
+}
+
+.ingredientsContainer {
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 10px 10px 20px;
+  max-width: 590px;
+  margin: 0 auto;
+}
+
+.instructionsContainer {
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 10px 10px 20px;
+  max-width: 590px;
+  margin: 0 auto;
+}
+
+.instrucButton {
+  background-color: #4ecba2;
+  color: #fff;
+  border: none;
+  font-size: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  top: 10px;
+  padding: 5px;
+}
+
+.instrucButton:hover {
+  background-color: #36a380;
+}
+
+.ingreButton {
+  background-color: #4ecba2;
+  color: #fff;
+  border: none;
+  font-size: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  top: 10px;
+  padding: 5px;
+}
+
+.ingreButton:hover {
+  background-color: #36a380;
+}
+
+.recipeTitle {
+  font-family: "Palatino", serif;
+  font-weight: bold;
+  font-size: 24px; /* Adjust the font size as needed */
+}
+
+.ingredientsList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.ingredientItem {
+  margin-bottom: 8px;
+}
+
+/* Add more styles as needed */

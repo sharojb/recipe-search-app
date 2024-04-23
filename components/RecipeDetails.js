@@ -33,18 +33,18 @@ const RecipeDetails = ({ recipe, onClose }) => {
       setIsFavorited(false);
     }
   }, [user, id]);
-  
+
   const toggleFavorite = async () => {
     try {
       if (!user) {
         console.error("User not authenticated");
         return;
       }
-  
+
       const response = await fetch(
-        `http://localhost:5000/api/${isFavorited ? "removefavorites" : "addfavorites"}/${username}/${id}`
+        `http://localhost:5000/api/${isFavorited ? "removefavorites" : "addfavorites"}/${username}/${id}`,
       );
-  
+
       if (response.ok) {
         const data = await response.json();
         setIsFavorited(!isFavorited);
@@ -86,7 +86,7 @@ const RecipeDetails = ({ recipe, onClose }) => {
         <button onClick={onClose} className={styles.closeButton}>
           Close
         </button>
-        <button onClick={toggleFavorite} className={styles.favoritesButton}>
+        <button onClick={toggleFavorite} className={styles.heartButton}>
           <FontAwesomeIcon
             icon={faHeart}
             style={{ color: isFavorited ? "red" : "red" }}

@@ -344,7 +344,7 @@ form {
   .button-ind {
     opacity: 0.8;
     padding: 20px 30px;
-    width: 130%;
+    width: 100%;
     color: white;
     font-weight: bold;
   }

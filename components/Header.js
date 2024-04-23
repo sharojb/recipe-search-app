@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import SearchBar from "./SearchBar";
 import Link from "next/link";
-import { useAuth } from "../AuthContext"; 
+import { useAuth } from "../AuthContext";
+import FavoritesList from "./FavoritesList";
+import styles from "../styles/favorites.module.css";
 
 const Header = ({ onSearch }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Add state for managing logged-in status
+  const { user, login } = useAuth();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [showFavorites, setShowFavorites] = useState(false);
   const [userName, setName] = useState("");
-  const [data, setResponseData] = useState("");
-  const { login } = useAuth(); 
+  const [recipes, setRecipes] = useState("");
+  const [isFavorited, setIsFavorited] = useState(false);
+  // const [data, setResponseData] = useState("");
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -43,18 +49,19 @@ const Header = ({ onSearch }) => {
     console.log("Password", password);
 
     try {
-      const data_response = await login( email, password);
-      setResponseData(data_response);
-      console.log(data_response)
-      console.log(data_response.user.username)
-      console.log(data_response.user.mail)
+      const data_response = await login(email, password);
+      // setResponseData(data_response);
+      console.log(data_response);
+      console.log(data_response.user.username);
+      console.log(data_response.user.mail);
       setName(data_response.user.username);
       setEmail(data_response.user.mail);
       setIsLoggedIn(true);
-      setShowLoginForm(false)
+      setShowLoginForm(false);
     } catch (error) {
       console.error("Error registering user:", error);
-      setResponseData({ message: "Failed to register user" });
+      console.log({ message: "Failed to register user" });
+      // setResponseData({ message: "Failed to register user" });
     }
   };
 
@@ -62,6 +69,31 @@ const Header = ({ onSearch }) => {
     setIsLoggedIn(false);
   };
 
+  const handleFavoritesClick = async () => {
+    console.log("handleFavoritesClick called");
+    try {
+      const username = user.username;
+      const response = await fetch(
+        `http://localhost:5000/api/user/favorites/${username}`,
+      );
+  
+      if (response.ok) {
+        const favorites = await response.json();
+        console.log("User Favorites:", favorites);
+        setRecipes(favorites.userFavorites);
+        setName(username);
+        setShowFavorites((setShowFavorites) => !setShowFavorites); // Toggles showFavorites
+        if (!isLoggedIn) {
+          setShowLoginForm(false); // Hide the login form
+        }
+      } else {
+        console.error("Failed to fetch user favorites:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error fetching user favorites:", error);
+    }
+  };
+  
   return (
     <header className="header" style={{ backgroundImage: "url('/bg1.png')" }}>
       <div>
@@ -87,7 +119,23 @@ const Header = ({ onSearch }) => {
               Log In
             </button>
           )}
-        </div>
+            <button onClick={handleFavoritesClick} className="button-ind">
+              {showFavorites ? "Hide Favorites" : "My Favorites"}
+            </button>
+            {showFavorites && <FavoritesList username={userName} />}
+
+            {!isLoggedIn &&(
+              <p className="message">Please Log In to set Favorites</p>
+            )}
+
+          {/* <button
+        className={styles.myFavoritesButton}
+        onClick={() => setShowFavorites(!showFavorites)}
+      >
+        {showFavorites ? "Hide Favorites" : "Show Favorites"}
+      </button> */}
+
+          </div>
       </div>
       <div className="logo-container">
         <Link href="https://ucook.vercel.app/">
@@ -99,7 +147,7 @@ const Header = ({ onSearch }) => {
       </section>
       {isLoggedIn && (
         <p>
-        <strong> You are logged in as {userName}. Let's get ucookin'</strong>
+          <strong> You are logged in as {userName}. Let's get ucookin'</strong>
         </p>
       )}
 
@@ -107,10 +155,18 @@ const Header = ({ onSearch }) => {
         <div className="login-modal">
           <div className="login-container">
             <form onSubmit={handleSubmit}>
-              <label className="login" >Email:</label>
-              <input className="inputLogin" type="email" onChange={(e) => setEmail(e.target.value)}/>
+              <label className="login">Email:</label>
+              <input
+                className="inputLogin"
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
               <label className="login">Password:</label>
-              <input className="inputLogin" type="password" onChange={(e) => setPassword(e.target.value)}/>
+              <input
+                className="inputLogin"
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
               <button className="loginSubmit" type="submit">
                 Submit
               </button>

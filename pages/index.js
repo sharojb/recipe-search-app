@@ -14,15 +14,14 @@ const Home = ({ initialRecipes }) => {
   const [error, setError] = useState(null);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
-  const [isFavorited, setIsFavorited] = useState(false);
-  const { getUserId, user } = useAuth();
-  const isLoggedIn = user !== null;
-  const [username, setName] = useState("");
-  const [showFavorites, setShowFavorites] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { login } = useAuth();
-
+  // const [isFavorited, setIsFavorited] = useState(false);
+  // const { getUserId, user } = useAuth();
+  // const isLoggedIn = user !== null;
+  // const [username, setName] = useState("");
+  // const [showFavorites, setShowFavorites] = useState(false);
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const { login } = useAuth();
 
   const handleSearch = async (query) => {
     try {
@@ -103,28 +102,26 @@ const Home = ({ initialRecipes }) => {
   //   setIsLoggedIn(false);
   // };
 
-  const handleFavoritesClick = async () => {
-    try {
-      const username = user.username;
-      const response = await fetch(
-        `http://localhost:5000/api/user/favorites/${username}`
-      );
-  
-      if (response.ok) {
-        const favorites = await response.json();
-        console.log("User Favorites:", favorites);
-        setRecipes(favorites.userFavorites);
-        setName(username);
-        setShowFavorites(true);
-      } else {
-        console.error("Failed to fetch user favorites:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error fetching user favorites:", error);
-    }
-  };
-  
+  // const handleFavoritesClick = async () => {
+  //   try {
+  //     const username = user.username;
+  //     const response = await fetch(
+  //       `http://localhost:5000/api/user/favorites/${username}`,
+  //     );
 
+  //     if (response.ok) {
+  //       const favorites = await response.json();
+  //       console.log("User Favorites:", favorites);
+  //       setRecipes(favorites.userFavorites);
+  //       setName(username);
+  //       setShowFavorites(true);
+  //     } else {
+  //       console.error("Failed to fetch user favorites:", response.statusText);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching user favorites:", error);
+  //   }
+  // };
 
   return (
     <div>
@@ -139,14 +136,19 @@ const Home = ({ initialRecipes }) => {
           {loading && <p>Loading...</p>}
           {error && <p style={{ color: "red" }}>{error}</p>}
 
-          {isLoggedIn && (
+          {/* {isLoggedIn && (
             <div>
-              <button onClick={handleFavoritesClick} className="button">
+              <button
+                onClick={handleFavoritesClick}
+                className={styles.myFavoritesButton}
+              >
                 My Favorites
               </button>
-              {showFavorites && <FavoritesList username={username} recipes={recipes}/>}
+              {showFavorites && (
+                <FavoritesList username={username} recipes={recipes} />
+              )}
             </div>
-          )}
+          )} */}
           <div className="body-content">
             <div className="subtitle-container">
               <p className="title">We're here to help you cook!</p>
