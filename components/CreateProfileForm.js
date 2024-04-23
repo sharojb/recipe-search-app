@@ -5,7 +5,7 @@ import { useAuth } from "../AuthContext";
 const CreateProfileForm = () => {
   const { registerUser } = useAuth(); 
 
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [responseData, setResponseData] = useState(null);
@@ -14,14 +14,14 @@ const CreateProfileForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log("Name:", name);
+    console.log("Username:", username);
     console.log("Email:", email);
     console.log("Password", password);
 
     try {
-      const data = await registerUser(name, email, password);
+      const data = await registerUser(username, email, password);
       setResponseData(data);
-      setName("");
+      setUsername("");
       setEmail("");
       setPassword("");
       setRegistrationSuccess(true); 
@@ -36,12 +36,12 @@ const CreateProfileForm = () => {
       <h2 className={styles.createProfileTitle}>Create Your Profile</h2>
       <form className={styles.createContainer} onSubmit={handleSubmit}>
         <div className={styles.inputContainer}>
-          <label className={styles.create}>Name</label>
+          <label className={styles.create}>Username</label>
           <input
             className={styles.inputCreate}
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>

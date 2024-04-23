@@ -6,11 +6,10 @@ import { useAuth } from "../AuthContext";
 const Header = ({ onSearch }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
-  const { userName } = useAuth(); // Retrieve userName from useAuth hook
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Add state for managing logged-in status
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [username, setName] = useState("");
+  const [userName, setName] = useState("");
   const [data, setResponseData] = useState("");
   const { login } = useAuth(); 
 
@@ -100,7 +99,7 @@ const Header = ({ onSearch }) => {
       </section>
       {isLoggedIn && (
         <p>
-        <strong> You are logged in as {username}. Let's get ucookin'</strong>
+        <strong> You are logged in as {userName}. Let's get ucookin'</strong>
         </p>
       )}
 

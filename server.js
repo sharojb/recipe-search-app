@@ -86,6 +86,9 @@ app.prepare().then(() => {
     try {
       const username = req.params.username;
       const recipe_id = req.params.recipe_id;
+      if (!username) {
+        return res.status(400).json({ message: 'Username is required' });
+      }
       const recipe = await Favorites.findOne({ username, recipe_id });
 
       if (!recipe) {
@@ -116,6 +119,24 @@ app.prepare().then(() => {
       res.status(500).json({ message: 'Internal Server Error', error });
     }
   });
+
+  server.get('/api/user/favorites/:username', async (req, res) => {
+    try {
+      const username = req.params.username;
+      const favorites = await Favorites.find({ username });
+
+      // const response.data = {
+      //   userFavorites: favorites,
+      //   allFavorites: favorites, 
+      // };
+
+
+      res.json({ userFavorites: favorites });
+    } catch (error) {
+      console.error('Error fetching user favorites:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  });  
 
   server.post('/api/register', async (req, res) => {
     try {

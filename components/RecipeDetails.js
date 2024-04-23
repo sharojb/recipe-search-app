@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/details.module.css";
 import FavoritesList from "./FavoritesList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { PiCookingPotFill } from "react-icons/pi";
 import { FaClock, FaListOl } from "react-icons/fa";
+import { useAuth } from "../AuthContext";
 
 const RecipeDetails = ({ recipe, onClose }) => {
+  const { user } = useAuth();
+  const userId = user ? user.userId : null;
+  const username = user ? user.username : null;
   const {
     image,
     title,
     readyInMinutes,
     instructions,
-    summary,
     extendedIngredients,
     id,
   } = recipe;
@@ -22,37 +25,48 @@ const RecipeDetails = ({ recipe, onClose }) => {
   const [showIngredients, setShowIngredients] = useState(false);
   const [message, setMessage] = useState("");
 
+  useEffect(() => {
+    // Update favorite status when user changes
+    if (user && user.favorites) {
+      setIsFavorited(user.favorites.includes(id));
+    } else {
+      setIsFavorited(false);
+    }
+  }, [user, id]);
+  
   const toggleFavorite = async () => {
     try {
-      if (isFavorited) {
-        const response = await fetch(
-          `http://localhost:5000/api/${isFavorited ? "removefavorites" : "addfavorites"}/sharo/${id}`,
-        );
-
-        if (response.ok) {
-          setIsFavorited(false);
-          setMessage("Not Favorited");
-        } else {
-          console.error(
-            "Failed to update favorite status:",
-            response.statusText,
-          );
-        }
-      } else {
-        const response = await fetch(
-          `http://localhost:5000/api/addfavorites/sharo/${id}`,
-        );
-
-        if (response.ok) {
-          setIsFavorited(true);
-          setMessage("Favorited");
-        } else {
-          console.error(
-            "Failed to update favorite status:",
-            response.statusText,
-          );
-        }
+      if (!user) {
+        console.error("User not authenticated");
+        return;
       }
+  
+      const response = await fetch(
+        `http://localhost:5000/api/${isFavorited ? "removefavorites" : "addfavorites"}/${username}/${id}`
+      );
+  
+      if (response.ok) {
+        const data = await response.json();
+        setIsFavorited(!isFavorited);
+        setMessage(data.message);
+      } else {
+        console.error("Failed to update favorite status:", response.statusText);
+      }
+      // } else {
+      //   const response = await fetch(
+      //     `http://localhost:5000/api/addfavorites/${userId}/${id}`,
+      //   );
+
+      //   if (response.ok) {
+      //     setIsFavorited(true);
+      //     setMessage("Favorited");
+      //   } else {
+      //     console.error(
+      //       "Failed to update favorite status:",
+      //       response.statusText,
+      //     );
+      //   }
+      // }
     } catch (error) {
       console.error("Error updating favorite status:", error);
     }
@@ -75,7 +89,7 @@ const RecipeDetails = ({ recipe, onClose }) => {
         <button onClick={toggleFavorite} className={styles.favoritesButton}>
           <FontAwesomeIcon
             icon={faHeart}
-            style={{ color: isFavorited ? "red" : "coral" }}
+            style={{ color: isFavorited ? "red" : "red" }}
           />
         </button>
         <p>{message}</p>

@@ -11,7 +11,12 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await fetch(`http://localhost:5000/api/login/${mail}/${password}`);
       if (response.ok) {
-        const data = response.json()
+      const data = await response.json();
+        // const data = response.json()
+
+      setUser(data.user);
+      setUserName(data.user.username);
+
         return data;
       } else {
         const data = await response.json();
@@ -57,7 +62,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const contextValue = {
-    user,
+    user: user || {}, 
     userName,
     login,
     logout,

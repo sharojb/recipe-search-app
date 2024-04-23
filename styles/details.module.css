@@ -3,12 +3,13 @@
   border: 2px solid #ccc;
   border-radius: 8px;
   padding: 10px;
-  max-width: 600px;
+  max-width: 590px;
+  max-width: 590px;
   margin: 0 auto;
 }
 
 .recipeImage {
-  width: 100%;
+  width: 96%;
   border-radius: 8px;
   margin-bottom: 20px;
 }
@@ -64,7 +65,7 @@
   border: 2px solid #ccc;
   border-radius: 8px;
   padding: 10px 10px 10px 20px;
-  max-width: 600px;
+  max-width: 590px;
   margin: 0 auto;
 }
 
@@ -73,7 +74,7 @@
   border: 2px solid #ccc;
   border-radius: 8px;
   padding: 10px 10px 10px 20px;
-  max-width: 600px;
+  max-width: 590px;
   margin: 0 auto;
 }
 
