@@ -26,7 +26,7 @@ const FavoritesList = ({ username }) => {
   const handleCook = async (recipeId) => {
     try {
       const response = await fetch(
-        `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`,
+        `http://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`,
       );
       const recipeDetails = await response.json();
 
@@ -41,7 +41,7 @@ const FavoritesList = ({ username }) => {
       setLoading(true);
       try {
         const response = await fetch(
-          `https://186.137.239.210:5000/api/user/favorites/${username}`
+          `http://localhost:5000/api/user/favorites/${username}`
         );
         if (response.ok) {
           const data = await response.json();

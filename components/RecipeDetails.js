@@ -44,7 +44,7 @@ const RecipeDetails = ({ recipe, onClose }) => {
 
       console.log(username)
       const response = await fetch(
-        `https://186.137.239.210:5000/api/${isFavorited ? "removefavorites" : "addfavorites"}`,
+        `http://localhost:5000/api/${isFavorited ? "removefavorites" : "addfavorites"}`,
         {
           method: "POST",
           headers: {

@@ -94,7 +94,7 @@ const Header = ({ onSearch }) => {
 
       const username = user.username;
       const response = await fetch(
-        `https://186.137.239.210:5000/api/user/favorites/${user.username}`,
+        `http://localhost:5000/api/user/favorites/${user.username}`,
       );
   
       if (response.ok) {

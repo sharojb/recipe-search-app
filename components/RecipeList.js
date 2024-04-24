@@ -27,7 +27,7 @@ const RecipeList = ({ recipes, isLoggedIn }) => {
   const handleCook = async (recipeId) => {
     try {
       const response = await fetch(
-        `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`,
+        `http://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`,
       );
       const recipeDetails = await response.json();
 
