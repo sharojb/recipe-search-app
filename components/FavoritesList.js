@@ -5,8 +5,6 @@ import { AuthContext } from "../AuthContext";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { useRouter } from "next/router";
 
-
-
 const FavoritesList = ({ username }) => {
   const router = useRouter();
   const { isAuthenticated } = useContext(AuthContext);
@@ -43,7 +41,7 @@ const FavoritesList = ({ username }) => {
       setLoading(true);
       try {
         const response = await fetch(
-          `http://localhost:5000/api/user/favorites/${username}`
+          `http://186.137.239.210:5000/api/user/favorites/${username}`
         );
         if (response.ok) {
           const data = await response.json();
@@ -102,11 +100,9 @@ const FavoritesList = ({ username }) => {
                 {favorites.slice(startIndex, endIndex + 1).map((favorite) => (
                   <div key={favorite.recipe_id}
                     className={styles.recipeCard}>
+                    <div className={styles.recipeDetails}>
                     <h2 className={styles.recipeTitle}>{favorite.title}</h2>
                     <img src={favorite.image} alt={favorite.title} className={styles.recipeImage} />
-                    <div className={styles.recipeDetails}>
-                      {/* <h3 className={styles.recipeName}>
-                        {favorite.title}</h3> */}
                       <button
                         onClick={() => handleCook(favorite.recipe_id)}
                         className={styles.cookThisButton}>

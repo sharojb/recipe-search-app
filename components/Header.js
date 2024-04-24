@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import SearchBar from "./SearchBar";
 import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import SearchBar from "./SearchBar";
 import { useAuth } from "../AuthContext";
 import FavoritesList from "./FavoritesList";
 import styles from "../styles/favorites.module.css";
@@ -17,7 +17,15 @@ const Header = ({ onSearch }) => {
   const [userName, setName] = useState("");
   const [recipes, setRecipes] = useState("");
   const [isFavorited, setIsFavorited] = useState(false);
-  // const [data, setResponseData] = useState("");
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      setUsername(loggedInUser);
+      setIsLoggedIn(true);
+    }
+  }, []);
+
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -56,17 +64,21 @@ const Header = ({ onSearch }) => {
       console.log(data_response.user.mail);
       setName(data_response.user.username);
       setEmail(data_response.user.mail);
+      setUsername(data_response.user.username);
+      localStorage.setItem("user", data_response.user.username);
       setIsLoggedIn(true);
       setShowLoginForm(false);
     } catch (error) {
       console.error("Error registering user:", error);
       console.log({ message: "Failed to register user" });
-      // setResponseData({ message: "Failed to register user" });
     }
   };
 
   const handleLogout = () => {
+    // logout(); 
     setIsLoggedIn(false);
+    setUsername("");
+    localStorage.removeItem("user"); 
   };
 
   const handleFavoritesClick = async () => {
@@ -79,7 +91,7 @@ const Header = ({ onSearch }) => {
 
       const username = user.username;
       const response = await fetch(
-        `http://localhost:5000/api/user/favorites/${user.username}`,
+        `http://186.137.239.210:5000/api/user/favorites/${user.username}`,
       );
   
       if (response.ok) {
@@ -122,7 +134,7 @@ const Header = ({ onSearch }) => {
             </button>
           )}
             <button onClick={handleFavoritesClick} className="button-ind">
-              {showFavorites ? "Hide" : "My Favorites"}
+              {showFavorites ? "Hide Favorites" : "My Favorites"}
             </button>
 
             {!isLoggedIn && showFavorites &&(
@@ -132,11 +144,19 @@ const Header = ({ onSearch }) => {
 
           </div>
       </div>
-      <div className="logo-container">
+      {/* <div className="logo-container">
         <Link href="https://ucook.vercel.app/">
           <img src="/logo.png" alt="Logo" className="header-logo" />
         </Link>
-      </div>
+      </div> */}
+
+          <div className="logo-container">
+          <Link href="/">
+              <span onClick={handleLogoClick}>
+                <img src="/logo.png" alt="Logo" className="header-logo" />
+              </span>
+            </Link>
+          </div>
       <section className="search-section">
         <SearchBar onSearch={onSearch} />
       </section>

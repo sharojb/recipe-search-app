@@ -351,6 +351,18 @@ form {
   display: flex;
 }
 
+.favmessage{
+  font-family: "Raleway", sans-serif;
+  color: red;
+  font-weight: bold;
+}
+
+.p{
+  font-family: "Raleway", sans-serif;
+  color: red;
+  font-weight: bold;
+}
+
 @media only screen and (max-width: 768px) {
   .social-icons a {
     flex-wrap: wrap;

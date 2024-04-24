@@ -53,6 +53,14 @@ app.prepare().then(() => {
     recipe_id: {
       type: String,
       required: true
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    image: {
+      type: String,
+      required: true
     }
   });
   
@@ -66,6 +74,11 @@ app.prepare().then(() => {
       const mail = req.params.mail;
       const password = req.params.password;
       const user = await User.findOne({ mail });
+
+      var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
+
+      console.log('Request GET Login')
+      console.log(ip)
 
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
@@ -84,17 +97,24 @@ app.prepare().then(() => {
     }
   });
 
-  server.get('/api/addfavorites/:username/:recipe_id', async (req, res) => {
+  server.post('/api/addfavorites/', async (req, res) => {
     try {
-      const username = req.params.username;
-      const recipe_id = req.params.recipe_id;
+      var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
+      console.log('Request POST AddFavorites')
+      console.log("Request Body:", req.body);
+      console.log(ip)
+
+      const { username, recipe_id, title, image } = req.body;
+
+      console.log(username, recipe_id, title, image)
+
       if (!username) {
         return res.status(400).json({ message: 'Username is required' });
       }
       const recipe = await Favorites.findOne({ username, recipe_id });
 
       if (!recipe) {
-        const newFavorite = new Favorites({ username, recipe_id });
+        const newFavorite = new Favorites({ username, recipe_id, title, image });
         await newFavorite.save();
         res.json({ message: 'Favorite added' });
       } else {
@@ -106,11 +126,16 @@ app.prepare().then(() => {
     }
   });
 
-  server.get('/api/removefavorites/:username/:recipe_id', async (req, res) => {
+  server.post('/api/removefavorites/', async (req, res) => {
     try {
-      const username = req.params.username;
-      const recipe_id = req.params.recipe_id;
+      
+      var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
+      
+      const { username, recipe_id, title, image } = req.body;
+      
       const recipe = await Favorites.findOne({ username, recipe_id });
+      console.log('Request POST RemoveFavorites')
+      console.log(ip)
 
       if (recipe) {
         await Favorites.deleteOne({ username, recipe_id });
@@ -127,11 +152,10 @@ app.prepare().then(() => {
       const username = req.params.username;
       const favorites = await Favorites.find({ username });
 
-      // const response.data = {
-      //   userFavorites: favorites,
-      //   allFavorites: favorites, 
-      // };
+      var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
 
+      console.log('Request GET Favorites')
+      console.log(ip)
 
       res.json({ userFavorites: favorites });
     } catch (error) {
@@ -143,6 +167,11 @@ app.prepare().then(() => {
   server.post('/api/register', async (req, res) => {
     try {
       console.log("Request Body:", req.body);
+      
+      var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
+
+      console.log('Request POST Register')
+      console.log(ip)
       
       const { username, mail, password } = req.body;
       const existingUser = await User.findOne({ username });

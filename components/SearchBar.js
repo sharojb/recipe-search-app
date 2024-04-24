@@ -26,6 +26,12 @@ const SearchBar = ({ onSearch }) => {
     }
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   const apiKey = process.env.NEXT_PUBLIC_SPOONACULAR_API_KEY;
 
   const validateIngredients = async () => {
@@ -72,6 +78,7 @@ const SearchBar = ({ onSearch }) => {
           placeholder={ingredient ? '' : `Ingredient ${index + 1}`}
           value={ingredient}
           onChange={(e) => handleInputChange(index, e.target.value)}
+          onKeyDown={index === ingredients.length - 1 ? handleKeyPress : null}
         />
       ))}
       <button onClick={handleAddMore} className={styles.smallButton}>Add More</button>

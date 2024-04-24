@@ -135,7 +135,7 @@
 .recipeTitle {
   font-family: "Palatino", serif;
   font-weight: bold;
-  font-size: 24px; /* Adjust the font size as needed */
+  font-size: 24px;
 }
 
 .ingredientsList {
@@ -147,4 +147,3 @@
   margin-bottom: 8px;
 }
 
-/* Add more styles as needed */

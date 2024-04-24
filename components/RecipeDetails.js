@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import styles from "../styles/details.module.css";
 import FavoritesList from "./FavoritesList";
@@ -41,8 +42,19 @@ const RecipeDetails = ({ recipe, onClose }) => {
         return;
       }
 
+      // const response = await fetch(
+      //   http://186.137.239.210:5000/api/${isFavorited ? "removefavorites" : "addfavorites"}/${username}/${id}/${title}/${image},
+      // );
+      console.log(username)
       const response = await fetch(
-        `http://localhost:5000/api/${isFavorited ? "removefavorites" : "addfavorites"}/${username}/${id}`,
+        `http://186.137.239.210:5000/api/${isFavorited ? "removefavorites" : "addfavorites"}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json" // Specify content type as JSON
+          },
+          body: JSON.stringify({ username:username, recipe_id:id, title:title, image:image }) // Send data in JSON format
+        },
       );
 
       if (response.ok) {
@@ -54,7 +66,7 @@ const RecipeDetails = ({ recipe, onClose }) => {
       }
       // } else {
       //   const response = await fetch(
-      //     `http://localhost:5000/api/addfavorites/${userId}/${id}`,
+      //     http://186.137.239.210:5000/api/addfavorites/${userId}/${id},
       //   );
 
       //   if (response.ok) {
@@ -99,7 +111,7 @@ const RecipeDetails = ({ recipe, onClose }) => {
           <div style={{ display: "flex", alignItems: "center" }}>
             <FaClock
               className={styles.timeButton}
-              style={{ cursor: "pointer", fontSize: "30px", color: "black"}}
+              style={{ cursor: "pointer", fontSize: "30px", color: "black" }}
             />
             <p style={{ marginLeft: "10px" }}>
               Ready in {readyInMinutes} minutes
@@ -149,7 +161,6 @@ const RecipeDetails = ({ recipe, onClose }) => {
         </div>
         {showInstructions && (
           <div className={styles.instructionsContent}>
-            {/* <h3>Instructions</h3> */}
             <div dangerouslySetInnerHTML={{ __html: instructions }} />
           </div>
         )}

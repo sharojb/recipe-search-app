@@ -14,14 +14,6 @@ const Home = ({ initialRecipes }) => {
   const [error, setError] = useState(null);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
-  // const [isFavorited, setIsFavorited] = useState(false);
-  // const { getUserId, user } = useAuth();
-  // const isLoggedIn = user !== null;
-  // const [username, setName] = useState("");
-  // const [showFavorites, setShowFavorites] = useState(false);
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const { login } = useAuth();
 
   const handleSearch = async (query) => {
     try {
@@ -47,24 +39,6 @@ const Home = ({ initialRecipes }) => {
     }
   };
 
-  // const toggleFavorite = async (recipeId) => {
-  //   try {
-  //     const userId = getUserId();
-
-  //     const response = await fetch(
-  //       `http://localhost:5000/api/${isFavorited ? "removefavorites" : "addfavorites"}/${userId}/${recipeId}`,
-  //     );
-
-  //     if (response.ok) {
-  //       setIsFavorited(!isFavorited);
-  //     } else {
-  //       console.error("Failed to update favorite status:", response.statusText);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error updating favorite status:", error);
-  //   }
-  // };
-
   const handleSignUpClick = () => {
     setShowSignUpForm((prevShowSignUpForm) => !prevShowSignUpForm);
   };
@@ -76,52 +50,6 @@ const Home = ({ initialRecipes }) => {
   const handleCloseRecipeDetails = () => {
     setSelectedRecipe(null);
   };
-
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   console.log("Email:", email);
-  //   console.log("Password", password);
-
-  //   try {
-  //     const data_response = await login(email, password);
-  //     setResponseData(data_response);
-  //     console.log(data_response);
-  //     console.log(data_response.user.username);
-  //     console.log(data_response.user.mail);
-  //     setName(data_response.user.username);
-  //     setEmail(data_response.user.mail);
-  //     setIsLoggedIn(true);
-  //     setShowLoginForm(false);
-  //   } catch (error) {
-  //     console.error("Error registering user:", error);
-  //     setResponseData({ message: "Failed to register user" });
-  //   }
-  // };
-
-  // const handleLogout = () => {
-  //   setIsLoggedIn(false);
-  // };
-
-  // const handleFavoritesClick = async () => {
-  //   try {
-  //     const username = user.username;
-  //     const response = await fetch(
-  //       `http://localhost:5000/api/user/favorites/${username}`,
-  //     );
-
-  //     if (response.ok) {
-  //       const favorites = await response.json();
-  //       console.log("User Favorites:", favorites);
-  //       setRecipes(favorites.userFavorites);
-  //       setName(username);
-  //       setShowFavorites(true);
-  //     } else {
-  //       console.error("Failed to fetch user favorites:", response.statusText);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching user favorites:", error);
-  //   }
-  // };
 
   return (
     <div>
@@ -135,20 +63,6 @@ const Home = ({ initialRecipes }) => {
 
           {loading && <p>Loading...</p>}
           {error && <p style={{ color: "red" }}>{error}</p>}
-
-          {/* {isLoggedIn && (
-            <div>
-              <button
-                onClick={handleFavoritesClick}
-                className={styles.myFavoritesButton}
-              >
-                My Favorites
-              </button>
-              {showFavorites && (
-                <FavoritesList username={username} recipes={recipes} />
-              )}
-            </div>
-          )} */}
           <div className="body-content">
             <div className="subtitle-container">
               <p className="title">We're here to help you cook!</p>
