@@ -45,6 +45,22 @@
   background-color: #36a380;
 }
 
+.heartButton {
+  background-color: #4ecba2;
+  color: #fff;
+  border: none;
+  font-size: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  top: 10px;
+  float: right;
+}
+
+.heartButton:hover {
+  background-color: #36a380;
+}
+
+
 .timeButton {
   background-color: #4ecba2;
   color: #fff;

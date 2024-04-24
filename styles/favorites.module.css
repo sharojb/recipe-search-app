@@ -1,16 +1,17 @@
 .favoritesContainer {
   position: absolute;
   text-align: center;
-  left: 87%;
+  left: 80%;
   top: 10%;
-  margin-top: 20px; /* Adjust the top margin as needed */
-  padding: 20px; /* Adjust the padding as needed */
-  background-color: white; /* Background color */
-  border: 1px solid #4ecba2; /* Border */
-  border-radius: 8px; /* Border radius */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow */
+  margin-top: 20px;
+  padding: 20px;
+  width: 13%;
+  background-color: white;
+  border: 1px solid #4ecba2;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
 }
-
 
 .myFavoritesButton {
   font-family: "Raleway", sans-serif;
@@ -38,6 +39,38 @@
   transform: translateY(1px);
 }
 
+.plusButton {
+  background-color: #4ecba2;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  top: 10px;
+  padding: 5px;
+}
+
+.plusButton:hover {
+  background-color: #36a380;
+}
+
+.minusButton {
+  background-color: #4ecba2;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  top: 10px;
+  padding: 5px;
+}
+
+.minusButton:hover {
+  background-color: #36a380;
+}
+
+
+
 .cookThisButton {
   font-family: "Raleway", sans-serif;
   font-size: 12px;
@@ -55,14 +88,20 @@
   color: #fcd8c5;
 }
 
+.recipeListContainer {
+  margin-top: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .recipeDetails {
   background-color: #fff;
   border: 2px solid #ccc;
   border-radius: 8px;
   padding: 10px;
   max-width: 590px;
-  max-width: 590px;
-  margin: 0 auto;
+  margin: 10px;
 }
 
 .recipeImage {
@@ -81,15 +120,34 @@
 .recipeTitle {
   font-family: "Palatino", serif;
   font-weight: bold;
-  font-size: 24px; /* Adjust the font size as needed */
+  font-size: 24px;
 }
 
-/* Add more styles as needed */
+.recipeCard h2 {
+  font-family: "Palatino", serif;
+  font-weight: bold;
+  font-size: 24px;
+  color: black;
+}
+
+.recipeCard img {
+  width: 100%; 
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
 
 
 @media only screen and (max-width: 768px) {
-
   .cookThisButton {
     margin-top: 10px;
+  }
+  
+  .favoritesContainer {
+    width: 80%;
+    padding: 15px;
+    top: 50%;
+    left: 50%;
   }
 }

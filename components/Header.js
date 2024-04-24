@@ -50,7 +50,7 @@ const Header = ({ onSearch }) => {
 
     try {
       const data_response = await login(email, password);
-      // setResponseData(data_response);
+      setIsLoggedIn(true);
       console.log(data_response);
       console.log(data_response.user.username);
       console.log(data_response.user.mail);
@@ -72,20 +72,22 @@ const Header = ({ onSearch }) => {
   const handleFavoritesClick = async () => {
     console.log("handleFavoritesClick called");
     try {
+      if (!isLoggedIn) {
+        setShowFavorites(true);
+        return;
+      }
+
       const username = user.username;
       const response = await fetch(
-        `http://localhost:5000/api/user/favorites/${username}`,
+        `http://localhost:5000/api/user/favorites/${user.username}`,
       );
   
       if (response.ok) {
         const favorites = await response.json();
         console.log("User Favorites:", favorites);
         setRecipes(favorites.userFavorites);
-        setName(username);
-        setShowFavorites((setShowFavorites) => !setShowFavorites); // Toggles showFavorites
-        if (!isLoggedIn) {
-          setShowLoginForm(false); // Hide the login form
-        }
+        setName(user.username);
+        setShowFavorites((setShowFavorites) => !setShowFavorites);
       } else {
         console.error("Failed to fetch user favorites:", response.statusText);
       }
@@ -120,20 +122,13 @@ const Header = ({ onSearch }) => {
             </button>
           )}
             <button onClick={handleFavoritesClick} className="button-ind">
-              {showFavorites ? "Hide Favorites" : "My Favorites"}
+              {showFavorites ? "Hide" : "My Favorites"}
             </button>
-            {showFavorites && <FavoritesList username={userName} />}
 
-            {!isLoggedIn &&(
+            {!isLoggedIn && showFavorites &&(
               <p className="message">Please Log In to set Favorites</p>
             )}
-
-          {/* <button
-        className={styles.myFavoritesButton}
-        onClick={() => setShowFavorites(!showFavorites)}
-      >
-        {showFavorites ? "Hide Favorites" : "Show Favorites"}
-      </button> */}
+            {isLoggedIn && showFavorites && <FavoritesList username={userName} />}
 
           </div>
       </div>
@@ -147,7 +142,7 @@ const Header = ({ onSearch }) => {
       </section>
       {isLoggedIn && (
         <p>
-          <strong> You are logged in as {userName}. Let's get ucookin'</strong>
+          <strong>You are logged in as <span className="userName">{userName}</span>. Let's get <span className="userName">ucookin'</span></strong>
         </p>
       )}
 

@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const apiKey = process.env.NEXT_PUBLIC_SPOONACULAR_API_KEY;
+
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
