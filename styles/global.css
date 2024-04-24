@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Raleway:wght@400&display=swap");
-
 /* Body styles */
 .body {
   font-family: "Raleway", sans-serif;
@@ -240,7 +239,8 @@
 }
 
 .search-section * {
-  margin: 8px;
+  margin: 0;
+  height: 100%;
 }
 
 /* Log In */
@@ -381,6 +381,7 @@ form {
 }
 
 @media only screen and (max-width: 768px) {
+  
   .social-icons a {
     flex-wrap: wrap;
     margin: 0px 0px 10px;
@@ -482,7 +483,11 @@ form {
 
 @media only screen and (max-width: 768px) {
   .body-content {
-    flex-wrap: wrap;
+    padding-left: 0;
+    width: 100%; 
+    justify-content: flex-start; 
+    flex-direction: column; 
+    text-align: center; 
   }
 
   /* SearchBar styles */
