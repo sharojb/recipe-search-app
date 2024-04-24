@@ -52,7 +52,7 @@ const Home = ({ initialRecipes }) => {
   };
 
   return (
-    <div className="body">
+    <div>
       <AuthProvider>
         <main className="main">
           <button onClick={handleSignUpClick} className="button join-us-button">

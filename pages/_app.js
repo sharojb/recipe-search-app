@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <AuthProvider>
-      <div className='body'>
+      <div>
         <Header />
         <Component {...pageProps} />
       </div>

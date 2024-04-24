@@ -382,6 +382,7 @@ form {
 }
 
 @media only screen and (max-width: 768px) {
+  
   .social-icons a {
     flex-wrap: wrap;
     margin: 0px 0px 10px;
@@ -483,7 +484,11 @@ form {
 
 @media only screen and (max-width: 768px) {
   .body-content {
-    flex-wrap: wrap;
+    padding-left: 0;
+    width: 100%; 
+    justify-content: flex-start; 
+    flex-direction: column; 
+    text-align: center; 
   }
 
   /* SearchBar styles */
