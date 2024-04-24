@@ -5,12 +5,12 @@
 .cookThisButton {
   font-family: "Raleway", sans-serif;
   font-size: 12px;
-  margin-top: 20px;
+  margin-top: 10px;
   color: #ffffff;
   background-color: #4ecba2;
   border: 2px solid #4ecba2;
   border-radius: 20px;
-  padding: 10px;
+  padding: 5px;
   text-decoration: none;
 }
 
@@ -54,6 +54,7 @@
 .recipeDetails {
   padding: 5px;
   text-align: center;
+  margin-top: -20px;
 }
 
 .recipeName {

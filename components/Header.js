@@ -75,10 +75,13 @@ const Header = ({ onSearch }) => {
   };
 
   const handleLogout = () => {
-    // logout(); 
     setIsLoggedIn(false);
     setUsername("");
     localStorage.removeItem("user"); 
+  };
+
+  const handleCloseLoginForm = () => {
+    setShowLoginForm(false);
   };
 
   const handleFavoritesClick = async () => {
@@ -91,7 +94,7 @@ const Header = ({ onSearch }) => {
 
       const username = user.username;
       const response = await fetch(
-        `http://186.137.239.210:5000/api/user/favorites/${user.username}`,
+        `https://186.137.239.210:5000/api/user/favorites/${user.username}`,
       );
   
       if (response.ok) {
@@ -144,11 +147,6 @@ const Header = ({ onSearch }) => {
 
           </div>
       </div>
-      {/* <div className="logo-container">
-        <Link href="https://ucook.vercel.app/">
-          <img src="/logo.png" alt="Logo" className="header-logo" />
-        </Link>
-      </div> */}
 
           <div className="logo-container">
           <Link href="/">
@@ -169,6 +167,7 @@ const Header = ({ onSearch }) => {
       {showLoginForm && (
         <div className="login-modal">
           <div className="login-container">
+          <button className="closeButton" onClick={handleCloseLoginForm}>X</button>
             <form onSubmit={handleSubmit}>
               <label className="login">Email:</label>
               <input

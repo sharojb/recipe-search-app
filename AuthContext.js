@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (mail, password) => {
     try {
-      const response = await fetch(`http://186.137.239.210:5000/api/login/${mail}/${password}`);
+      const response = await fetch(`https://186.137.239.210:5000/api/login/${mail}/${password}`);
       if (response.ok) {
       const data = await response.json();
         // const data = response.json()
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (username, email, password) => {
     try {
       const response = await fetch(
-        `http://186.137.239.210:5000/api/register`,
+        `https://186.137.239.210:5000/api/register`,
         {
           method: "POST",
           headers: {

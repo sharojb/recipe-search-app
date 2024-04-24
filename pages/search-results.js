@@ -14,7 +14,7 @@ const SearchResults = ({ query }) => {
         setLoading(true);
         setError(null);
 
-        const response = await axios.get(`http://localhost:3000/api/search?query=${query}`);
+        const response = await axios.get(`https://localhost:3000/api/search?query=${query}`);
         const data = response.data;
 
         console.log('Search Query:', query);

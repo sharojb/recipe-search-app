@@ -41,7 +41,7 @@ const FavoritesList = ({ username }) => {
       setLoading(true);
       try {
         const response = await fetch(
-          `http://186.137.239.210:5000/api/user/favorites/${username}`
+          `https://186.137.239.210:5000/api/user/favorites/${username}`
         );
         if (response.ok) {
           const data = await response.json();

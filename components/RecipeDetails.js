@@ -42,12 +42,9 @@ const RecipeDetails = ({ recipe, onClose }) => {
         return;
       }
 
-      // const response = await fetch(
-      //   http://186.137.239.210:5000/api/${isFavorited ? "removefavorites" : "addfavorites"}/${username}/${id}/${title}/${image},
-      // );
       console.log(username)
       const response = await fetch(
-        `http://186.137.239.210:5000/api/${isFavorited ? "removefavorites" : "addfavorites"}`,
+        `https://186.137.239.210:5000/api/${isFavorited ? "removefavorites" : "addfavorites"}`,
         {
           method: "POST",
           headers: {
@@ -64,21 +61,6 @@ const RecipeDetails = ({ recipe, onClose }) => {
       } else {
         console.error("Failed to update favorite status:", response.statusText);
       }
-      // } else {
-      //   const response = await fetch(
-      //     http://186.137.239.210:5000/api/addfavorites/${userId}/${id},
-      //   );
-
-      //   if (response.ok) {
-      //     setIsFavorited(true);
-      //     setMessage("Favorited");
-      //   } else {
-      //     console.error(
-      //       "Failed to update favorite status:",
-      //       response.statusText,
-      //     );
-      //   }
-      // }
     } catch (error) {
       console.error("Error updating favorite status:", error);
     }
