@@ -99,7 +99,7 @@ const RecipeDetails = ({ recipe, onClose }) => {
           <div style={{ display: "flex", alignItems: "center" }}>
             <FaClock
               className={styles.timeButton}
-              style={{ cursor: "pointer", fontSize: "30px", color: "black" }}
+              style={{ cursor: "pointer", fontSize: "30px", color: "black"}}
             />
             <p style={{ marginLeft: "10px" }}>
               Ready in {readyInMinutes} minutes
