@@ -240,7 +240,8 @@
 }
 
 .search-section * {
-  margin: 8px;
+  margin: 0;
+  height: 100%;
 }
 
 /* Log In */
