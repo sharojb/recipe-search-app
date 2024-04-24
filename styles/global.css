@@ -239,8 +239,7 @@
 }
 
 .search-section * {
-  margin: 0;
-  height: 100%;
+  margin: 8px;
 }
 
 /* Log In */
