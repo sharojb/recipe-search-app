@@ -1,5 +1,5 @@
 const express = require('express');
-const Recipe = require('../models/Recipe'); 
+const Recipe = require('../backend/models/Recipe'); 
 const { getRecipe, searchRecipes } = require('./recipeUtils');
 
 const router = express.Router();

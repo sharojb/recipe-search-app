@@ -3,13 +3,13 @@ import styles from "../styles/create.module.css";
 import { useAuth } from "../AuthContext";
 
 const CreateProfileForm = () => {
-  const { registerUser } = useAuth(); 
+  const { registerUser } = useAuth();
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [responseData, setResponseData] = useState(null);
-  const [registrationSuccess, setRegistrationSuccess] = useState(false); 
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -19,12 +19,25 @@ const CreateProfileForm = () => {
     console.log("Password", password);
 
     try {
-      const data = await registerUser(username, email, password);
+      const response = await fetch(`http://localhost:3000/api/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+
+      console.log("Response data:", data);
+
       setResponseData(data);
       setUsername("");
       setEmail("");
       setPassword("");
-      setRegistrationSuccess(true); 
+      setRegistrationSuccess(true);
     } catch (error) {
       console.error("Error registering user:", error);
       setResponseData({ message: "Failed to register user" });
