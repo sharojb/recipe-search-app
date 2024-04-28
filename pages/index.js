@@ -4,9 +4,6 @@ import Image from "next/image";
 import CreateProfileForm from "../components/CreateProfileForm";
 import Footer from "../components/Footer";
 import { AuthProvider, useAuth } from "../AuthContext";
-import FavoritesList from "../components/FavoritesList";
-import Header from "../components/Header";
-import styles from "../styles/favorites.module.css";
 
 const Home = ({ initialRecipes }) => {
   const [recipes, setRecipes] = useState(initialRecipes);

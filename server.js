@@ -190,7 +190,13 @@ app.prepare().then(() => {
     }
   });
 
-  server.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-  });
+    server.use((err, req, res, next) => {
+      console.error(err.stack);
+      res.status(500).send('Something went wrong!');
+    });
+
+    server.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
+    });
+    
 });
