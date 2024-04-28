@@ -73,7 +73,7 @@ const CreateProfileForm = () => {
         </button>
         {registrationSuccess && (
           <div>
-            <h3>Thank you for registering with uCook!</h3>
+            <h3>Thank you for registering!</h3>
           </div>
         )}
         {responseData && (
