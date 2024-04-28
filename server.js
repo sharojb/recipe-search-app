@@ -164,7 +164,7 @@ app.prepare().then(() => {
     }
   });  
 
-  server.post('/api/register', async (req, res) => {
+  server.post('/register', async (req, res) => {
     try {
       console.log("Request Body:", req.body);
       
