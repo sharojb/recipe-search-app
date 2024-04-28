@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
         throw new Error(data.message);
       }
     } catch (error) {
-      console.error("Error registering:", error);
+      console.error(error);
       return false;
     }
   };
