@@ -164,31 +164,31 @@ app.prepare().then(() => {
     }
   });  
 
-  server.post('/api/userRoutes', async (req, res) => {
-    try {
-      console.log("Request Body:", req.body);
+  // server.post('/api/userRoutes', async (req, res) => {
+  //   try {
+  //     console.log("Request Body:", req.body);
       
-      var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
+  //     var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
 
-      console.log('Request POST Register')
-      console.log(ip)
+  //     console.log('Request POST Register')
+  //     console.log(ip)
       
-      const { username, mail, password } = req.body;
-      const existingUser = await User.findOne({ username });
+  //     const { username, mail, password } = req.body;
+  //     const existingUser = await User.findOne({ username });
 
-      if (existingUser) {
-        return res.status(400).json({ message: 'Username already exists' });
-      }
+  //     if (existingUser) {
+  //       return res.status(400).json({ message: 'Username already exists' });
+  //     }
 
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const newUser = new User({ username, mail, password: hashedPassword });
-      await newUser.save();
-      res.status(201).json({ message: 'User registered successfully' });
-    } catch (error) {
-      console.error('Error registering user:', error);
-      res.status(500).json({ message: 'Internal Server Error' });
-    }
-  });
+  //     const hashedPassword = await bcrypt.hash(password, 10);
+  //     const newUser = new User({ username, mail, password: hashedPassword });
+  //     await newUser.save();
+  //     res.status(201).json({ message: 'User registered successfully' });
+  //   } catch (error) {
+  //     console.error('Error registering user:', error);
+  //     res.status(500).json({ message: 'Internal Server Error' });
+  //   }
+  // });
 
     server.use((err, req, res, next) => {
       console.error(err.stack);
