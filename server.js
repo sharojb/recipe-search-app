@@ -164,7 +164,7 @@ app.prepare().then(() => {
     }
   });  
 
-  server.post('/register', async (req, res) => {
+  server.post('/api/userRoutes', async (req, res) => {
     try {
       console.log("Request Body:", req.body);
       
