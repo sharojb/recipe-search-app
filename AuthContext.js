@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (username, email, password) => {
     try {
       const response = await fetch(
-        `/api/register`,
+        `/api/userRoutes`,
         {
           method: "POST",
           headers: {
