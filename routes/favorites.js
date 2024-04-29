@@ -1,6 +1,6 @@
 import express from 'express';
-import Favorites from './backend/models/Favorites';
-import dbConnect from './backend/config/db';
+import Favorites from '../backend/models/Favorites';
+import dbConnect from '../backend/config/db';
 
 const router = express.Router();
 
