@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+
 
 async function dbConnect() {
     if (mongoose.connection.readyState >= 1) {
